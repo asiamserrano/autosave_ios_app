@@ -9,6 +9,8 @@ import Foundation
 
 extension String {
     
+    public static var empty: Self { "" }
+    
     public static var random: Self {
         let count: Int = .random(in: 1...3)
         var set: Set<String> = .init()

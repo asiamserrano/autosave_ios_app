@@ -10,6 +10,16 @@ import SwiftData
 
 extension ModelContext {
     
+    public func add(_ game: GameModel) -> Void {
+        self.insert(game)
+        self.store()
+    }
+    
+    public func remove(_ game: GameModel) -> Void {
+        self.delete(game)
+        self.store()
+    }
+    
     public func add(_ item: Item) -> Void {
         self.insert(item)
         self.store()
@@ -20,7 +30,7 @@ extension ModelContext {
         self.store()
     }
     
-    private func store() {
+    public func store() {
         do {
             try self.save()
         } catch let error {

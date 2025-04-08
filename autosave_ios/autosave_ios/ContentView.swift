@@ -12,16 +12,23 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
 //    @Query private var items: [Item]
     
-    @State private var search: String = ""
+    @State private var search: String = .empty
+    
+    let status: Bool = true
 
     var body: some View {
     
-        NavigationSplitView {
-            FilteredItemList(self.search)
-                .searchable(text: $search)
+        NavigationView {
+            GameListView()
+//            FilteredItemList(self.search)
+//                .searchable(text: $search)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
+                        NavigationLink(destination: {
+                            GameEditView(status)
+                        }, label: {
+                            Text("Add Game")
+                        })
                     }
                     ToolbarItem {
                         Button(action: addItem) {
@@ -29,15 +36,13 @@ struct ContentView: View {
                         }
                     }
                 }
-        } detail: {
-            Text("Select an item")
         }
     }
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.add(newItem)
+            let newGame: GameModel = .init(.random, status)
+            modelContext.add(newGame)
         }
     }
     
