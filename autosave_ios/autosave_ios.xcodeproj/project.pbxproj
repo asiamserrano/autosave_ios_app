@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62B4CB462DA6E3440066B404 /* GamePredicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B4CB452DA6E3440066B404 /* GamePredicate.swift */; };
+		62B4CB482DA6E4200066B404 /* FetchDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B4CB472DA6E4200066B404 /* FetchDescriptor.swift */; };
 		62DBE4692DA6D3B30084DFBC /* GameBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBE4592DA6D3B30084DFBC /* GameBuilder.swift */; };
 		62DBE46A2DA6D3B30084DFBC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBE45B2DA6D3B30084DFBC /* Date.swift */; };
 		62DBE46B2DA6D3B30084DFBC /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DBE45D2DA6D3B30084DFBC /* UIImage.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		62B4CB452DA6E3440066B404 /* GamePredicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePredicate.swift; sourceTree = "<group>"; };
+		62B4CB472DA6E4200066B404 /* FetchDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDescriptor.swift; sourceTree = "<group>"; };
 		62D627AC2DA6D0FD001F524D /* autosave_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autosave_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DBE4592DA6D3B30084DFBC /* GameBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBuilder.swift; sourceTree = "<group>"; };
 		62DBE45B2DA6D3B30084DFBC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -52,6 +56,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62B4CB442DA6E31A0066B404 /* Predicate */ = {
+			isa = PBXGroup;
+			children = (
+				62B4CB452DA6E3440066B404 /* GamePredicate.swift */,
+			);
+			path = Predicate;
+			sourceTree = "<group>";
+		};
 		62D627A32DA6D0FD001F524D = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +116,7 @@
 			children = (
 				62DBE4622DA6D3B30084DFBC /* ModelContainer.swift */,
 				62DBE4632DA6D3B30084DFBC /* ModelContext.swift */,
+				62B4CB472DA6E4200066B404 /* FetchDescriptor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -120,6 +133,7 @@
 		62DBE4682DA6D3B30084DFBC /* SwiftData */ = {
 			isa = PBXGroup;
 			children = (
+				62B4CB442DA6E31A0066B404 /* Predicate */,
 				62DBE4642DA6D3B30084DFBC /* Extension */,
 				62DBE4672DA6D3B30084DFBC /* Model */,
 			);
@@ -203,10 +217,12 @@
 				62DBE4692DA6D3B30084DFBC /* GameBuilder.swift in Sources */,
 				62DBE46A2DA6D3B30084DFBC /* Date.swift in Sources */,
 				62DBE46B2DA6D3B30084DFBC /* UIImage.swift in Sources */,
+				62B4CB482DA6E4200066B404 /* FetchDescriptor.swift in Sources */,
 				62DBE46C2DA6D3B30084DFBC /* String.swift in Sources */,
 				62DBE46D2DA6D3B30084DFBC /* GameModel.swift in Sources */,
 				62DBE46E2DA6D3B30084DFBC /* ModelContainer.swift in Sources */,
 				62DBE46F2DA6D3B30084DFBC /* GameComparator.swift in Sources */,
+				62B4CB462DA6E3440066B404 /* GamePredicate.swift in Sources */,
 				62DBE4702DA6D3B30084DFBC /* ModelContext.swift in Sources */,
 				62DBE4712DA6D3B30084DFBC /* Item.swift in Sources */,
 				62DBE4722DA6D3B30084DFBC /* Str.swift in Sources */,
