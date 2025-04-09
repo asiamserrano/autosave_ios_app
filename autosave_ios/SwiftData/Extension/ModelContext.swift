@@ -38,4 +38,35 @@ extension ModelContext {
         }
     }
     
+    func save(_ builder: GameBuilder) -> (String, Bool) {
+        let new: GameModel? = self.fetch(builder.comparator).first
+        if let old: GameModel = builder.model {
+            if let game: GameModel = new, old.uuid != game.uuid {
+                return ("failed: game already exists", false)
+            } else {
+                let game: GameModel = builder.save()
+                self.store()
+                return ("success: game has been edited", true)
+            }
+        } else {
+            if let game: GameModel = new {
+                return ("failed: game already exists", false)
+            } else {
+                let game: GameModel = builder.save()
+                self.add(game)
+                return ("success: game has been created", true)
+            }
+        }
+    }
+        
+    func fetch(_ comparator: GameComparator) -> [GameModel] {
+        do {
+            let games: [GameModel] = try self.fetch(.getByCompositeKey(comparator))
+            return .init(games)
+        } catch {
+            print("error: \(error)")
+            return .init()
+        }
+    }
+    
 }

@@ -13,6 +13,10 @@ struct GameEditView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var builder: GameBuilder
     
+    @State private var showingAlert: Bool = false
+    @State private var isDismissing: Bool = false
+    @State private var alertMessage: String = .empty
+    
     public init(_ model: GameModel) {
         self._builder = .init(wrappedValue: .init(model))
     }
@@ -28,21 +32,25 @@ struct GameEditView: View {
                 DatePicker("Release Date", selection: $builder.release, displayedComponents: .date)
             }
         }
+        .alert(self.alertMessage, isPresented: $showingAlert) {
+            Button("OK", role: .cancel) {
+                if self.isDismissing {
+                    self.dismiss()
+                }
+            }
+        }
         .toolbar {
             
             ToolbarItem {
                 Button("Done", action: {
-                    let isNew: Bool = builder.isNew
-                    let model: GameModel = builder.save()
-                    if isNew {
-                        self.modelContext.add(model)
-                    } else {
-                        self.modelContext.store()
-                    }
-                    self.dismiss()
+                    let result: (String, Bool) = modelContext.save(builder)
+                    self.alertMessage = result.0
+                    self.isDismissing = result.1
+                    self.showingAlert = true
                 })
                 .disabled(builder.isDisabled)
             }
+            
         }
     }
     

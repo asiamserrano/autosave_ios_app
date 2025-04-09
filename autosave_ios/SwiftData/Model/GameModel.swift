@@ -46,14 +46,12 @@ public class GameModel {
 
 extension GameModel {
     
-    
-    
-    public func save(_ builder_comparator: GameComparator) -> GameModel {
-        self.title_canon = builder_comparator.title_canon
-        self.title_trim = builder_comparator.title_trim
-        self.release_date = builder_comparator.release_date
-        self.status_bool = builder_comparator.status
-        self.boxart_data = builder_comparator.boxart
+    public func save(_ other: GameComparator) -> GameModel {
+        self.title_canon = other.title_canon
+        self.title_trim = other.title_trim
+        self.release_date = other.release_date
+        self.status_bool = other.status
+        self.boxart_data = other.boxart
         return self
     }
     

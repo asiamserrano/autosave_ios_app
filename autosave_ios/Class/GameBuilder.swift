@@ -38,25 +38,20 @@ public class GameBuilder: ObservableObject {
 
 extension GameBuilder {
     
-    private var game_model: GameModel {
-        if let model: GameModel = self.model {
-            return model
-        } else {
-            return .init(self.status)
-        }
+    public func save(_ model: GameModel) -> Void {
+        self.model = model
     }
     
-    public func save() -> GameModel {
-        let new_model: GameModel = self.game_model.save(self.comparator)
-        self.model = new_model
-        return new_model
+    private var model_comparator: GameComparator {
+        self.model?.comparator ?? .Builder()
+            .setStatus(self.status)
+            .build()
     }
     
     public func reset() -> Void {
-        let other: GameComparator = game_model.comparator
-        self.title = other.title
-        self.release = other.release
-        self.boxart = other.boxart
+        self.title = model_comparator.title
+        self.release = model_comparator.release
+        self.boxart = model_comparator.boxart
     }
         
     public var isNew: Bool {
@@ -64,16 +59,7 @@ extension GameBuilder {
     }
     
     public var isDisabled: Bool {
-//        var other: GameComparator {
-//            if let model: GameModel = self.model {
-//                return model.comparator
-//            } else {
-//                let builder: GameBuilder = .init(self.status)
-//                return builder.comparator
-//            }
-//        }
-        let other: GameComparator = self.game_model.comparator
-        return other == self.comparator || self.comparator.title_canon.isEmpty
+        model_comparator == self.comparator || self.comparator.title_canon.isEmpty
     }
     
     public var comparator: GameComparator {
