@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-@available(iOS 13.0, *)
 extension UIImage {
         
     public static func < (lhs: UIImage, rhs: UIImage) -> Bool {
