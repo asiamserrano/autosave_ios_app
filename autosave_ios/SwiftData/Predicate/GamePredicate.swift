@@ -20,4 +20,11 @@ extension GamePredicate {
         }
     }
     
+    public static func getByUUID(_ comparator: GameComparator) -> GamePredicate {
+        let uuid: UUID = comparator.uuid
+        return #Predicate {
+            $0.uuid == uuid
+        }
+    }
+    
 }

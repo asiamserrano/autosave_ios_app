@@ -13,60 +13,65 @@ public class GameBuilder: ObservableObject {
     @Published public var title: String
     @Published public var release: Date
     @Published public var boxart: Data?
+        
+    public private(set) var original: GameComparator
     
-    public let status: Bool
-    private var model: GameModel?
+    private var invalid: Set<GameComparator>
+    
+    public private(set) var new: Bool
     
     public init(_ status: Bool) {
         self.title = .empty
         self.release = .today
         self.boxart = nil
-        self.status = status
-        self.model = nil
+        self.original = .init(status)
+        self.invalid = .init(.init(status))
+        self.new = true
     }
     
     public init(_ model: GameModel) {
         let comparator: GameComparator = model.comparator
+        self.original = model.comparator
         self.title = comparator.title
         self.release = comparator.release
         self.boxart = comparator.boxart
-        self.status = comparator.status
-        self.model = model
+        self.original = comparator
+        self.invalid = .init(comparator)
+        self.new = false
     }
     
 }
 
 extension GameBuilder {
     
-    public func save(_ model: GameModel) -> Void {
-        self.model = model
+    public func save() -> Void {
+        let comparator: GameComparator = self.current
+        self.original = comparator
+        self.invalid = .init(comparator)
+        self.new = false
     }
     
-    private var model_comparator: GameComparator {
-        self.model?.comparator ?? .Builder()
-            .setStatus(self.status)
-            .build()
+    public func fail() -> Void {
+        self.invalid.insert(current)
     }
     
     public func reset() -> Void {
-        self.title = model_comparator.title
-        self.release = model_comparator.release
-        self.boxart = model_comparator.boxart
+        self.title = original.title
+        self.release = original.release
+        self.boxart = original.boxart
     }
         
-    public var isNew: Bool {
-        self.model == nil
-    }
-    
     public var isDisabled: Bool {
-        model_comparator == self.comparator || self.comparator.title_canon.isEmpty
+        self.invalid.contains(self.current) || self.current.title_canon.isEmpty
     }
     
-    public var comparator: GameComparator {
-        GameComparator.Builder()
+    public var current: GameComparator {
+        let uuid: UUID = self.original.uuid
+        let status: Bool = self.original.status
+        return GameComparator.Builder(uuid, status)
             .setTitle(self.title)
             .setRelease(self.release)
-            .setStatus(self.status)
+            .setStatus(status)
             .setBoxart(self.boxart)
             .build()
     }

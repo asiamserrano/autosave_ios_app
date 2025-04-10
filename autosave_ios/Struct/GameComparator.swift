@@ -8,28 +8,41 @@
 import Foundation
 
 public struct GameComparator {
+    
+    public let uuid: UUID
     public let title: String
     public let release: Date
     public let status: Bool
     public let boxart: Data?
     
-    fileprivate init(title: String, release: Date, status: Bool, boxart: Data?) {
+    fileprivate init(uuid: UUID, title: String, release: Date, status: Bool, boxart: Data?) {
+        self.uuid = uuid
         self.title = title
         self.release = release
         self.status = status
         self.boxart = boxart
     }
     
+    public init(_ status: Bool) {
+        self.uuid = .init()
+        self.title = .empty
+        self.release = .today
+        self.status = status
+        self.boxart = nil
+    }
+    
     public class Builder {
+        fileprivate var uuid: UUID
         fileprivate var title: String
         fileprivate var release: Date
         fileprivate var status: Bool
         fileprivate var boxart: Data?
         
-        public init() {
+        public init(_ uuid: UUID, _ status: Bool) {
+            self.uuid = uuid
             self.title = .empty
             self.release = .today
-            self.status = true
+            self.status = status
             self.boxart = nil
         }
         
@@ -59,7 +72,7 @@ public struct GameComparator {
         }
         
         public func build() -> GameComparator {
-            .init(title: self.title, release: self.release, status: self.status, boxart: self.boxart)
+            .init(uuid: self.uuid, title: self.title, release: self.release, status: self.status, boxart: self.boxart)
         }
         
     }

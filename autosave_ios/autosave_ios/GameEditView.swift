@@ -35,7 +35,7 @@ struct GameEditView: View {
         .alert(self.alertMessage, isPresented: $showingAlert) {
             Button("OK", role: .cancel) {
                 if self.isDismissing {
-                    self.dismiss()
+//                    self.dismiss()
                 }
             }
         }
@@ -44,8 +44,11 @@ struct GameEditView: View {
             ToolbarItem {
                 Button("Done", action: {
                     let result: (String, Bool) = modelContext.save(builder)
+                    let bool: Bool = result.1
+                    bool ? builder.save() : builder.fail()
+                    
                     self.alertMessage = result.0
-                    self.isDismissing = result.1
+                    self.isDismissing = bool
                     self.showingAlert = true
                 })
                 .disabled(builder.isDisabled)
