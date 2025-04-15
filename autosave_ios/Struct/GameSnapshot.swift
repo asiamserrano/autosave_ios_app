@@ -79,6 +79,8 @@ public struct GameSnapshot {
     
 }
 
+
+
 extension GameSnapshot: Hashable {
     
     public var title_canon: String {

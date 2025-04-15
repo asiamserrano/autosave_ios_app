@@ -11,11 +11,11 @@ public struct GameResult: Hashable, Equatable {
 //    let message: String
 //    let bool: Bool
     
-    public let comparator: GameComparator
+    public let comparator: GameSnapshot
     public let successful: Bool
     public let enumeration: Enumeration
     
-    public init(_ comparator: GameComparator, _ inserted: Bool, _ enumeration: Enumeration) {
+    public init(_ comparator: GameSnapshot, _ inserted: Bool, _ enumeration: Enumeration) {
         self.comparator = comparator
         self.successful = inserted
         self.enumeration = enumeration

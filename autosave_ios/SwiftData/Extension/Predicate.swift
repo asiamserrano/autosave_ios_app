@@ -21,7 +21,7 @@ extension GamePredicate {
         }
     }
     
-    public static func getByCompositeKey(_ comparator: GameComparator) -> GamePredicate {
+    public static func getByCompositeKey(_ comparator: GameSnapshot) -> GamePredicate {
         let title_canon: String = comparator.title_canon
         let release_date: String = comparator.release_date
         return #Predicate {
@@ -29,7 +29,7 @@ extension GamePredicate {
         }
     }
     
-    public static func getByUUID(_ comparator: GameComparator) -> GamePredicate {
+    public static func getByUUID(_ comparator: GameSnapshot) -> GamePredicate {
         let uuid: UUID = comparator.uuid
         return #Predicate {
             $0.uuid == uuid

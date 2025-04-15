@@ -36,7 +36,40 @@ public extension ConfigurationViewProtocol {
     }
     
     func setAlertEnum(_ result: GameResult? = nil) {
-        self.configuration.alertEnum = result.alert
+        self.setAlertEnum(result.alert)
+    }
+    
+    @ViewBuilder
+    func SwipeButton(_ alert: AlertEnum, _ icon: IconEnum, _ color: Color) -> some View {
+        SwipeButton(icon, color, action: {
+            self.setAlertEnum(alert)
+        })
+    }
+    
+//    @ViewBuilder
+//    func SwipeButton(_ model: TagModel, _ icon: IconEnum, _ color: Color) -> some View {
+//        SwipeButton(icon, color, action: {
+//            self.configuration.setTagModel(model)
+//        })
+//    }
+    
+    @ViewBuilder
+    func SwipeButton(_ icon: IconEnum, _ color: Color, action: @escaping () -> Void) -> some View {
+        Button(action: {
+            withAnimation {
+                action()
+            }
+        }, label: {
+            Image(icon)
+        })
+        .tint(color)
+    }
+}
+
+private extension ConfigurationViewProtocol {
+    
+    private func setAlertEnum(_ alert: AlertEnum) -> Void {
+        self.configuration.alertEnum = alert
     }
     
 }

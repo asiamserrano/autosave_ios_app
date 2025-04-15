@@ -13,18 +13,19 @@ public class GameBuilder: ObservableObject {
     @Published public var title: String
     @Published public var release: Date
     @Published public var boxart: Data?
+    
     @Published public var editMode: EditMode
         
-    public private(set) var original: GameComparator
+    public private(set) var original: GameSnapshot
     
-    private var invalid: Set<GameComparator>
+    private var invalid: Set<GameSnapshot>
     
 //    public private(set) var new: Bool
     
     public let status: GameStatusEnum
     
     public init(_ status: Bool) {
-        let comparator: GameComparator = .init(status)
+        let comparator: GameSnapshot = .init(status)
         self.title = .defaultValue
         self.release = .today
         self.boxart = nil
@@ -36,8 +37,8 @@ public class GameBuilder: ObservableObject {
     }
     
     public init(_ model: GameModel) {
-        let comparator: GameComparator = model.comparator
-        self.original = model.comparator
+        let comparator: GameSnapshot = model.snapshot
+        self.original = model.snapshot
         self.title = comparator.title
         self.release = comparator.release
         self.boxart = comparator.boxart
@@ -53,7 +54,7 @@ public class GameBuilder: ObservableObject {
 extension GameBuilder {
     
     public func save() -> Void {
-        let comparator: GameComparator = self.current
+        let comparator: GameSnapshot = self.current
         self.original = comparator
         self.invalid = .init(comparator)
 //        self.new = false
@@ -86,10 +87,10 @@ extension GameBuilder {
         self.invalid.contains(self.current) || self.current.title_canon.isEmpty
     }
     
-    public var current: GameComparator {
+    public var current: GameSnapshot {
         let uuid: UUID = self.original.uuid
         let status: Bool = self.original.status_bool
-        return GameComparator.Builder(uuid, status)
+        return GameSnapshot.Builder(uuid, status)
             .setTitle(self.title)
             .setRelease(self.release)
             .setStatus(status)
@@ -99,4 +100,12 @@ extension GameBuilder {
     
 }
 
+extension GameBuilder {
+    
+    public func random(_ status: GameStatusEnum) -> GameBuilder {
+        
+    }
+    
+    
+}
 

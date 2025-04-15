@@ -50,33 +50,25 @@ struct GamesListView: ConfigurationViewProtocol {
 //        
         private var search: Binding<String>
         
-//        let move: GameStatusEnum
         let inactive: Bool
         
         init(_ status: GameStatusEnum, _ sort: GameSortEnum, _ search: Binding<String>) {
             let canon: String = search.wrappedValue.canonicalize()
             self.inactive = canon.isEmpty
             self.search = search
-//            self.move = status.next
             self._models = Query(filter: .getForList(status, canon), sort: .defaultValue(sort))
         }
-        
+   
         var body: some View {
             ListView(models, inactive)
                 .searchable(text: self.search)
         }
         
-        private var binding: Binding<Bool> {
-            .init(get: {
-                return !self.models.isEmpty
-            }, set: { _ in
-                
-            })
-        }
-        
     }
     
-    fileprivate struct ListView: View {
+    fileprivate struct ListView: ConfigurationViewProtocol {
+        
+        @EnvironmentObject var configuration: Configuration
         
         let models: [GameModel]
         let message: String
@@ -94,14 +86,9 @@ struct GamesListView: ConfigurationViewProtocol {
             } else {
                 Form {
                     ForEach(models) { model in
-                        NavigationLink {
-                            GameView(model)
-                        } label: {
-                            GameListView(model)
-                        }
-//                        GameNavigationLink(model)
-//                            .swipeActions(edge: .trailing) { SwipeButton(.delete_game(model), .trash, .red) }
-//                            .swipeActions(edge: .leading) { SwipeButton(.move_game(model, move), .plus_circle, .green) }
+                        GameNavigationLink(model)
+                            .swipeActions(edge: .trailing) { SwipeButton(.delete_game(model), .trash, .red) }
+                            .swipeActions(edge: .leading) { SwipeButton(.move_game(model, move), .plus_circle, .green) }
                     }
                 }
             }
@@ -154,6 +141,23 @@ struct GamesListView: ConfigurationViewProtocol {
     
 }
 
+private extension GamesListView.ListView {
+    
+    @ViewBuilder
+    func GameNavigationLink(_ model: GameModel) -> some View {
+        NavigationLink {
+            GameView(model)
+        } label: {
+            GameListView(model)
+        }
+    }
+    
+    var move: GameStatusEnum {
+        self.gameStatusEnum.next
+    }
+    
+}
+
 private extension GamesListView.SearchView {
     
     var canon: String {
@@ -163,6 +167,8 @@ private extension GamesListView.SearchView {
     var isSearchInactive: Bool {
         self.canon.isEmpty
     }
+    
+    
         
     @ViewBuilder
     func PlusButton() -> some View {

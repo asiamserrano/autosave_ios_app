@@ -20,6 +20,11 @@ extension ModelContext {
         self.store()
     }
     
+    func move(_ game: GameModel, _ next: GameStatusEnum) -> Void {
+        game.update(next)
+        self.store()
+    }
+    
     public func store() {
         do {
             try self.save()
@@ -28,14 +33,15 @@ extension ModelContext {
         }
     }
     
+    @discardableResult
     func save(_ builder: GameBuilder) -> GameResult {
-        let current: GameComparator = builder.current
+        let current: GameSnapshot = builder.current
         let composite: GameFetchDescriptor = .getByCompositeKey(current)
         let new: GameModel? = self.fetchModel(composite)
         let uuid: GameFetchDescriptor = .getByUUID(builder.original)
         if let old: GameModel = self.fetchModel(uuid) {
             if let new: GameModel = new, old.uuid != new.uuid {
-                return .init(new.comparator, false, .edit)
+                return .init(new.snapshot, false, .edit)
             } else {
                 old.update(current)
                 self.store()
@@ -43,12 +49,25 @@ extension ModelContext {
             }
         } else {
             if let new: GameModel = new {
-                return .init(new.comparator, false, .add)
+                return .init(new.snapshot, false, .add)
             } else {
                 let game: GameModel = .init(current)
                 self.add(game)
                 return .init(current, true, .add)
             }
+        }
+    }
+    
+    @discardableResult
+    func save(_ current: GameSnapshot) -> GameResult {
+        let composite: GameFetchDescriptor = .getByCompositeKey(current)
+        let new: GameModel? = self.fetchModel(composite)
+        if let new: GameModel = new {
+            return .init(new.snapshot, false, .add)
+        } else {
+            let game: GameModel = .init(current)
+            self.add(game)
+            return .init(current, true, .add)
         }
     }
     

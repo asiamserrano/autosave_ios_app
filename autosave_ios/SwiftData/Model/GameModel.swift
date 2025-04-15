@@ -42,7 +42,7 @@ public class GameModel {
         self.boxart_data = nil
     }
     
-    public init(_ comparator: GameComparator) {
+    public init(_ comparator: GameSnapshot) {
         self.uuid = comparator.uuid
         self.added = .today
         self.title_canon = comparator.title_canon
@@ -57,7 +57,7 @@ public class GameModel {
 extension GameModel {
     
     @discardableResult
-    public func update(_ other: GameComparator) -> GameModel {
+    public func update(_ other: GameSnapshot) -> GameModel {
         self.title_canon = other.title_canon
         self.title_trim = other.title_trim
         self.release_date = other.release_date
@@ -66,8 +66,14 @@ extension GameModel {
         return self
     }
     
-    public var comparator: GameComparator {
-        GameComparator.Builder(self.uuid, self.status_bool)
+    @discardableResult
+    public func update(_ status: GameStatusEnum) -> GameModel {
+        self.status_bool = status.bool
+        return self
+    }
+    
+    public var snapshot: GameSnapshot {
+        GameSnapshot.Builder(self.uuid, self.status_bool)
             .setTitle(self.title_trim)
             .setRelease(self.release_date)
             .setStatus(self.status_bool)

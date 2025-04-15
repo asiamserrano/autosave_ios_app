@@ -9,10 +9,10 @@ import SwiftUI
 
 struct GameListView: View {
     
-    let comparator: GameComparator
+    let comparator: GameSnapshot
     
     init(_ game: GameModel) {
-        self.comparator = game.comparator
+        self.comparator = game.snapshot
     }
     
     var body: some View {
