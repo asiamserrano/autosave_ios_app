@@ -20,16 +20,6 @@ extension ModelContext {
         self.store()
     }
     
-    public func add(_ item: Item) -> Void {
-        self.insert(item)
-        self.store()
-    }
-    
-    public func remove(_ item: Item) -> Void {
-        self.delete(item)
-        self.store()
-    }
-    
     public func store() {
         do {
             try self.save()
@@ -38,35 +28,44 @@ extension ModelContext {
         }
     }
     
-    func save(_ builder: GameBuilder) -> (String, Bool) {
+    func save(_ builder: GameBuilder) -> GameResult {
         let current: GameComparator = builder.current
-        let new: GameModel? = self.fetch(.getByCompositeKey(current))
-        if let old: GameModel = self.fetch(.getByUUID(builder.original)) {
+        let composite: GameFetchDescriptor = .getByCompositeKey(current)
+        let new: GameModel? = self.fetchModel(composite)
+        let uuid: GameFetchDescriptor = .getByUUID(builder.original)
+        if let old: GameModel = self.fetchModel(uuid) {
             if let new: GameModel = new, old.uuid != new.uuid {
-                return ("failed: game already exists", false)
+                return .init(new.comparator, false, .edit)
             } else {
                 old.update(current)
                 self.store()
-                return ("success: game has been edited", true)
+                return .init(current, true, .edit)
             }
         } else {
-            if new == nil {
+            if let new: GameModel = new {
+                return .init(new.comparator, false, .add)
+            } else {
                 let game: GameModel = .init(current)
                 self.add(game)
-                return ("success: game has been created", true)
-            } else {
-                return ("failed: game already exists", false)
+                return .init(current, true, .add)
             }
         }
     }
     
-    func fetch(_ desc: GameFetchDescriptor) -> GameModel? {
+}
+
+private extension ModelContext {
+    
+    func fetchModel(_ desc: GameFetchDescriptor) -> GameModel? {
+        fetchModels(desc).first
+    }
+    
+    func fetchModels(_ desc: GameFetchDescriptor) -> [GameModel] {
         do {
-            let games: [GameModel] = try self.fetch(desc)
-            return games.first
+            return try self.fetch(desc)
         } catch {
             print("error: \(error)")
-            return nil
+            return .init()
         }
     }
     

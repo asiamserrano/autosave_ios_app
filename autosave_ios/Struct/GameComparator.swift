@@ -12,22 +12,22 @@ public struct GameComparator {
     public let uuid: UUID
     public let title: String
     public let release: Date
-    public let status: Bool
+    public let status: GameStatusEnum
     public let boxart: Data?
     
     fileprivate init(uuid: UUID, title: String, release: Date, status: Bool, boxart: Data?) {
         self.uuid = uuid
         self.title = title
         self.release = release
-        self.status = status
+        self.status = .init(status)
         self.boxart = boxart
     }
     
     public init(_ status: Bool) {
         self.uuid = .init()
-        self.title = .empty
+        self.title = .defaultValue
         self.release = .today
-        self.status = status
+        self.status = .init(status)
         self.boxart = nil
     }
     
@@ -40,7 +40,7 @@ public struct GameComparator {
         
         public init(_ uuid: UUID, _ status: Bool) {
             self.uuid = uuid
-            self.title = .empty
+            self.title = .defaultValue
             self.release = .today
             self.status = status
             self.boxart = nil
@@ -91,6 +91,14 @@ extension GameComparator: Hashable {
     
     public var release_date: String {
         release.dashless
+    }
+    
+    public var status_bool: Bool {
+        self.status.bool
+    }
+    
+    public var display: String {
+        "\(self.title) (\(self.release.year))"
     }
     
     public static func == (lhs: Self, rhs: Self) -> Bool {

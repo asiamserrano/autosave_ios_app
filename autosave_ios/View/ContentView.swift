@@ -8,24 +8,24 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-//    @Query private var items: [Item]
+struct ContentView: ConfigurationViewProtocol {
     
-    @State private var search: String = .empty
+    @Environment(\.modelContext) private var modelContext
+    
+//    @State private var search: String = .defaultValue
+    
+    @EnvironmentObject var configuration: Configuration
     
     let status: Bool = true
 
     var body: some View {
-    
         NavigationView {
-            GameListView()
-//            FilteredItemList(self.search)
-//                .searchable(text: $search)
+            GamesListView()
+                .alert(alertTitle, isPresented: alertBinding, actions: AlertActions, message: alertMessage)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink(destination: {
-                            GameEditView(status)
+                            GameView(status)
                         }, label: {
                             Text("Add Game")
                         })
@@ -37,12 +37,40 @@ struct ContentView: View {
                     }
                 }
         }
+        .environmentObject(self.configuration)
     }
 
     private func addItem() {
         withAnimation {
             let newGame: GameModel = .init(.random, status)
             modelContext.add(newGame)
+        }
+    }
+    
+    private var alertBinding: Binding<Bool> {
+        .init(get: {
+            self.alertEnum != .none
+        }, set: { newValue in
+            if newValue == false {
+                self.setAlertEnum()
+            }
+        })
+    }
+    
+    @ViewBuilder
+    private func AlertActions() -> some View {
+        switch self.alertEnum {
+//        case .delete_game(let game):
+//            DeleteButton(game)
+//            CancelButton(CANCEL_LABEL_STRING)
+//        case .move_game(let game, let status):
+//            MoveButton(game, status)
+//            CancelButton(CANCEL_LABEL_STRING)
+//        case .delete_tag(let tag):
+//            DeleteButton(tag)
+//            CancelButton(CANCEL_LABEL_STRING)
+        default:
+            CancelButton(OK_LABEL_STRING)
         }
     }
     
@@ -62,4 +90,5 @@ struct ContentView: View {
 
     return ContentView()
         .modelContainer(previewModelContainer)
+        .environmentObject(Configuration.defaultValue)
 }

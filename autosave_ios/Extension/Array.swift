@@ -9,6 +9,8 @@ import Foundation
 
 extension Array {
     
+    public static var defaultValue: Self { .init() }
+    
     public init(_ element: Element) {
         self.init()
         self.append(element)

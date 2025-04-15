@@ -7,9 +7,9 @@
 
 import Foundation
 
-extension String {
+extension String: Defaultable {
     
-    public static var empty: Self { "" }
+    public static var defaultValue: Self { .init() }
     
     public static var random: Self {
         let count: Int = .random(in: 1...3)

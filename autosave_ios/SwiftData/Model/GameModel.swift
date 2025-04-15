@@ -24,8 +24,8 @@ public class GameModel {
         let today: Date = .today
         self.uuid = .init()
         self.added = today
-        self.title_canon = .empty
-        self.title_trim = .empty
+        self.title_canon = .defaultValue
+        self.title_trim = .defaultValue
         self.release_date = today.dashless
         self.status_bool = status
         self.boxart_data = nil
@@ -48,7 +48,7 @@ public class GameModel {
         self.title_canon = comparator.title_canon
         self.title_trim = comparator.title_trim
         self.release_date = comparator.release_date
-        self.status_bool = comparator.status
+        self.status_bool = comparator.status_bool
         self.boxart_data = comparator.boxart
     }
     
@@ -61,7 +61,7 @@ extension GameModel {
         self.title_canon = other.title_canon
         self.title_trim = other.title_trim
         self.release_date = other.release_date
-        self.status_bool = other.status
+        self.status_bool = other.status_bool
         self.boxart_data = other.boxart
         return self
     }
