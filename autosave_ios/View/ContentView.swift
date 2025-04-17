@@ -10,13 +10,12 @@ import SwiftData
 
 struct ContentView: ConfigurationViewProtocol {
     
-    @Environment(\.modelContext) private var modelContext
-    
+    @Environment(\.modelContext) public var modelContext
                
     @EnvironmentObject var configuration: Configuration
     
-    let status: Bool = true
-
+//    let status: Bool = true
+    
     var body: some View {
         NavigationView {
             GamesListView()
@@ -24,7 +23,7 @@ struct ContentView: ConfigurationViewProtocol {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink(destination: {
-                            GameView(status)
+                            GameView(gameStatusEnum)
                         }, label: {
                             Text("Add Game")
                         })
@@ -41,7 +40,7 @@ struct ContentView: ConfigurationViewProtocol {
 
     private func addItem() {
         withAnimation {
-            let newGame: GameModel = .init(.random, status)
+            let newGame: GameModel = .init(.random, gameStatusEnum)
             modelContext.add(newGame)
         }
     }
@@ -93,7 +92,12 @@ struct ContentView: ConfigurationViewProtocol {
         container.mainContext.autosaveEnabled = false
         container.mainContext.undoManager = .init()
         
-        container.mainContext.
+        var snapshot: GameSnapshot
+        
+        for _ in 0..<0 {
+            snapshot = .random(.library)
+            container.mainContext.save(snapshot)
+        }
         
         return container
 

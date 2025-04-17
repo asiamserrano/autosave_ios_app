@@ -27,4 +27,11 @@ public extension GameStatusEnum {
         }
     }
     
+    var icon: IconEnum {
+        switch self {
+        case .wishlist: return .list_star
+        case .library: return .gamecontroller
+        }
+    }
+    
 }

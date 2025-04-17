@@ -20,7 +20,7 @@ public class Configuration: ObservableObject {
     @Published public var gameSortEnum: GameSortEnum = .title(.forward)
 
     public private(set) var menuEnum: MenuEnum = .library
-    public private(set) var gameStatusEnum: GameStatusEnum = .library
+//    public private(set) var gameStatusEnum: GameStatusEnum = .library
 
     private init() { }
     
@@ -28,15 +28,20 @@ public class Configuration: ObservableObject {
 
 public extension Configuration {
     
-    var menuEnumBinding: Binding<MenuEnum> {
-        .init(get: {
-            self.menuEnum
-        }, set: { newValue in
-            self.menuEnum = newValue
-            if let cast: GameStatusEnum = .cast(newValue) {
-                self.gameStatusEnum = cast
-            }
-        })
+//    var menuEnumBinding: Binding<MenuEnum> {
+//        .init(get: {
+//            self.menuEnum
+//        }, set: { newValue in
+//            self.menuEnum = newValue
+//            if let cast: GameStatusEnum = .cast(newValue) {
+//                self.gameStatusEnum = cast
+//            }
+//        })
+//    }
+//
+    
+    var gameStatusEnum: GameStatusEnum {
+        self.menuEnum == .wishlist ? .wishlist : .library
     }
     
 //    func setAlertEnum() {
@@ -60,8 +65,6 @@ public extension Configuration {
 //        self.gameSortEnum = .title(true)
 //    }
 //    
-//    func setGameSortEnum(_ newValue: GameSortEnum) -> Void {
-//        self.gameSortEnum = newValue == gameSortEnum ? gameSortEnum.toggle : gameSortEnum.next
-//    }
+
     
 }

@@ -24,12 +24,12 @@ public class GameBuilder: ObservableObject {
     
     public let status: GameStatusEnum
     
-    public init(_ status: Bool) {
+    public init(_ status: GameStatusEnum) {
         let comparator: GameSnapshot = .init(status)
         self.title = .defaultValue
         self.release = .today
         self.boxart = nil
-        self.status = comparator.status
+        self.status = status
         self.original = comparator
         self.invalid = .init(comparator)
         self.editMode = .active
@@ -99,13 +99,3 @@ extension GameBuilder {
     }
     
 }
-
-extension GameBuilder {
-    
-    public func random(_ status: GameStatusEnum) -> GameBuilder {
-        
-    }
-    
-    
-}
-

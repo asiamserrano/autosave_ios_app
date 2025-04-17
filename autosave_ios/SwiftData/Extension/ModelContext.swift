@@ -10,6 +10,16 @@ import SwiftData
 
 extension ModelContext {
     
+    public func fetchCount(_ status: GameStatusEnum) -> Int {
+        let desc: GameFetchDescriptor = .getByStatus(status)
+        do {
+            return try self.fetchCount(desc)
+        } catch {
+            print("error: \(error)")
+            return 0
+        }
+    }
+    
     public func add(_ game: GameModel) -> Void {
         self.insert(game)
         self.store()

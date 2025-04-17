@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public enum AlertEnum: Hashable, Equatable {
         
@@ -48,6 +49,14 @@ public enum AlertEnum: Hashable, Equatable {
 //            return "Are you sure you want to delete \(tag.builder.value)?"
 //        case .edit_tag(let result):
 //            return result.message
+        }
+    }
+    
+    public var color: Color {
+        switch self {
+        case .delete_game(_): return .red
+        case .move_game(_,_): return .green
+        default: return .accentColor
         }
     }
     

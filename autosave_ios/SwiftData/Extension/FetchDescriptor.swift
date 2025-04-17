@@ -24,7 +24,7 @@ private extension FetchDescriptor where T: Any {
 }
 
 public extension GameFetchDescriptor {
-
+    
     static func getByCompositeKey(_ comparator: GameSnapshot) -> Self {
         let predicate: GamePredicate = .getByCompositeKey(comparator)
         return .build(predicate)
@@ -32,6 +32,11 @@ public extension GameFetchDescriptor {
     
     static func getByUUID(_ comparator: GameSnapshot) -> Self {
         let predicate: GamePredicate = .getByUUID(comparator)
+        return .build(predicate)
+    }
+    
+    static func getByStatus(_ status: GameStatusEnum) -> Self {
+        let predicate: GamePredicate = .getForList(status, .defaultValue)
         return .build(predicate)
     }
     

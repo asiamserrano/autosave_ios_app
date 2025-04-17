@@ -23,7 +23,7 @@ struct GameView: ConfigurationViewProtocol, GameViewProtocol {
         self._builder = .init(wrappedValue: .init(model))
     }
     
-    public init(_ status: Bool) {
+    public init(_ status: GameStatusEnum) {
         self.isNewGame = true
         self._builder = .init(wrappedValue: .init(status))
     }

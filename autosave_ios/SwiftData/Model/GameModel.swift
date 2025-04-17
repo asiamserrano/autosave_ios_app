@@ -31,14 +31,14 @@ public class GameModel {
         self.boxart_data = nil
     }
     
-    public init(_ title: String, _ status: Bool) {
+    public init(_ title: String, _ status: GameStatusEnum) {
         let today: Date = .today
         self.uuid = .init()
         self.added = today
         self.title_canon = title.canonicalize()
         self.title_trim = title.trim()
         self.release_date = today.dashless
-        self.status_bool = status
+        self.status_bool = status.bool
         self.boxart_data = nil
     }
     

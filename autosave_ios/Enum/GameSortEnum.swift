@@ -26,12 +26,17 @@ extension GameSortEnum: Iterable {
     public static var cases: [GameSortEnum] { [.title(.defaultValue), .release(.defaultValue)] }
         
     // toggles the current sort variable between ascending and descending
-    public var toggle: Self {
-        switch self {
-        case .release(let o):
-            return .release(o.next)
-        case .title(let o):
-            return .title(o.next)
+    public func toggle(_ other: Self) -> Self {
+        if self == other {
+            switch self {
+            case .release(let o): return .release(o.next)
+            case .title(let o): return .title(o.next)
+            }
+        } else {
+            switch self {
+            case .release(_): return .title(.forward)
+            case .title(_): return .release(.forward)
+            }
         }
     }
     

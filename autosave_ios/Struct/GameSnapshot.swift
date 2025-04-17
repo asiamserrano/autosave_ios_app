@@ -23,12 +23,16 @@ public struct GameSnapshot {
         self.boxart = boxart
     }
     
-    public init(_ status: Bool) {
+    public init(_ status: GameStatusEnum) {
         self.uuid = .init()
         self.title = .defaultValue
         self.release = .today
-        self.status = .init(status)
+        self.status = status
         self.boxart = nil
+    }
+    
+    public static func random(_ status: GameStatusEnum) -> GameSnapshot {
+        .init(uuid: UUID(), title: .random, release: .random, status: status.bool, boxart: nil)
     }
     
     public class Builder {

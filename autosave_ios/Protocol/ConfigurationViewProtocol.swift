@@ -21,14 +21,6 @@ public extension ConfigurationViewProtocol {
     
     var gameStatusEnum: GameStatusEnum { self.configuration.gameStatusEnum }
     var gameSortEnum: GameSortEnum { self.configuration.gameSortEnum }
-    
-    var gameSortBinding: Binding<GameSortEnum> {
-        .init(get: {
-            self.gameSortEnum
-        }, set: { newValue in
-            self.configuration.gameSortEnum = newValue == gameSortEnum ? gameSortEnum.toggle : gameSortEnum.next
-        })
-    }
 
     @ViewBuilder
     func alertMessage() -> some View {
@@ -39,37 +31,49 @@ public extension ConfigurationViewProtocol {
         self.setAlertEnum(result.alert)
     }
     
-    @ViewBuilder
-    func SwipeButton(_ alert: AlertEnum, _ icon: IconEnum, _ color: Color) -> some View {
-        SwipeButton(icon, color, action: {
-            self.setAlertEnum(alert)
-        })
+    func setAlertEnum(_ alert: AlertEnum) -> Void {
+        withAnimation {
+            self.configuration.alertEnum = alert
+        }
     }
     
-//    @ViewBuilder
-//    func SwipeButton(_ model: TagModel, _ icon: IconEnum, _ color: Color) -> some View {
-//        SwipeButton(icon, color, action: {
-//            self.configuration.setTagModel(model)
-//        })
-//    }
+    var move: GameStatusEnum {
+        self.gameStatusEnum.next
+    }
+    
+    var location: String {
+        "Move to \(self.move.value)"
+    }
     
     @ViewBuilder
-    func SwipeButton(_ icon: IconEnum, _ color: Color, action: @escaping () -> Void) -> some View {
-        Button(action: {
-            withAnimation {
-                action()
-            }
-        }, label: {
+    func SwipeButton(_ alert: AlertEnum, _ icon: IconEnum) -> some View {
+        SwipeButton(alert, label: {
             Image(icon)
         })
-        .tint(color)
     }
-}
-
-private extension ConfigurationViewProtocol {
     
-    private func setAlertEnum(_ alert: AlertEnum) -> Void {
-        self.configuration.alertEnum = alert
+    @ViewBuilder
+    func SwipeButton(_ alert: AlertEnum, _ location: String) -> some View {
+        SwipeButton(alert, label: {
+            Text(location)
+                .multilineTextAlignment(.center)
+        })
+    }
+    
+    @ViewBuilder
+    func SwipeButton(_ alert: AlertEnum, label: () -> some View) -> some View {
+        Button(action: {
+            self.setAlertEnum(alert)
+        }, label: label)
+        .tint(alert.color)
+    }
+    
+    func setGameSortEnum(_ newValue: GameSortEnum) -> Void {
+        self.configuration.gameSortEnum = newValue
+    }
+    
+    func getGameSortEnum() -> GameSortEnum {
+        self.configuration.gameSortEnum
     }
     
 }
