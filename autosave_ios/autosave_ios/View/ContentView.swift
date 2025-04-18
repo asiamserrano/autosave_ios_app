@@ -20,55 +20,25 @@ struct ContentView: ConfigurationViewProtocol {
         NavigationView {
             GamesListView()
                 .alert(alertTitle, isPresented: alertBinding, actions: AlertActions, message: alertMessage)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: {
-                            GameView(gameStatusEnum)
-                        }, label: {
-                            Text("Add Game")
-                        })
-                    }
-                    ToolbarItem {
-                        Button(action: addItem) {
-                            Label("Add Item", systemImage: "plus")
-                        }
-                    }
-                }
         }
         .environmentObject(self.configuration)
     }
 
-    private func addItem() {
-        withAnimation {
-            let newGame: GameModel = .init(.random, gameStatusEnum)
-            modelContext.add(newGame)
-        }
-    }
-    
-    private var alertBinding: Binding<Bool> {
-        .init(get: {
-            self.alertEnum != .none
-        }, set: { newValue in
-            if newValue == false {
-                self.setAlertEnum()
-            }
-        })
-    }
     
     @ViewBuilder
     private func AlertActions() -> some View {
         switch self.alertEnum {
         case .delete_game(let game):
             DeleteButton(game)
-            CancelButton(CANCEL_LABEL_STRING)
+            CancelButton(.cancel)
         case .move_game(let game, let status):
             MoveButton(game, status)
-            CancelButton(CANCEL_LABEL_STRING)
+            CancelButton(.cancel)
 //        case .delete_tag(let tag):
 //            DeleteButton(tag)
 //            CancelButton(CANCEL_LABEL_STRING)
         default:
-            CancelButton(OK_LABEL_STRING)
+            CancelButton(.ok)
         }
     }
     

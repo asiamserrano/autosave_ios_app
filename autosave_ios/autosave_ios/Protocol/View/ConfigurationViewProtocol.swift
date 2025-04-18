@@ -22,6 +22,17 @@ public extension ConfigurationViewProtocol {
     var gameStatusEnum: GameStatusEnum { self.configuration.gameStatusEnum }
     var gameSortEnum: GameSortEnum { self.configuration.gameSortEnum }
 
+    
+    var alertBinding: Binding<Bool> {
+        .init(get: {
+            self.alertEnum != .none
+        }, set: { newValue in
+            if newValue == false {
+                self.setAlertEnum()
+            }
+        })
+    }
+    
     @ViewBuilder
     func alertMessage() -> some View {
         Text(self.alertEnum.message)

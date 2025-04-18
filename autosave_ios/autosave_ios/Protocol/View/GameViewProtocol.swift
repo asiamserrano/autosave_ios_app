@@ -40,6 +40,51 @@ public extension GameViewProtocol {
         .init(get: { self.editMode }, set: self.setEditMode)
     }
     
+    var titleBinding: Binding<String> {
+        .init(get: {
+            self.builder.title
+        }, set: { newValue in
+            self.builder.title = newValue
+        })
+    }
+    
+    var releaseBinding: Binding<Date> {
+        .init(get: {
+            self.builder.release
+        }, set: { newValue in
+            self.builder.release = newValue
+        })
+    }
+    
+    @ViewBuilder
+    func GameDetailView() -> some View {
+        if isEditing {
+            GameEditOnView()
+        } else {
+            GameEditOffView()
+        }
+    }
+    
+    @ViewBuilder
+    func GameEditOnView() -> some View {
+        Section {
+            TextFieldView(.title, titleBinding)
+        }
+        Section {
+            DatePicker(selection: releaseBinding, displayedComponents: .date, label: {
+                ConstantsText(.release_date)
+            })
+        }
+    }
+    
+    @ViewBuilder
+    func GameEditOffView() -> some View {
+        Section {
+            FormattedView(.title, self.builder.title)
+            FormattedView(.release_date, self.builder.release.long)
+        }
+    }
+    
 //    var boxart: Data? { self.observer.boxart }
 //    var statusEnum: GameStatusEnum { self.observer.statusEnum }
 //    var propertyEnum: PropertyEnum { self.observer.propertyEnum }

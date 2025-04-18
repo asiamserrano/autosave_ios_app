@@ -12,7 +12,8 @@ public typealias GamePredicate = Predicate<GameModel>
 
 extension GamePredicate {
     
-    public static func getForList(_ status: GameStatusEnum, _ canon: String) -> GamePredicate {
+    public static func getForList(_ status: GameStatusEnum, _ search: String) -> GamePredicate {
+        let canon = search.canonicalize()
         let bool = status.bool
         switch canon.count {
         case 0: return #Predicate { $0.status_bool == bool }

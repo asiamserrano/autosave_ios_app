@@ -101,13 +101,13 @@ private extension GameImageView {
     func EditView() -> some View {
         HStack {
             PhotosPicker(selection: $photosPickerItem, matching: .images, photoLibrary: .shared()) {
-                Text(self.isEmpty ? ADD_LABEL_STRING : EDIT_LABEL_STRING).bold()
+                ConstantsText(self.isEmpty ? .add : .edit).bold()
             }
             .onChange(of: self.photosPickerItem, self.pickerAction)
             
             if !self.isEmpty {
                 Button(action: self.resetPhotosPickerItem, label: {
-                    Text(DELETE_LABEL_STRING).bold()
+                    ConstantsText(.delete).bold()
                 })
             }
             

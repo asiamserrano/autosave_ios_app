@@ -20,6 +20,12 @@ struct TextFieldView: View {
         self.prompt = prompt
     }
     
+    public init(_ constants: ConstantsEnum, _ binding: Binding<String>) {
+        self._binding = binding
+        self.keyboard = .alphabet
+        self.prompt = constants.value
+    }
+    
     public var body: some View {
         HStack(alignment: .center, spacing: 5) {
             

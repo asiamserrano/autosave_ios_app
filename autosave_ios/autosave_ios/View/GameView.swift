@@ -56,24 +56,13 @@ private extension GameView {
     var isBackButtonHidden: Bool {
         self.isNewGame ? false : self.isEditing
     }
-//    
-//    func confirm() {
-//        let result: GameResult = modelContext.save(builder)
-//        if result.successful {
-//            self.builder.save()
-//            self.dismiss()
-//        } else {
-//            self.builder.fail()
-//        }
-//        self.setAlertEnum(result)
-//    }
-//    
+
     @ViewBuilder
     func CancelButton() -> some View {
         Button(action: {
             self.builder.cancel()
         }, label: {
-            Text(CANCEL_LABEL_STRING)
+            ConstantsText(.cancel)
         })
     }
     
@@ -94,9 +83,9 @@ private extension GameView {
             }
         }, label: {
             if self.isEditing {
-                Text(DONE_LABEL_STRING)
+                ConstantsText(.done)
             } else {
-                Text(EDIT_LABEL_STRING)
+                ConstantsText(.edit)
             }
         })
         .disabled(self.isEditing ? self.builder.isDisabled : false)
