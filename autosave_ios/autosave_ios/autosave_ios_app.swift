@@ -2,16 +2,16 @@
 //  autosave_iosApp.swift
 //  autosave_ios
 //
-//  Created by Asia Serrano on 4/4/25.
+//  Created by Asia Serrano on 4/19/25.
 //
 
 import SwiftUI
 import SwiftData
 
 @main
-struct autosave_iosApp: App {
+struct autosave_ios_app: App {
     var body: some Scene {
-     
+        
         WindowGroup {
             ContentView()
         }

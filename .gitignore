@@ -1,5 +1,4 @@
 .DS_Store
-.xcworkspace
-
-xcshareddata
+#xcworkspace
+#xcshareddata
 xcuserdata
