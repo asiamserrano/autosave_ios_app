@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import SwiftUI
 
 public protocol GameViewProtocol: View {
@@ -20,6 +18,7 @@ public extension GameViewProtocol {
     var isLibrary: Bool { self.status == .library }
     var boxart: Data? { self.builder.boxart }
     var status: GameStatusEnum { self.builder.status }
+    var isBoxartEmpty: Bool { self.boxart == nil }
     
     var editMode: EditMode { self.builder.editMode }
  
@@ -40,49 +39,78 @@ public extension GameViewProtocol {
         .init(get: { self.editMode }, set: self.setEditMode)
     }
     
-    var titleBinding: Binding<String> {
-        .init(get: {
-            self.builder.title
-        }, set: { newValue in
-            self.builder.title = newValue
-        })
+//    var titleBinding: Binding<String> {
+//        .init(get: {
+//            self.builder.title
+//        }, set: { newValue in
+//            self.builder.title = newValue
+//        })
+//    }
+//    
+//    var releaseBinding: Binding<Date> {
+//        .init(get: {
+//            self.builder.release
+//        }, set: { newValue in
+//            self.builder.release = newValue
+//        })
+//    }
+    
+    var isBackButtonHidden: Bool {
+        self.builder.isNew ? false : self.isEditing
     }
     
-    var releaseBinding: Binding<Date> {
-        .init(get: {
-            self.builder.release
-        }, set: { newValue in
-            self.builder.release = newValue
-        })
+    var isConfirmButtonDisabled: Bool {
+        self.isEditing ? self.builder.isDisabled : false
     }
     
     @ViewBuilder
-    func GameDetailView() -> some View {
-        if isEditing {
-            GameEditOnView()
+    func ImageView() -> some View {
+        let uiimage: UIImage = UIImage(self.boxart)
+        let deviceImage: Image = Image(uiimage)
+        if self.isBoxartEmpty {
+            deviceImage
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: appScreenWidth, alignment: .center)
+                .foregroundColor(.gray)
+                .padding()
+            
         } else {
-            GameEditOffView()
+            deviceImage
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(10)
+                .shadow(radius: 10)
+                .padding()
         }
     }
     
     @ViewBuilder
-    func GameEditOnView() -> some View {
-        Section {
-            TextFieldView(.title, titleBinding)
-        }
-        Section {
-            DatePicker(selection: releaseBinding, displayedComponents: .date, label: {
-                ConstantsText(.release_date)
-            })
+    func GameDetailView(_ titleBinding: Binding<String>, _ releaseBinding: Binding<Date>) -> some View {
+        if isEditing {
+            Section {
+                TextFieldView(.title, titleBinding)
+            }
+            Section {
+                DatePicker(selection: releaseBinding, displayedComponents: .date, label: {
+                    ConstantsText(.release_date)
+                })
+            }
+        } else {
+            Section {
+                FormattedView(.title, self.builder.title)
+                FormattedView(.release_date, self.builder.release.long)
+            }
         }
     }
     
     @ViewBuilder
-    func GameEditOffView() -> some View {
-        Section {
-            FormattedView(.title, self.builder.title)
-            FormattedView(.release_date, self.builder.release.long)
-        }
+    func CancelButton() -> some View {
+        Button(action: {
+            self.builder.cancel()
+        }, label: {
+            ConstantsText(.cancel)
+        })
     }
     
 //    var boxart: Data? { self.observer.boxart }

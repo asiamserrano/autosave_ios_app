@@ -9,29 +9,25 @@ import SwiftUI
 
 struct GameView: ConfigurationViewProtocol, GameViewProtocol {
     
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var configuration: Configuration
     
     @StateObject var builder: GameBuilder
     
-    let isNewGame: Bool
-    
     public init(_ model: GameModel) {
-        self.isNewGame = false
         self._builder = .init(wrappedValue: .init(model))
     }
     
     public init(_ status: GameStatusEnum) {
-        self.isNewGame = true
         self._builder = .init(wrappedValue: .init(status))
     }
     
     var body: some View {
         Form {
             GameImageView()
-            GameDetailView()
+            GameDetailView($builder.title, $builder.release)
 //            GamePropertiesView()
         }
 //        .navigationDestination(isPresented: navigateBinding, destination: NavigationDestinationView)
@@ -52,19 +48,6 @@ struct GameView: ConfigurationViewProtocol, GameViewProtocol {
 }
 
 private extension GameView {
-    
-    var isBackButtonHidden: Bool {
-        self.isNewGame ? false : self.isEditing
-    }
-
-    @ViewBuilder
-    func CancelButton() -> some View {
-        Button(action: {
-            self.builder.cancel()
-        }, label: {
-            ConstantsText(.cancel)
-        })
-    }
     
     @ViewBuilder
     func ConfirmButton() -> some View {
@@ -88,7 +71,7 @@ private extension GameView {
                 ConstantsText(.edit)
             }
         })
-        .disabled(self.isEditing ? self.builder.isDisabled : false)
+        .disabled(self.isConfirmButtonDisabled)
     }
     
 }

@@ -19,9 +19,7 @@ public class GameBuilder: ObservableObject {
     public private(set) var original: GameSnapshot
     
     private var invalid: Set<GameSnapshot>
-    
-//    public private(set) var new: Bool
-    
+        
     public let status: GameStatusEnum
     
     public init(_ status: GameStatusEnum) {
@@ -33,7 +31,6 @@ public class GameBuilder: ObservableObject {
         self.original = comparator
         self.invalid = .init(comparator)
         self.editMode = .active
-//        self.new = true
     }
     
     public init(_ model: GameModel) {
@@ -46,7 +43,6 @@ public class GameBuilder: ObservableObject {
         self.original = comparator
         self.invalid = .init(comparator)
         self.editMode = .inactive
-//        self.new = false
     }
     
 }
@@ -96,6 +92,10 @@ extension GameBuilder {
             .setStatus(status)
             .setBoxart(self.boxart)
             .build()
+    }
+    
+    public var isNew: Bool {
+        self.original == .defaultValue(self.status)
     }
     
 }

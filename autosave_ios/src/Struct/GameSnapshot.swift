@@ -9,6 +9,17 @@ import Foundation
 
 public struct GameSnapshot {
     
+    public static func defaultValue(_ status: GameStatusEnum) -> Self {
+        let uuid: UUID = .init()
+        let bool: Bool = status.bool
+        let builder: Builder = .init(uuid, bool)
+        return builder.build()
+    }
+    
+    public static func random(_ status: GameStatusEnum) -> GameSnapshot {
+        .init(uuid: UUID(), title: .random, release: .random, status: status.bool, boxart: nil)
+    }
+    
     public let uuid: UUID
     public let title: String
     public let release: Date
@@ -29,10 +40,6 @@ public struct GameSnapshot {
         self.release = .today
         self.status = status
         self.boxart = nil
-    }
-    
-    public static func random(_ status: GameStatusEnum) -> GameSnapshot {
-        .init(uuid: UUID(), title: .random, release: .random, status: status.bool, boxart: nil)
     }
     
     public class Builder {
