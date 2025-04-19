@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import PhotosUI
 
 public class GameBuilder: ObservableObject {
     
@@ -15,6 +16,8 @@ public class GameBuilder: ObservableObject {
     @Published public var boxart: Data?
     
     @Published public var editMode: EditMode
+    @Published public var photosPickerItem: PhotosPickerItem? = nil
+    @Published public var imagePicker: ImagePickerEnum = .picker
         
     public private(set) var original: GameSnapshot
     
@@ -98,4 +101,8 @@ extension GameBuilder {
         self.original == .defaultValue(self.status)
     }
     
+}
+
+public enum ImagePickerEnum: Enumerable {
+    case picker, paste
 }

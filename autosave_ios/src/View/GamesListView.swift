@@ -31,7 +31,7 @@ struct GamesListView: GamesListViewProtocol {
         }
     }
     
-    fileprivate struct SearchView: GamesListViewProtocol {
+    private struct SearchView: GamesListViewProtocol {
         
         @EnvironmentObject var configuration: Configuration
         

@@ -13,26 +13,39 @@ struct ContentView: ConfigurationViewProtocol {
     @Environment(\.modelContext) public var modelContext
                
     @EnvironmentObject var configuration: Configuration
+        
     
-//    let status: Bool = true
+    @Query var models: [PropertyModel]
     
     var body: some View {
         NavigationView {
-            GamesListView()
-                .alert(alertTitle, isPresented: alertBinding, actions: AlertActions, message: alertMessage)
+//            GamesListView()
+//                .alert(alertTitle, isPresented: alertBinding, actions: AlertActions, message: alertMessage)
+            Form {
+                ForEach(models, content: PropertyView)
+            }
         }
         .environmentObject(self.configuration)
     }
+        
+    @ViewBuilder
+    func PropertyView(_ property: PropertyModel) -> some View {
+        let snapshot: PropertySnapshot = property.snapshot
+        FormattedView(snapshot.key.trim, snapshot.value.trim)
+    }
+    
+}
 
+private extension ContentView {
     
     @ViewBuilder
-    private func AlertActions() -> some View {
+    func AlertActions() -> some View {
         switch self.alertEnum {
         case .delete_game(let game):
-            DeleteButton(game)
+            ConfirmButton({ self.modelContext.remove(game) })
             CancelButton(.cancel)
         case .move_game(let game, let status):
-            MoveButton(game, status)
+            ConfirmButton({ self.modelContext.move(game, status) })
             CancelButton(.cancel)
 //        case .delete_tag(let tag):
 //            DeleteButton(tag)
@@ -40,16 +53,6 @@ struct ContentView: ConfigurationViewProtocol {
         default:
             CancelButton(.ok)
         }
-    }
-    
-    @ViewBuilder
-    func DeleteButton(_ game: GameModel) -> some View {
-        ConfirmButton({ self.modelContext.remove(game) })
-    }
-    
-    @ViewBuilder
-    func MoveButton(_ game: GameModel, _ status: GameStatusEnum) -> some View {
-        ConfirmButton({ self.modelContext.move(game, status) })
     }
     
 }
@@ -62,11 +65,16 @@ struct ContentView: ConfigurationViewProtocol {
         container.mainContext.autosaveEnabled = false
         container.mainContext.undoManager = .init()
         
-        var snapshot: GameSnapshot
+        var game: GameSnapshot
+        var property: PropertySnapshot
         
-        for _ in 0..<0 {
-            snapshot = .random(.library)
-            container.mainContext.save(snapshot)
+        let max: Int = 10
+        
+        for _ in 0..<max {
+            game = .random(.library)
+            container.mainContext.save(game)
+            property = .random(.random)
+            container.mainContext.save(property)
         }
         
         return container

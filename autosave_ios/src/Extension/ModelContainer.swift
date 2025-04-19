@@ -12,10 +12,10 @@ extension ModelContainer {
     
     public static var models: [any PersistentModel.Type] = [
         // details for game
-        GameModel.self
+        GameModel.self,
 //        Item.self
 //        // used for viewing/modifying game
-//        PropertyModel.self,
+        PropertyModel.self
 //        // used for filtering game
 //        TagModel.self,
 //        // connection between game and tag or property

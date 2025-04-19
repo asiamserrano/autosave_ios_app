@@ -7,11 +7,19 @@
 
 import Foundation
 
-public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable {
+public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable, Randomizable {
     var value: String { get }
 }
 
 public extension Enumerable {
+    
+    static var random: Self {
+        if let element: Self = Self.cases.randomElement() {
+            return element
+        } else {
+            fatalError("unable to random element for \(Self.self)")
+        }
+    }
     
     static var cases: [Self] {
         Self.allCases.map { $0 }
@@ -19,14 +27,14 @@ public extension Enumerable {
     
     var className: String { String(describing: Self.self) }
     
-    static func cast(_ id: String) -> Self? {
-        if let enumerable: Self = Self.allCases.first(where: { $0.id == id }) {
+    static func cast(_ string: String) -> Self? {
+        if let enumerable: Self = Self.cases.first(where: { $0.id == string || $0.value == string }) {
             return enumerable
         } else {
             return nil
         }
     }
-    
+
     static func cast(_ other: any Enumerable) -> Self? {
         Self.cast(other.id)
     }

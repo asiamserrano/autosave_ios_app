@@ -29,7 +29,7 @@ extension ModelContext {
         self.delete(game)
         self.store()
     }
-    
+
     func move(_ game: GameModel, _ next: GameStatusEnum) -> Void {
         game.update(next)
         self.store()
@@ -81,6 +81,15 @@ extension ModelContext {
         }
     }
     
+    public func save(_ snapshot: PropertySnapshot) -> Void {
+        let composite: PropertyFetchDescriptor = .getByCompositeKey(snapshot)
+        if self.fetchModel(composite) == nil {
+            let property: PropertyModel = .init(snapshot)
+            self.insert(property)
+            self.store()
+        }
+    }
+    
 }
 
 private extension ModelContext {
@@ -90,6 +99,19 @@ private extension ModelContext {
     }
     
     func fetchModels(_ desc: GameFetchDescriptor) -> [GameModel] {
+        do {
+            return try self.fetch(desc)
+        } catch {
+            print("error: \(error)")
+            return .init()
+        }
+    }
+    
+    func fetchModel(_ desc: PropertyFetchDescriptor) -> PropertyModel? {
+        fetchModels(desc).first
+    }
+    
+    func fetchModels(_ desc: PropertyFetchDescriptor) -> [PropertyModel] {
         do {
             return try self.fetch(desc)
         } catch {

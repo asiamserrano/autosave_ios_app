@@ -14,9 +14,23 @@ public extension View {
     
     @ViewBuilder
     func FormattedView(_ constants: ConstantsEnum, _ value: String) -> some View {
+        FormattedView(value, {
+            ConstantsText(constants)
+        })
+    }
+    
+    @ViewBuilder
+    func FormattedView(_ key: String, _ value: String) -> some View {
+        FormattedView(value, {
+            Text(key)
+        })
+    }
+    
+    @ViewBuilder
+    func FormattedView(_ value: String, @ViewBuilder _ key: () -> some View) -> some View {
         HStack {
             HStack {
-                ConstantsText(constants)
+                key()
                     .foregroundColor(.gray)
                 Spacer()
             }

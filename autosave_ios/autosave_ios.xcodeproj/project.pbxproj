@@ -46,6 +46,12 @@
 		1EE1ADC12DB40AC200AD714E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1AD7D2DB40AC200AD714E /* Image.swift */; };
 		1EE1ADC22DB40AC200AD714E /* Enumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1AD8D2DB40AC200AD714E /* Enumerable.swift */; };
 		1EE1ADC32DB40AC200AD714E /* Randomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1AD8F2DB40AC200AD714E /* Randomizable.swift */; };
+		1EE1ADC92DB426B000AD714E /* PropertyEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADC82DB426B000AD714E /* PropertyEnum.swift */; };
+		1EE1ADCB2DB42C5300AD714E /* PropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */; };
+		1EE1ADD52DB43B3600AD714E /* PropertyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */; };
+		1EE1ADD72DB4436A00AD714E /* ValueEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD62DB4436A00AD714E /* ValueEnum.swift */; };
+		1EE1ADD92DB44FAF00AD714E /* PropertySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */; };
+		1EE1ADDC2DB452EE00AD714E /* PropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +95,12 @@
 		1EE1AD992DB40AC200AD714E /* GameImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImageView.swift; sourceTree = "<group>"; };
 		1EE1AD9A2DB40AC200AD714E /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		1EE1AD9B2DB40AC200AD714E /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		1EE1ADC82DB426B000AD714E /* PropertyEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyEnum.swift; sourceTree = "<group>"; };
+		1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyModel.swift; sourceTree = "<group>"; };
+		1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyBuilder.swift; sourceTree = "<group>"; };
+		1EE1ADD62DB4436A00AD714E /* ValueEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueEnum.swift; sourceTree = "<group>"; };
+		1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnapshot.swift; sourceTree = "<group>"; };
+		1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -146,6 +158,8 @@
 				1EE1AD6E2DB40AC200AD714E /* Configuration.swift */,
 				1EE1AD6F2DB40AC200AD714E /* GameBuilder.swift */,
 				1EE1AD702DB40AC200AD714E /* GameModel.swift */,
+				1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */,
+				1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -159,6 +173,9 @@
 				1EE1AD752DB40AC200AD714E /* GameStatusEnum.swift */,
 				1EE1AD762DB40AC200AD714E /* IconEnum.swift */,
 				1EE1AD772DB40AC200AD714E /* MenuEnum.swift */,
+				1EE1ADC82DB426B000AD714E /* PropertyEnum.swift */,
+				1EE1ADD62DB4436A00AD714E /* ValueEnum.swift */,
+				1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -197,6 +214,7 @@
 		1EE1AD902DB40AC200AD714E /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				1EE1ADDA2DB452DC00AD714E /* Class */,
 				1EE1AD8B2DB40AC200AD714E /* View */,
 				1EE1AD8C2DB40AC200AD714E /* Defaultable.swift */,
 				1EE1AD8D2DB40AC200AD714E /* Enumerable.swift */,
@@ -235,6 +253,14 @@
 				1EE1AD9B2DB40AC200AD714E /* GameView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1EE1ADDA2DB452DC00AD714E /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EE1ADCB2DB42C5300AD714E /* PropertyModel.swift in Sources */,
 				1EE1AD9D2DB40AC200AD714E /* GameStatusEnum.swift in Sources */,
 				1EE1AD9E2DB40AC200AD714E /* GamesListView.swift in Sources */,
 				1EE1AD9F2DB40AC200AD714E /* GameImageView.swift in Sources */,
@@ -328,12 +355,15 @@
 				1EE1ADAB2DB40AC200AD714E /* ConfigurationViewProtocol.swift in Sources */,
 				1EE1ADAC2DB40AC200AD714E /* TextFieldView.swift in Sources */,
 				1EE1ADAD2DB40AC200AD714E /* SortDescriptor.swift in Sources */,
+				1EE1ADC92DB426B000AD714E /* PropertyEnum.swift in Sources */,
 				1EE1ADAE2DB40AC200AD714E /* Defaultable.swift in Sources */,
 				1EE1ADAF2DB40AC200AD714E /* GameSnapshot.swift in Sources */,
+				1EE1ADD92DB44FAF00AD714E /* PropertySnapshot.swift in Sources */,
 				1EE1ADB02DB40AC200AD714E /* MenuEnum.swift in Sources */,
 				1EE1ADB12DB40AC200AD714E /* GameSortEnum.swift in Sources */,
 				1EE1ADB22DB40AC200AD714E /* HideModifier.swift in Sources */,
 				1EE1ADB32DB40AC200AD714E /* EditMode.swift in Sources */,
+				1EE1ADD72DB4436A00AD714E /* ValueEnum.swift in Sources */,
 				1EE1ADB42DB40AC200AD714E /* ModelContainer.swift in Sources */,
 				1EE1ADB52DB40AC200AD714E /* GameViewProtocol.swift in Sources */,
 				1EE1ADB62DB40AC200AD714E /* ConstantsEnum.swift in Sources */,
@@ -342,8 +372,10 @@
 				1EE1ADB92DB40AC200AD714E /* Iterable.swift in Sources */,
 				1EE1ADBA2DB40AC200AD714E /* UIImage.swift in Sources */,
 				1EE1ADBB2DB40AC200AD714E /* Date.swift in Sources */,
+				1EE1ADDC2DB452EE00AD714E /* PropertyProtocol.swift in Sources */,
 				1EE1ADBC2DB40AC200AD714E /* Array.swift in Sources */,
 				1EE1ADBD2DB40AC200AD714E /* GameResult.swift in Sources */,
+				1EE1ADD52DB43B3600AD714E /* PropertyBuilder.swift in Sources */,
 				1EE1ADBE2DB40AC200AD714E /* Set.swift in Sources */,
 				1EE1ADBF2DB40AC200AD714E /* FetchDescriptor.swift in Sources */,
 				1EE1ADC02DB40AC200AD714E /* ModelContext.swift in Sources */,

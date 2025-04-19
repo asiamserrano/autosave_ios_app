@@ -38,3 +38,15 @@ extension GamePredicate {
     }
     
 }
+
+public typealias PropertyPredicate = Predicate<PropertyModel>
+
+extension PropertyPredicate {
+    
+    public static func getByCompositeKey(_ type_id: String, _ value_canon: String) -> PropertyPredicate {
+        #Predicate {
+            $0.type_id == type_id && $0.value_canon == value_canon
+        }
+    }
+    
+}
