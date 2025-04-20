@@ -36,13 +36,3 @@ extension PropertyBuilder: PropertyProtocol {
     }
     
 }
-
-public enum FormatEnum: Enumerable { case one }
-public enum DigitalEnum: Enumerable { case one }
-public enum PhysicalEnum: Enumerable { case one }
-public enum SystemEnum: Enumerable { case one }
-public enum NintendoEnum: Enumerable { case one }
-public enum OSEnum: Enumerable { case one }
-public enum PlayStationEnum: Enumerable { case one }
-public enum XboxEnum: Enumerable { case one }
-public enum ModeEnum: Enumerable { case one }

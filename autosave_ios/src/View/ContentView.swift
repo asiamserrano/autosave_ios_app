@@ -24,6 +24,18 @@ struct ContentView: ConfigurationViewProtocol {
             Form {
                 ForEach(models, content: PropertyView)
             }
+            .toolbar {
+                
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    Button(action: {
+                        let property: PropertySnapshot = .random(.random)
+                        self.modelContext.save(property)
+                    }, label: {
+                        Image(.plus)
+                    })
+                })
+                
+            }
         }
         .environmentObject(self.configuration)
     }
