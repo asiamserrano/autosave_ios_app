@@ -29,6 +29,16 @@ extension ModelContext {
         self.delete(game)
         self.store()
     }
+    
+    public func add(_ property: PropertyModel) -> Void {
+        self.insert(property)
+        self.store()
+    }
+    
+    public func remove(_ property: PropertyModel) -> Void {
+        self.delete(property)
+        self.store()
+    }
 
     func move(_ game: GameModel, _ next: GameStatusEnum) -> Void {
         game.update(next)
@@ -69,24 +79,64 @@ extension ModelContext {
     }
     
     @discardableResult
-    func save(_ current: GameSnapshot) -> GameResult {
+    func save(_ current: GameSnapshot) -> GameModel {
         let composite: GameFetchDescriptor = .getByCompositeKey(current)
         let new: GameModel? = self.fetchModel(composite)
         if let new: GameModel = new {
-            return .init(new.snapshot, false, .add)
+            return new
         } else {
             let game: GameModel = .init(current)
             self.add(game)
-            return .init(current, true, .add)
+            return game
         }
     }
     
-    public func save(_ snapshot: PropertySnapshot) -> Void {
+//    @discardableResult
+//    func save(_ current: GameSnapshot) -> GameResult {
+//        let composite: GameFetchDescriptor = .getByCompositeKey(current)
+//        return save(current, composite)
+////        let new: GameModel? = self.fetchModel(composite)
+////        if let new: GameModel = new {
+////            return .init(new.snapshot, false, .add)
+////        } else {
+////            let game: GameModel = .init(current)
+////            self.add(game)
+////            return .init(current, true, .add)
+////        }
+//    }
+    
+    @discardableResult
+    public func save(_ snapshot: PropertySnapshot) -> PropertyModel {
         let composite: PropertyFetchDescriptor = .getByCompositeKey(snapshot)
-        if self.fetchModel(composite) == nil {
+        let result: PropertyModel? = self.fetchModel(composite)
+        if let result: PropertyModel = result {
+            return result
+        } else {
             let property: PropertyModel = .init(snapshot)
             self.insert(property)
             self.store()
+            return property
+        }
+    }
+    
+    public func save(_ snapshot: JunctionSnapshot) -> Void {
+        let composite: JunctionFetchDescriptor = .getByCompositeKey(snapshot)
+        if self.fetchModel(composite) == nil {
+            let junction: JunctionModel = .init(snapshot)
+            self.insert(junction)
+            self.store()
+        }
+    }
+    
+    public func clean() -> Void {
+        let pfd: PropertyFetchDescriptor = .init()
+        let pm: [PropertyModel] = self.fetchModels(pfd)
+        pm.forEach { model in
+            let jfd: JunctionFetchDescriptor = .getByProperty(model)
+            let junctions: [JunctionModel] = self.fetchModels(jfd)
+            if junctions.isEmpty {
+                self.remove(model)
+            }
         }
     }
     
@@ -112,6 +162,19 @@ private extension ModelContext {
     }
     
     func fetchModels(_ desc: PropertyFetchDescriptor) -> [PropertyModel] {
+        do {
+            return try self.fetch(desc)
+        } catch {
+            print("error: \(error)")
+            return .init()
+        }
+    }
+    
+    func fetchModel(_ desc: JunctionFetchDescriptor) -> JunctionModel? {
+        fetchModels(desc).first
+    }
+    
+    func fetchModels(_ desc: JunctionFetchDescriptor) -> [JunctionModel] {
         do {
             return try self.fetch(desc)
         } catch {

@@ -7,8 +7,11 @@
 
 import Foundation
 
-public enum OSEnum: Enumerable {
+public enum OSEnum {
     case win, mac
+}
+
+extension OSEnum: Enumerable {
     
     public var value: String {
         switch self {
@@ -17,12 +20,16 @@ public enum OSEnum: Enumerable {
         }
     }
     
-    public var systemEnum: SystemEnum { .os }
+}
+
+extension OSEnum: SystemProtocol {
     
+    public var systemEnum: SystemEnum { .os }
+
+    public var physicalEnum: PhysicalEnum { .disc }
+
     public var digitalEnums: [DigitalEnum] {
         [ .steam, .origin, .free ]
     }
-    
-    public var physicalEnum: PhysicalEnum { .disc }
     
 }

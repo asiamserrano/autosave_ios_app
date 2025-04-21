@@ -7,8 +7,11 @@
 
 import Foundation
 
-public enum DigitalEnum: Enumerable {
+public enum DigitalEnum {
     case steam, origin, psn, xbox, nintendo, free
+}
+
+extension DigitalEnum: Enumerable {
     
     public var value: String {
         switch self {
@@ -20,5 +23,11 @@ public enum DigitalEnum: Enumerable {
         case .steam: return "Steam"
         }
     }
+    
+}
+
+extension DigitalEnum: FormatProtocol {
+    
+    public var formatEnum: FormatEnum { .digital }
     
 }

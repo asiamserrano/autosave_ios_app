@@ -7,8 +7,11 @@
 
 import Foundation
 
-public enum NintendoEnum: Enumerable {
+public enum NintendoEnum {
     case snes, nsw, wii, wiiu, gamecube, n3ds
+}
+
+extension NintendoEnum: Enumerable {
     
     public var value: String {
         let name: String = self.systemEnum.value
@@ -21,21 +24,25 @@ public enum NintendoEnum: Enumerable {
         case .n3ds: return "\(name) 3DS"
         }
     }
-
-    public var systemEnum: SystemEnum { .nintendo }
     
-    public var digitalEnums: [DigitalEnum] {
-        switch self {
-        case .nsw: return [ .nintendo ]
-        default: return []
-        }
-    }
+}
+
+extension NintendoEnum: SystemProtocol {
+    
+    public var systemEnum: SystemEnum { .nintendo }
     
     public var physicalEnum: PhysicalEnum {
         switch self {
         case .snes: return .cartridge
         case .nsw, .n3ds: return .card
         default: return .disc
+        }
+    }
+    
+    public var digitalEnums: [DigitalEnum] {
+        switch self {
+        case .nsw: return [ .nintendo ]
+        default: return []
         }
     }
     

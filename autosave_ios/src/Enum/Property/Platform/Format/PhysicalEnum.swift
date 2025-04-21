@@ -10,3 +10,9 @@ import Foundation
 public enum PhysicalEnum: Enumerable {
     case disc, cartridge, card
 }
+
+extension PhysicalEnum: FormatProtocol {
+    
+    public var formatEnum: FormatEnum { .physical }
+    
+}

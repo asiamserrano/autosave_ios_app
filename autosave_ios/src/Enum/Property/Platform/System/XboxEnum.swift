@@ -7,9 +7,12 @@
 
 import Foundation
 
-public enum XboxEnum: Enumerable {
+public enum XboxEnum {
     case xbox, x360, one
+}
 
+extension XboxEnum: Enumerable {
+    
     public var value: String {
         var end: String {
             switch self {
@@ -22,7 +25,13 @@ public enum XboxEnum: Enumerable {
         return "\(self.systemEnum.value) \(end)".trim()
     }
     
+}
+
+extension XboxEnum: SystemProtocol {
+    
     public var systemEnum: SystemEnum { .xbox }
+
+    public var physicalEnum: PhysicalEnum { .disc }
     
     public var digitalEnums: [DigitalEnum] {
         switch self {
@@ -31,6 +40,4 @@ public enum XboxEnum: Enumerable {
         }
     }
     
-    public var physicalEnum: PhysicalEnum { .disc }
-
 }

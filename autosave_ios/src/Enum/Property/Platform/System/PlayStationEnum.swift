@@ -7,9 +7,11 @@
 
 import Foundation
 
-public enum PlayStationEnum: Enumerable {
-    
+public enum PlayStationEnum {
     case ps1, ps2, ps3, ps4, ps5, psp
+}
+
+extension PlayStationEnum: Enumerable {
     
     public var value: String {
         
@@ -22,7 +24,13 @@ public enum PlayStationEnum: Enumerable {
         return "\(self.systemEnum.value) \(end)".trim()
     }
     
+}
+
+extension PlayStationEnum: SystemProtocol {
+    
     public var systemEnum: SystemEnum { .playstation }
+    
+    public var physicalEnum: PhysicalEnum { .disc }
     
     public var digitalEnums: [DigitalEnum] {
         switch self {
@@ -31,7 +39,5 @@ public enum PlayStationEnum: Enumerable {
         default: return []
         }
     }
-    
-    public var physicalEnum: PhysicalEnum { .disc }
-    
+
 }

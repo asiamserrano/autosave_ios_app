@@ -16,4 +16,12 @@ extension Array {
         self.append(element)
     }
     
+    public var random: Element {
+        if let element: Element = self.randomElement() {
+            return element
+        } else {
+            fatalError("array is empty. cannot get random element")
+        }
+    }
+    
 }

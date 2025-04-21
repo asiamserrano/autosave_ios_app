@@ -19,7 +19,15 @@ public extension FormatEnum {
         case .physical: return .opticaldisc_fill
         }
     }
-//    
+    
+    func builder(_ id: String) -> FormatBuilder {
+        switch self {
+        case .digital: return .digital(.init(id))
+        case .physical: return .physical(.init(id))
+        }
+    }
+    
+//
 //    func equals(_ builder: FormatBuilder) -> Bool {
 //        self == builder.formatEnum
 //    }

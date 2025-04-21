@@ -15,7 +15,8 @@ extension ModelContainer {
         GameModel.self,
 //        Item.self
 //        // used for viewing/modifying game
-        PropertyModel.self
+        PropertyModel.self,
+        JunctionModel.self
 //        // used for filtering game
 //        TagModel.self,
 //        // connection between game and tag or property
@@ -33,6 +34,6 @@ extension ModelContainer {
     }
     
     public static let preview: ModelContainer = .init(memory: true)
-    
+ 
 }
 
