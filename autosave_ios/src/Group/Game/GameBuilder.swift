@@ -5,6 +5,14 @@
 //  Created by Asia Michelle Serrano on 4/8/25.
 //
 
+/*
+ 
+ Used for observing a game object
+ Needed for abstraction from game object
+ 
+ */
+
+
 import Foundation
 import SwiftUI
 import PhotosUI

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ValueEnum: Comparable, Hashable {
+public enum ValueBuilder: Comparable, Hashable {
     
     public static func < (lhs: Self, rhs: Self) -> Bool {
         if lhs.canon == rhs.canon {
@@ -21,7 +21,8 @@ public enum ValueEnum: Comparable, Hashable {
         lhs.hashValue == rhs.hashValue
     }
     
-    case platform(PlatformSnapshot)
+//    case platform(PlatformSnapshot)
+    case builder(
     case enumerable(any Enumerable)
     case string(String)
     
@@ -46,4 +47,9 @@ public enum ValueEnum: Comparable, Hashable {
         hasher.combine(self.trim)
     }
     
+}
+
+public struct ValueBuilder {
+    let key: String
+    let value: String
 }

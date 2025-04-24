@@ -1,5 +1,5 @@
 //
-//  PropertySnapshot.swift
+//  PropertyEnum.swift
 //  autosave_ios
 //
 //  Created by Asia Serrano on 4/19/25.
@@ -7,7 +7,35 @@
 
 import Foundation
 
-public enum PropertySnapshot {
+public enum PropertyEnum: Enumerable {
+    
+    case format
+    case physical
+    case digital
+    case system
+    case nintendo
+    case playstation
+    case os
+    case xbox
+    case mode
+    case series
+    case developer
+    case publisher
+    case genre
+    
+    public var value: String {
+        switch self {
+        case .playstation: return "PlayStation"
+        case .nintendo: return "Nintendo"
+        case .xbox: return "Xbox"
+        case .os: return "Operating System"
+        default: return self.id.capitalized
+        }
+    }
+    
+}
+
+public enum PropertyBuilder {
         
     case format(FormatEnum)
     case physical(PhysicalEnum)
@@ -25,7 +53,7 @@ public enum PropertySnapshot {
     
 }
 
-public extension PropertySnapshot {
+public extension PropertyBuilder {
     
     static func random(_ property: PropertyEnum) -> Self {
         switch property {
@@ -45,8 +73,8 @@ public extension PropertySnapshot {
         }
     }
     
-    var key: ValueEnum {
-        .enumerable(self.type)
+    var key: ValueBuilder {
+        .init(self.type)
     }
     
     var type: PropertyEnum {
@@ -67,21 +95,21 @@ public extension PropertySnapshot {
         }
     }
     
-    var value: ValueEnum {
+    var value: ValueBuilder {
         switch self {
-        case .format(let formatEnum): return .enumerable(formatEnum)
-        case .physical(let physicalEnum): return .enumerable(physicalEnum)
-        case .digital(let digitalEnum): return .enumerable(digitalEnum)
-        case .system(let systemEnum): return .enumerable(systemEnum)
-        case .nintendo(let nintendoEnum): return .enumerable(nintendoEnum)
-        case .playstation(let playStationEnum): return .enumerable(playStationEnum)
-        case .os(let oSEnum): return .enumerable(oSEnum)
-        case .xbox(let xboxEnum): return .enumerable(xboxEnum)
-        case .mode(let modeEnum): return .enumerable(modeEnum)
-        case .series(let string): return .string(string)
-        case .developer(let string): return .string(string)
-        case .publisher(let string): return .string(string)
-        case .genre(let string): return .string(string)
+        case .format(let formatEnum): return .init(formatEnum)
+        case .physical(let physicalEnum): return .init(physicalEnum)
+        case .digital(let digitalEnum): return .init(digitalEnum)
+        case .system(let systemEnum): return .init(systemEnum)
+        case .nintendo(let nintendoEnum): return .init(nintendoEnum)
+        case .playstation(let playStationEnum): return .init(playStationEnum)
+        case .os(let oSEnum): return .init(oSEnum)
+        case .xbox(let xboxEnum): return .init(xboxEnum)
+        case .mode(let modeEnum): return .init(modeEnum)
+        case .series(let string): return .init(string)
+        case .developer(let string): return .init(string)
+        case .publisher(let string): return .init(string)
+        case .genre(let string): return .init(string)
         }
     }
     

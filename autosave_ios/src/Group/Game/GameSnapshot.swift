@@ -5,6 +5,13 @@
 //  Created by Asia Michelle Serrano on 4/8/25.
 //
 
+/*
+ 
+ Used for simple transfer of game information
+ Needed to refrain from creating/updating model objects uneccessarily
+ 
+ */
+
 import Foundation
 
 public struct GameSnapshot {

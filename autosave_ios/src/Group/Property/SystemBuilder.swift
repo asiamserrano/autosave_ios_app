@@ -52,4 +52,18 @@ extension SystemBuilder: SystemProtocol {
         self.system.digitalEnums
     }
     
+//    private var system_builder: PropertyBuilder {
+//        switch self {
+//        case .playstation(let playstation): return .playstation(playstation)
+//        case .nintendo(let nintendo): return .nintendo(nintendo)
+//        case .xbox(let xbox): return .xbox(xbox)
+//        case .os(let os): return .os(os)
+//        }
+//    }
+//    
+//    public var builders: (PropertyBuilder, PropertyBuilder) {
+//        let builder: PropertyBuilder = .system(self.systemEnum)
+//        return (builder, self.system_builder)
+//    }
+    
 }

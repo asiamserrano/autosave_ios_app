@@ -44,11 +44,11 @@ public extension GameFetchDescriptor {
         return .init(predicate: predicate, sortBy: .defaultValue)
     }
     
-    static func getByJunctions(_ junctions: [JunctionModel]) -> Self {
-        let uuids: [UUID] = junctions.compactMap(\.game_uuid)
-        let predicate: GamePredicate = .getByUUIDs(uuids)
-        return .init(predicate: predicate, sortBy: .defaultValue)
-    }
+//    static func getByJunctions(_ junctions: [LinkModel]) -> Self {
+//        let uuids: [UUID] = junctions.compactMap(\.game_uuid)
+//        let predicate: GamePredicate = .getByUUIDs(uuids)
+//        return .init(predicate: predicate, sortBy: .defaultValue)
+//    }
     
 }
 
@@ -56,36 +56,36 @@ public typealias PropertyFetchDescriptor = FetchDescriptor<PropertyModel>
 
 public extension PropertyFetchDescriptor {
     
-    static func getByCompositeKey(_ snapshot: PropertySnapshot) -> Self {
-        let type_id: String = snapshot.type.id
-        let value_canon: String = snapshot.value.canon
-        let predicate: PropertyPredicate = .getByCompositeKey(type_id, value_canon)
-        return .init(predicate: predicate, sortBy: .defaultValue)
-    }
+//    static func getByCompositeKey(_ snapshot: PropertySnapshot) -> Self {
+//        let type_id: String = snapshot.type.id
+//        let value_canon: String = snapshot.value.canon
+//        let predicate: PropertyPredicate = .getByCompositeKey(type_id, value_canon)
+//        return .init(predicate: predicate, sortBy: .defaultValue)
+//    }
     
 }
 
-public typealias JunctionFetchDescriptor = FetchDescriptor<JunctionModel>
-
-public extension JunctionFetchDescriptor {
-    
-    static func getByCompositeKey(_ snapshot: JunctionSnapshot) -> Self {
-        let uuid_1: UUID? = snapshot.game?.uuid
-        let uuid_2: UUID? = snapshot.property?.uuid
-        let predicate: JunctionPredicate = .getByCompositeKey(uuid_1, uuid_2)
-        return .init(predicate: predicate, sortBy: .defaultValue)
-    }
-    
-    static func getByGame(_ game: GameModel) -> Self {
-        let uuid: UUID? = game.uuid
-        let predicate: JunctionPredicate = .getByGame(uuid)
-        return .init(predicate: predicate, sortBy: .defaultValue)
-    }
-    
-    static func getByProperty(_ property: PropertyModel) -> Self {
-        let uuid: UUID? = property.uuid
-        let predicate: JunctionPredicate = .getByProperty(uuid)
-        return .init(predicate: predicate, sortBy: .defaultValue)
-    }
-    
-}
+//public typealias JunctionFetchDescriptor = FetchDescriptor<LinkModel>
+//
+//public extension JunctionFetchDescriptor {
+//    
+//    static func getByCompositeKey(_ snapshot: JunctionSnapshot) -> Self {
+//        let uuid_1: UUID? = snapshot.game?.uuid
+//        let uuid_2: UUID? = snapshot.property?.uuid
+//        let predicate: JunctionPredicate = .getByCompositeKey(uuid_1, uuid_2)
+//        return .init(predicate: predicate, sortBy: .defaultValue)
+//    }
+//    
+//    static func getByGame(_ game: GameModel) -> Self {
+//        let uuid: UUID? = game.uuid
+//        let predicate: JunctionPredicate = .getByGame(uuid)
+//        return .init(predicate: predicate, sortBy: .defaultValue)
+//    }
+//    
+//    static func getByProperty(_ property: PropertyModel) -> Self {
+//        let uuid: UUID? = property.uuid
+//        let predicate: JunctionPredicate = .getByProperty(uuid)
+//        return .init(predicate: predicate, sortBy: .defaultValue)
+//    }
+//    
+//}

@@ -105,40 +105,40 @@ extension ModelContext {
 ////        }
 //    }
     
-    @discardableResult
-    public func save(_ snapshot: PropertySnapshot) -> PropertyModel {
-        let composite: PropertyFetchDescriptor = .getByCompositeKey(snapshot)
-        let result: PropertyModel? = self.fetchModel(composite)
-        if let result: PropertyModel = result {
-            return result
-        } else {
-            let property: PropertyModel = .init(snapshot)
-            self.insert(property)
-            self.store()
-            return property
-        }
-    }
+//    @discardableResult
+//    public func save(_ snapshot: PropertySnapshot) -> PropertyModel {
+//        let composite: PropertyFetchDescriptor = .getByCompositeKey(snapshot)
+//        let result: PropertyModel? = self.fetchModel(composite)
+//        if let result: PropertyModel = result {
+//            return result
+//        } else {
+//            let property: PropertyModel = .init(snapshot)
+//            self.insert(property)
+//            self.store()
+//            return property
+//        }
+//    }
+//    
+//    public func save(_ snapshot: JunctionSnapshot) -> Void {
+//        let composite: JunctionFetchDescriptor = .getByCompositeKey(snapshot)
+//        if self.fetchModel(composite) == nil {
+//            let junction: LinkModel = .init(snapshot)
+//            self.insert(junction)
+//            self.store()
+//        }
+//    }
     
-    public func save(_ snapshot: JunctionSnapshot) -> Void {
-        let composite: JunctionFetchDescriptor = .getByCompositeKey(snapshot)
-        if self.fetchModel(composite) == nil {
-            let junction: JunctionModel = .init(snapshot)
-            self.insert(junction)
-            self.store()
-        }
-    }
-    
-    public func clean() -> Void {
-        let pfd: PropertyFetchDescriptor = .init()
-        let pm: [PropertyModel] = self.fetchModels(pfd)
-        pm.forEach { model in
-            let jfd: JunctionFetchDescriptor = .getByProperty(model)
-            let junctions: [JunctionModel] = self.fetchModels(jfd)
-            if junctions.isEmpty {
-                self.remove(model)
-            }
-        }
-    }
+//    public func clean() -> Void {
+//        let pfd: PropertyFetchDescriptor = .init()
+//        let pm: [PropertyModel] = self.fetchModels(pfd)
+//        pm.forEach { model in
+//            let jfd: JunctionFetchDescriptor = .getByProperty(model)
+//            let junctions: [LinkModel] = self.fetchModels(jfd)
+//            if junctions.isEmpty {
+//                self.remove(model)
+//            }
+//        }
+//    }
     
 }
 
@@ -170,17 +170,17 @@ private extension ModelContext {
         }
     }
     
-    func fetchModel(_ desc: JunctionFetchDescriptor) -> JunctionModel? {
-        fetchModels(desc).first
-    }
-    
-    func fetchModels(_ desc: JunctionFetchDescriptor) -> [JunctionModel] {
-        do {
-            return try self.fetch(desc)
-        } catch {
-            print("error: \(error)")
-            return .init()
-        }
-    }
+//    func fetchModel(_ desc: JunctionFetchDescriptor) -> LinkModel? {
+//        fetchModels(desc).first
+//    }
+//    
+//    func fetchModels(_ desc: JunctionFetchDescriptor) -> [LinkModel] {
+//        do {
+//            return try self.fetch(desc)
+//        } catch {
+//            print("error: \(error)")
+//            return .init()
+//        }
+//    }
     
 }

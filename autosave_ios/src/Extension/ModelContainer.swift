@@ -16,7 +16,7 @@ extension ModelContainer {
 //        Item.self
 //        // used for viewing/modifying game
         PropertyModel.self,
-        JunctionModel.self
+        LinkModel.self
 //        // used for filtering game
 //        TagModel.self,
 //        // connection between game and tag or property

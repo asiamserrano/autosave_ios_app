@@ -77,26 +77,26 @@ extension PropertyPredicate {
     
 }
 
-public typealias JunctionPredicate = Predicate<JunctionModel>
-
-extension JunctionPredicate {
-    
-    public static func getByCompositeKey(_ game_uuid: UUID?, _ property_uuid: UUID?) -> JunctionPredicate {
-        #Predicate {
-            $0.game_uuid == game_uuid && $0.property_uuid == property_uuid
-        }
-    }
-    
-    public static func getByGame(_ uuid: UUID?) -> JunctionPredicate {
-        #Predicate {
-            $0.game_uuid == uuid
-        }
-    }
-    
-    public static func getByProperty(_ uuid: UUID?) -> JunctionPredicate {
-        #Predicate {
-            $0.property_uuid == uuid
-        }
-    }
-    
-}
+//public typealias JunctionPredicate = Predicate<LinkModel>
+//
+//extension JunctionPredicate {
+//    
+//    public static func getByCompositeKey(_ game_uuid: UUID?, _ property_uuid: UUID?) -> JunctionPredicate {
+//        #Predicate {
+//            $0.game_uuid == game_uuid && $0.property_uuid == property_uuid
+//        }
+//    }
+//    
+//    public static func getByGame(_ uuid: UUID?) -> JunctionPredicate {
+//        #Predicate {
+//            $0.game_uuid == uuid
+//        }
+//    }
+//    
+//    public static func getByProperty(_ uuid: UUID?) -> JunctionPredicate {
+//        #Predicate {
+//            $0.property_uuid == uuid
+//        }
+//    }
+//    
+//}

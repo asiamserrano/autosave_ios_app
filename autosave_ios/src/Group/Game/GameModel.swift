@@ -5,11 +5,28 @@
 //  Created by Asia Serrano on 4/4/25.
 //
 
+
+/*
+ 
+ Model class for a game
+ 
+ */
+
+
 import Foundation
 import SwiftData
 
 @Model
 public class GameModel {
+    
+    public func build(_ snapshot: GameSnapshot, _ model: GameModel? = nil) -> GameModel {
+        let game: GameModel = model ?? .init()
+        game.title_canon = snapshot.title_canon
+        game.title_trim = snapshot.title_trim
+        game.release_date = snapshot.release_date
+        game.status_bool = snapshot.status_bool
+        game.boxart_data = snapshot.boxart
+    }
     
     public private(set) var uuid: UUID
     public private(set) var added: Date
@@ -20,37 +37,49 @@ public class GameModel {
     public private(set) var status_bool: Bool
     public private(set) var boxart_data: Data?
     
-    public init(_ status: Bool) {
+    private init() {
         let today: Date = .defaultValue
         self.uuid = .init()
         self.added = today
         self.title_canon = .defaultValue
         self.title_trim = .defaultValue
         self.release_date = today.dashless
-        self.status_bool = status
+        self.status_bool = true
         self.boxart_data = nil
     }
     
-    public init(_ title: String, _ status: GameStatusEnum) {
-        let today: Date = .defaultValue
-        self.uuid = .init()
-        self.added = today
-        self.title_canon = title.canonicalize()
-        self.title_trim = title.trim()
-        self.release_date = today.dashless
-        self.status_bool = status.bool
-        self.boxart_data = nil
-    }
     
-    public init(_ comparator: GameSnapshot) {
-        self.uuid = comparator.uuid
-        self.added = .defaultValue
-        self.title_canon = comparator.title_canon
-        self.title_trim = comparator.title_trim
-        self.release_date = comparator.release_date
-        self.status_bool = comparator.status_bool
-        self.boxart_data = comparator.boxart
-    }
+//    public init(_ status: Bool) {
+//        let today: Date = .defaultValue
+//        self.uuid = .init()
+//        self.added = today
+//        self.title_canon = .defaultValue
+//        self.title_trim = .defaultValue
+//        self.release_date = today.dashless
+//        self.status_bool = status
+//        self.boxart_data = nil
+//    }
+//    
+//    public init(_ title: String, _ status: GameStatusEnum) {
+//        let today: Date = .defaultValue
+//        self.uuid = .init()
+//        self.added = today
+//        self.title_canon = title.canonicalize()
+//        self.title_trim = title.trim()
+//        self.release_date = today.dashless
+//        self.status_bool = status.bool
+//        self.boxart_data = nil
+//    }
+    
+//    public init(_ comparator: GameSnapshot) {
+//        self.uuid = comparator.uuid
+//        self.added = .defaultValue
+//        self.title_canon = comparator.title_canon
+//        self.title_trim = comparator.title_trim
+//        self.release_date = comparator.release_date
+//        self.status_bool = comparator.status_bool
+//        self.boxart_data = comparator.boxart
+//    }
     
 }
 
