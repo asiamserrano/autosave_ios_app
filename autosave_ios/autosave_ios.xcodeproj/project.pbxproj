@@ -71,6 +71,7 @@
 		1EE1ADD72DB4436A00AD714E /* ValueEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD62DB4436A00AD714E /* ValueEnum.swift */; };
 		1EE1ADD92DB44FAF00AD714E /* PropertySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */; };
 		1EE1ADDC2DB452EE00AD714E /* PropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */; };
+		625CBB452DB9388B00C36027 /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625CBB442DB9388B00C36027 /* Attributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +140,7 @@
 		1EE1ADD62DB4436A00AD714E /* ValueEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueEnum.swift; sourceTree = "<group>"; };
 		1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnapshot.swift; sourceTree = "<group>"; };
 		1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyProtocol.swift; sourceTree = "<group>"; };
+		625CBB442DB9388B00C36027 /* Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attributes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -236,13 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				1EE1AD6E2DB40AC200AD714E /* Configuration.swift */,
-				1EE1AD6F2DB40AC200AD714E /* GameBuilder.swift */,
-				1EE1AD702DB40AC200AD714E /* GameModel.swift */,
-				1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */,
-				1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */,
-				1EB3D5902DB5757900FB4B16 /* JunctionModel.swift */,
-				1EB3D5922DB6BC9C00FB4B16 /* PlatformModel.swift */,
-				1EB3D5A12DB6C89600FB4B16 /* PlatformBuilder.swift */,
+				625CBB432DB9376900C36027 /* Builder */,
+				625CBB422DB9375C00C36027 /* Model */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -317,6 +314,7 @@
 				1EB3D5A32DB6F46C00FB4B16 /* PlatformSnapshot.swift */,
 				1EB3D5A52DB6F47400FB4B16 /* SystemSnapshot.swift */,
 				1EB3D5A72DB6F47D00FB4B16 /* FormatSnapshot.swift */,
+				625CBB442DB9388B00C36027 /* Attributes.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -350,6 +348,27 @@
 				1EB3D59B2DB6BECA00FB4B16 /* FormatProtocol.swift */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		625CBB422DB9375C00C36027 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */,
+				1EB3D5902DB5757900FB4B16 /* JunctionModel.swift */,
+				1EB3D5922DB6BC9C00FB4B16 /* PlatformModel.swift */,
+				1EE1AD702DB40AC200AD714E /* GameModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		625CBB432DB9376900C36027 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				1EE1AD6F2DB40AC200AD714E /* GameBuilder.swift */,
+				1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */,
+				1EB3D5A12DB6C89600FB4B16 /* PlatformBuilder.swift */,
+			);
+			path = Builder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,6 +485,7 @@
 				1EE1ADB32DB40AC200AD714E /* EditMode.swift in Sources */,
 				1EE1ADD72DB4436A00AD714E /* ValueEnum.swift in Sources */,
 				1EE1ADB42DB40AC200AD714E /* ModelContainer.swift in Sources */,
+				625CBB452DB9388B00C36027 /* Attributes.swift in Sources */,
 				1EE1ADB52DB40AC200AD714E /* GameViewProtocol.swift in Sources */,
 				1EE1ADB62DB40AC200AD714E /* ConstantsEnum.swift in Sources */,
 				1EE1ADB72DB40AC200AD714E /* String.swift in Sources */,

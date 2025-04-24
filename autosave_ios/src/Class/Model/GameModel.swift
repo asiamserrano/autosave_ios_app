@@ -21,7 +21,7 @@ public class GameModel {
     public private(set) var boxart_data: Data?
     
     public init(_ status: Bool) {
-        let today: Date = .today
+        let today: Date = .defaultValue
         self.uuid = .init()
         self.added = today
         self.title_canon = .defaultValue
@@ -32,7 +32,7 @@ public class GameModel {
     }
     
     public init(_ title: String, _ status: GameStatusEnum) {
-        let today: Date = .today
+        let today: Date = .defaultValue
         self.uuid = .init()
         self.added = today
         self.title_canon = title.canonicalize()
@@ -44,7 +44,7 @@ public class GameModel {
     
     public init(_ comparator: GameSnapshot) {
         self.uuid = comparator.uuid
-        self.added = .today
+        self.added = .defaultValue
         self.title_canon = comparator.title_canon
         self.title_trim = comparator.title_trim
         self.release_date = comparator.release_date
@@ -73,12 +73,16 @@ extension GameModel {
     }
     
     public var snapshot: GameSnapshot {
-        GameSnapshot.Builder(self.uuid, self.status_bool)
-            .setTitle(self.title_trim)
-            .setRelease(self.release_date)
-            .setStatus(self.status_bool)
-            .setBoxart(self.boxart_data)
-            .build()
+        .model(self)
     }
+    
+//    public var snapshot: GameSnapshot {
+//        GameSnapshot.Builder(self.uuid, self.status_bool)
+//            .setTitle(self.title_trim)
+//            .setRelease(self.release_date)
+//            .setStatus(self.status_bool)
+//            .setBoxart(self.boxart_data)
+//            .build()
+//    }
     
 }

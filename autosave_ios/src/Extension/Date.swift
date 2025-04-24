@@ -35,10 +35,6 @@ fileprivate extension DateFormatter {
 
 public extension Date {
     
-    static var today: Self {
-        .init(.now)
-    }
-    
     static var random: Self {
         let low: TimeInterval = Self(1900,1,1).timeIntervalSinceNow
         let high: TimeInterval = Self.now.timeIntervalSinceNow
@@ -81,3 +77,10 @@ public extension Date {
 
 }
 
+extension Date: Defaultable {
+    
+    public static var defaultValue: Self {
+        .init(.now)
+    }
+    
+}

@@ -26,9 +26,9 @@ public class GameBuilder: ObservableObject {
     public let status: GameStatusEnum
     
     public init(_ status: GameStatusEnum) {
-        let comparator: GameSnapshot = .init(status)
+        let comparator: GameSnapshot = .defaultValue(status)
         self.title = .defaultValue
-        self.release = .today
+        self.release = .defaultValue
         self.boxart = nil
         self.status = status
         self.original = comparator
@@ -38,7 +38,7 @@ public class GameBuilder: ObservableObject {
     
     public init(_ model: GameModel) {
         let comparator: GameSnapshot = model.snapshot
-        self.original = model.snapshot
+        self.original = comparator
         self.title = comparator.title
         self.release = comparator.release
         self.boxart = comparator.boxart
@@ -52,15 +52,19 @@ public class GameBuilder: ObservableObject {
 
 extension GameBuilder {
     
+    public var snapshot: GameSnapshot {
+        .builder(self)
+    }
+    
     public func save() -> Void {
-        let comparator: GameSnapshot = self.current
+        let comparator: GameSnapshot = self.snapshot
         self.original = comparator
         self.invalid = .init(comparator)
 //        self.new = false
     }
     
     public func fail() -> Void {
-        self.invalid.insert(current)
+        self.invalid.insert(self.snapshot)
     }
     
     public func reset() -> Void {
@@ -83,22 +87,15 @@ extension GameBuilder {
     }
         
     public var isDisabled: Bool {
-        self.invalid.contains(self.current) || self.current.title_canon.isEmpty
-    }
-    
-    public var current: GameSnapshot {
-        let uuid: UUID = self.original.uuid
-        let status: Bool = self.original.status_bool
-        return GameSnapshot.Builder(uuid, status)
-            .setTitle(self.title)
-            .setRelease(self.release)
-            .setStatus(status)
-            .setBoxart(self.boxart)
-            .build()
+        self.invalid.contains(self.snapshot) || self.snapshot.title_canon.isEmpty
     }
     
     public var isNew: Bool {
         self.original == .defaultValue(self.status)
+    }
+    
+    public var uuid: UUID {
+        self.original.uuid
     }
     
 }

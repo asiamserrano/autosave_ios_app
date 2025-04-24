@@ -55,7 +55,7 @@ extension ModelContext {
     
     @discardableResult
     func save(_ builder: GameBuilder) -> GameResult {
-        let current: GameSnapshot = builder.current
+        let current: GameSnapshot = builder.snapshot
         let composite: GameFetchDescriptor = .getByCompositeKey(current)
         let new: GameModel? = self.fetchModel(composite)
         let uuid: GameFetchDescriptor = .getByUUID(builder.original)
