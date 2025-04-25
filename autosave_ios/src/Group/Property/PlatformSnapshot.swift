@@ -7,7 +7,7 @@
 //
 //import Foundation
 //
-//public struct PlatformSnapshot {
-//    let system: SystemSnapshot
-//    let format: FormatSnapshot
-//}
+public struct PlatformSnapshot {
+    let system: SystemBuilder
+    let format: FormatBuilder
+}

@@ -7,7 +7,38 @@
 
 import Foundation
 
-public struct ValueBuilder: Comparable, Hashable {
+public struct ValueBuilder {
+    
+    public let canon: String
+    public let trim: String
+    
+//    public init(_ property: PropertyEnum, _ str: String) {
+//        self.can
+//    }
+    
+//    public init(_ string: String) {
+//        self.canon = string.canonicalize()
+//        self.trim = string.trim()
+//    }
+//    
+    public init(_ enumerable: any Enumerable) {
+        self.canon = enumerable.id
+        self.trim = enumerable.value
+    }
+//    
+//    public init(_ enum1: any Enumerable, _ enum2: any Enumerable) {
+//        self.canon = enum1.id
+//        self.trim = enum2.id
+//    }
+    
+    private init(_ canon: String, _ trim: String) {
+        self.canon = canon
+        self.trim = trim
+    }
+    
+}
+
+extension ValueBuilder: Comparable {
     
     public static func < (lhs: Self, rhs: Self) -> Bool {
         if lhs.canon == rhs.canon {
@@ -17,33 +48,15 @@ public struct ValueBuilder: Comparable, Hashable {
         }
     }
     
+}
+
+extension ValueBuilder: Hashable {
+    
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.hashValue == rhs.hashValue
     }
     
-    public let canon: String
-    public let trim: String
-    
-    public init(_ string: String) {
-        self.canon = string.canonicalize()
-        self.trim = string.trim()
-    }
-    
-    public init(_ enumerable: any Enumerable) {
-        self.canon = enumerable.id
-        self.trim = enumerable.value
-    }
-    
-    public init(_ enum1: any Enumerable, _ enum2: any Enumerable) {
-        self.canon = enum1.id
-        self.trim = enum2.id
-    }
-    
-    private init(_ canon: String, _ trim: String) {
-        self.canon = canon
-        self.trim = trim
-    }
-    
+}
 
     
 ////    case platform(PlatformSnapshot)
@@ -72,7 +85,7 @@ public struct ValueBuilder: Comparable, Hashable {
 //        hasher.combine(self.trim)
 //    }
     
-}
+
 
 // Maplet, Bindel, Pairxy
 //public struct Valokey {

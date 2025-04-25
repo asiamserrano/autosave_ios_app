@@ -19,13 +19,14 @@ import SwiftData
 @Model
 public class GameModel {
     
-    public func build(_ snapshot: GameSnapshot, _ model: GameModel? = nil) -> GameModel {
+    public func build(_ snapshot: Snapshot, _ model: GameModel? = nil) -> GameModel {
         let game: GameModel = model ?? .init()
         game.title_canon = snapshot.title_canon
         game.title_trim = snapshot.title_trim
         game.release_date = snapshot.release_date
         game.status_bool = snapshot.status_bool
         game.boxart_data = snapshot.boxart
+        return game
     }
     
     public private(set) var uuid: UUID
@@ -86,7 +87,7 @@ public class GameModel {
 extension GameModel {
     
     @discardableResult
-    public func update(_ other: GameSnapshot) -> GameModel {
+    public func update(_ other: Snapshot) -> GameModel {
         self.title_canon = other.title_canon
         self.title_trim = other.title_trim
         self.release_date = other.release_date
@@ -101,7 +102,7 @@ extension GameModel {
         return self
     }
     
-    public var snapshot: GameSnapshot {
+    public var snapshot: Snapshot {
         .model(self)
     }
     

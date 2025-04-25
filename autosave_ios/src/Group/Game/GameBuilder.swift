@@ -27,14 +27,14 @@ public class GameBuilder: ObservableObject {
     @Published public var photosPickerItem: PhotosPickerItem? = nil
     @Published public var imagePicker: ImagePickerEnum = .picker
         
-    public private(set) var original: GameSnapshot
+    public private(set) var original: Snapshot
     
-    private var invalid: Set<GameSnapshot>
+    private var invalid: Set<Snapshot>
         
     public let status: GameStatusEnum
     
     public init(_ status: GameStatusEnum) {
-        let comparator: GameSnapshot = .defaultValue(status)
+        let comparator: Snapshot = .defaultValue(status)
         self.title = .defaultValue
         self.release = .defaultValue
         self.boxart = nil
@@ -45,7 +45,7 @@ public class GameBuilder: ObservableObject {
     }
     
     public init(_ model: GameModel) {
-        let comparator: GameSnapshot = model.snapshot
+        let comparator: Snapshot = model.snapshot
         self.original = comparator
         self.title = comparator.title
         self.release = comparator.release
@@ -60,12 +60,12 @@ public class GameBuilder: ObservableObject {
 
 extension GameBuilder {
     
-    public var snapshot: GameSnapshot {
+    public var snapshot: Snapshot {
         .builder(self)
     }
     
     public func save() -> Void {
-        let comparator: GameSnapshot = self.snapshot
+        let comparator: Snapshot = self.snapshot
         self.original = comparator
         self.invalid = .init(comparator)
 //        self.new = false

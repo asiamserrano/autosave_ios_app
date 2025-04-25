@@ -41,7 +41,7 @@ extension GamesListViewProtocol {
         NavigationLink(destination: {
             GameView(model)
         }, label: {
-            let snapshot: GameSnapshot = model.snapshot
+            let snapshot: Snapshot = model.snapshot
             VStack(alignment: .leading, spacing: 5) {
                 Text(snapshot.title)
                     .bold()

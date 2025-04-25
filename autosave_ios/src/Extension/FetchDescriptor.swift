@@ -25,14 +25,14 @@ public typealias GameFetchDescriptor = FetchDescriptor<GameModel>
 
 public extension GameFetchDescriptor {
     
-    static func getByCompositeKey(_ comparator: GameSnapshot) -> Self {
+    static func getByCompositeKey(_ comparator: Snapshot) -> Self {
         let title_canon: String = comparator.title_canon
         let release_date: String = comparator.release_date
         let predicate: GamePredicate = .getByCompositeKey(title_canon, release_date)
         return .init(predicate: predicate, sortBy: .defaultValue)
     }
     
-    static func getByUUID(_ comparator: GameSnapshot) -> Self {
+    static func getByUUID(_ comparator: Snapshot) -> Self {
         let uuid: UUID = comparator.uuid
         let predicate: GamePredicate = .getByUUID(uuid)
         return .init(predicate: predicate, sortBy: .defaultValue)

@@ -18,33 +18,20 @@ import SwiftData
 @Model
 public class PropertyModel {
     
+    public static func build() -> PropertyModel {
+        .init()
+    }
+    
     public private(set) var uuid: UUID
     public private(set) var type_id: String
     public private(set) var value_canon: String
     public private(set) var value_trim: String
     
-    public init() {
+    private init() {
         self.uuid = .init()
         self.type_id = .defaultValue
         self.value_canon = .defaultValue
         self.value_trim = .defaultValue
     }
     
-//    public init(_ snapshot: PropertySnapshot) {
-//        self.uuid = .init()
-//        self.type_id = snapshot.type.id
-//        self.value_canon = snapshot.value.canon
-//        self.value_trim = snapshot.value.trim
-//    }
-    
 }
-
-
-
-//extension PropertyModel: PropertyProtocol {
-//    
-//    public var type: PropertyEnum {
-//        .init(self.type_id)
-//    }
-//    
-//}

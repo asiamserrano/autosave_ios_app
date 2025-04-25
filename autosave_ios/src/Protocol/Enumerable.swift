@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable, Randomizable {
+public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable, Randomizable, Defaultable {
     var value: String { get }
 }
 
@@ -19,6 +19,10 @@ public extension Enumerable {
         } else {
             fatalError("unable to random element for \(Self.self)")
         }
+    }
+    
+    static var defaultValue: Self {
+        Self.cases.first!
     }
     
     static var cases: [Self] {

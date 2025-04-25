@@ -26,51 +26,66 @@ public class LinkModel {
     
 }
 
+
+
 public enum LinkEnum: Enumerable {
-    case system // systemBuilder
-    case format // formatBuilder
-    case platform // system + format
-    case property // game + property
-    case link // game + platform
+    case system     // systemBuilder
+    case format     // formatBuilder
+    case sysform   // systemBuilder + formatBuilder
+    case property   // game + property
+    case platform       // game + platform
 }
 
-public enum LinkBuilder {
+public struct LinkBuilder {
     
-    case game(GameModel, PropertyModel) // game + property
-    case property(PropertyModel, PropertyModel) // property + property
-    case platform(GameModel, LinkModel) // game + link
-
-    var key: UUID {
-        switch self {
-        case .game(let g, _), .platform(let g, _): return g.uuid
-        case .property(let p, _): return p.uuid
-        }
-    }
-    
-    var value: UUID {
-        switch self {
-        case .game(_, let p), .property(_, let p): return p.uuid
-        case .platform(_, let l): return l.uuid
-        }
-    }
-    
-}
-
-public struct LinkSnapshot {
-    let key: 
+    let uuid: UUID
+    let key: UUID
+    let value: UUID
     let type: LinkEnum
+    
+    public init(_ game: GameSnapshot, _ property: PropertySnapshot) {
+        self.uuid = .init()
+        self.key = game.uuid
+        self.value = property.uuid
+        self.type = .property
+    }
+    
+    public init(_ system: SystemBuilder) {
+        let key: PropertySnapshot = .ini
+    }
+    
+    private init(_ key: PropertySnapshot, _ value: PropertySnapshot, _ type: LinkEnum) {
+        self.uuid = .init()
+        self.key = key.uuid
+        self.value = value.uuid
+        self.type = type
+    }
+    
 }
 
-
-
-//public struct JunctionSnapshot {
+//public enum LinkBuilder {
 //    
-//    let game: GameModel?
-//    let property: PropertyModel?
-//    
-//    public init(_ game: GameModel, _ property: PropertyModel) {
-//        self.game = game
-//        self.property = property
+//    case game(GameModel, PropertyModel) // game + property
+//    case property(PropertyModel, PropertyModel) // property + property
+//    case platform(GameModel, LinkModel) // game + link
+//
+//    var key: UUID {
+//        switch self {
+//        case .game(let g, _), .platform(let g, _): return g.uuid
+//        case .property(let p, _): return p.uuid
+//        }
 //    }
 //    
+//    var value: UUID {
+//        switch self {
+//        case .game(_, let p), .property(_, let p): return p.uuid
+//        case .platform(_, let l): return l.uuid
+//        }
+//    }
+//    
+//}
+
+//public struct LinkSnapshot {
+//    let key: 
+//    let type: LinkEnum
 //}
