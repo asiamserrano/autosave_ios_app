@@ -19,7 +19,7 @@ struct GamesListView: GamesListViewProtocol {
     @State var search: String = .defaultValue
     
     var body: some View {
-        ModelsView(models, "\(gameStatusEnum.value) is empty", content: {
+        ModelsView(models, "\(gameStatusEnum.display) is empty", content: {
             SearchView(gameStatusEnum, gameSortEnum, search)
                 .searchable(text: $search)
                 .toolbar {

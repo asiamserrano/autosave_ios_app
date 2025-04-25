@@ -13,7 +13,7 @@ public enum OSEnum {
 
 extension OSEnum: Enumerable {
     
-    public var value: String {
+    public var display: String {
         switch self {
         case .win: return "Microsoft Windows"
         case .mac: return "Apple macOS"

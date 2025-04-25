@@ -7,8 +7,8 @@
 
 import Foundation
 
-public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable, Randomizable, Defaultable {
-    var value: String { get }
+public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable, Randomizable, Defaultable, ValueProtocol {
+    var display: String { get }
 }
 
 public extension Enumerable {
@@ -32,7 +32,7 @@ public extension Enumerable {
     var className: String { String(describing: Self.self) }
     
     static func cast(_ string: String) -> Self? {
-        if let enumerable: Self = Self.cases.first(where: { $0.id == string || $0.value == string }) {
+        if let enumerable: Self = Self.cases.first(where: { $0.id == string || $0.display == string }) {
             return enumerable
         } else {
             return nil
@@ -49,11 +49,11 @@ public extension Enumerable {
     
     var id: String { String(describing: self) }
         
-    var value: String { self.id.capitalized }
+    var display: String { self.id.capitalized }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
-        hasher.combine(self.value)
+        hasher.combine(self.display)
         hasher.combine(self.className)
     }
     
@@ -74,3 +74,4 @@ public extension Enumerable {
     }
     
 }
+

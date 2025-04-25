@@ -9,6 +9,10 @@ import Foundation
 
 public enum PropertyEnum: Enumerable {
     
+    case series
+    case developer
+    case publisher
+    case genre
     case format
     case physical
     case digital
@@ -18,12 +22,8 @@ public enum PropertyEnum: Enumerable {
     case os
     case xbox
     case mode
-    case series
-    case developer
-    case publisher
-    case genre
     
-    public var value: String {
+    public var display: String {
         switch self {
         case .playstation: return "PlayStation"
         case .nintendo: return "Nintendo"
@@ -33,4 +33,22 @@ public enum PropertyEnum: Enumerable {
         }
     }
     
+}
+
+public enum InputEnum: Enumerable {
+    
+    case series
+    case developer
+    case publisher
+    case genre
+    
+    public var propertyEnum: PropertyEnum {
+        switch self {
+        case .series: return .series
+        case .developer: return .developer
+        case .publisher: return .publisher
+        case .genre: return .genre
+        }
+    }
+
 }

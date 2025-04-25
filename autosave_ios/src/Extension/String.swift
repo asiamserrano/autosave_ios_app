@@ -24,20 +24,24 @@ extension String: Defaultable {
         return set.joined(separator: " ")
     }
     
-    public func trim() -> Self {
-        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    public func pluralize() -> Self {
+        if let last: Character = self.canon.last, last != "s" {
+            return "\(self)s"
+        } else { return self }
     }
     
-    public func canonicalize() -> Self {
+}
+
+extension String: ValueProtocol {
+    
+    public var id: Self {
         self.components(separatedBy: CharacterSet.alphanumerics.inverted)
             .joined()
             .lowercased()
     }
     
-    public func pluralize() -> Self {
-        if let last: Character = self.canonicalize().last, last != "s" {
-            return "\(self)s"
-        } else { return self }
+    public var display: Self {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
 }

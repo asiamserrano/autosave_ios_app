@@ -55,7 +55,7 @@ extension ModelContext {
     
     @discardableResult
     func save(_ builder: GameBuilder) -> GameResult {
-        let current: Snapshot = builder.snapshot
+        let current: GameSnapshot = builder.snapshot
         let composite: GameFetchDescriptor = .getByCompositeKey(current)
         let new: GameModel? = self.fetchModel(composite)
         let uuid: GameFetchDescriptor = .getByUUID(builder.original)
@@ -71,7 +71,7 @@ extension ModelContext {
             if let new: GameModel = new {
                 return .init(new.snapshot, false, .add)
             } else {
-                let game: GameModel = .init(current)
+                let game: GameModel = .snapshot(current)
                 self.add(game)
                 return .init(current, true, .add)
             }
@@ -79,13 +79,13 @@ extension ModelContext {
     }
     
     @discardableResult
-    func save(_ current: Snapshot) -> GameModel {
+    func save(_ current: GameSnapshot) -> GameModel {
         let composite: GameFetchDescriptor = .getByCompositeKey(current)
         let new: GameModel? = self.fetchModel(composite)
         if let new: GameModel = new {
             return new
         } else {
-            let game: GameModel = .init(current)
+            let game: GameModel = .snapshot(current)
             self.add(game)
             return game
         }

@@ -31,7 +31,7 @@ public enum IconEnum: Enumerable {
     case gamecontroller
     case photo_circle_fill
     
-    public var value: String {
+    public var display: String {
         self.id.replacingOccurrences(of: "_", with: ".")
     }
     

@@ -23,7 +23,7 @@ struct TextFieldView: View {
     public init(_ constants: ConstantsEnum, _ binding: Binding<String>) {
         self._binding = binding
         self.keyboard = .alphabet
-        self.prompt = constants.value
+        self.prompt = constants.display
     }
     
     public var body: some View {

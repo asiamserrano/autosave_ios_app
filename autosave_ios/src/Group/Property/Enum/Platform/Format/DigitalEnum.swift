@@ -13,7 +13,7 @@ public enum DigitalEnum {
 
 extension DigitalEnum: Enumerable {
     
-    public var value: String {
+    public var display: String {
         switch self {
         case .psn: return "PlayStation Network"
         case .xbox: return "Xbox Live"

@@ -58,12 +58,12 @@ public extension View {
     
     @ViewBuilder
     func CustomButton(_ constants: ConstantsEnum,_ role: ButtonRole, _ action: @escaping () -> Void) -> some View {
-        Button(constants.value, role: role, action: action)
+        Button(constants.display, role: role, action: action)
     }
     
     @ViewBuilder
     func ConstantsText(_ constants: ConstantsEnum) -> some View {
-        Text(constants.value)
+        Text(constants.display)
     }
     
     func hide(_ bool: Bool) -> some View {

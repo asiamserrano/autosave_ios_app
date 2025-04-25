@@ -41,7 +41,7 @@ extension GamesListViewProtocol {
         NavigationLink(destination: {
             GameView(model)
         }, label: {
-            let snapshot: Snapshot = model.snapshot
+            let snapshot: GameSnapshot = model.snapshot
             VStack(alignment: .leading, spacing: 5) {
                 Text(snapshot.title)
                     .bold()
@@ -62,7 +62,7 @@ extension GamesListViewProtocol {
         })
         .swipeActions(edge: .leading, content: {
             let move: GameStatusEnum = self.gameStatusEnum.next
-            let location: String = "Move to \(move.value)"
+            let location: String = "Move to \(move.display)"
             SwipeButton(.move_game(model, move), label: {
                 Text(location)
                     .multilineTextAlignment(.center)

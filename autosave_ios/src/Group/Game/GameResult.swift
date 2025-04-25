@@ -11,12 +11,12 @@ public struct GameResult: Hashable, Equatable {
 //    let message: String
 //    let bool: Bool
     
-    public let comparator: Snapshot
+    public let snapshot: GameSnapshot
     public let successful: Bool
     public let enumeration: Enumeration
     
-    public init(_ comparator: Snapshot, _ inserted: Bool, _ enumeration: Enumeration) {
-        self.comparator = comparator
+    public init(_ snapshot: GameSnapshot, _ inserted: Bool, _ enumeration: Enumeration) {
+        self.snapshot = snapshot
         self.successful = inserted
         self.enumeration = enumeration
     }
@@ -74,11 +74,11 @@ public extension GameResult? {
 private extension GameResult {
     
     func message(_ result: String) -> String {
-        let display: String = comparator.display
+        let display: String = snapshot.display
         if successful {
             return "\(display) has been successfully \(result)!"
         } else {
-            let location: String = comparator.status.value
+            let location: String = snapshot.status.display
             return "Unable to \(result) game. \(display) already exists in your \(location)."
         }
     }

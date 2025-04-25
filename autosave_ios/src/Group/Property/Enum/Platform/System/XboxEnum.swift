@@ -13,7 +13,7 @@ public enum XboxEnum {
 
 extension XboxEnum: Enumerable {
     
-    public var value: String {
+    public var display: String {
         var end: String {
             switch self {
             case .xbox: return .defaultValue
@@ -22,7 +22,7 @@ extension XboxEnum: Enumerable {
             }
         }
         
-        return "\(self.systemEnum.value) \(end)".trim()
+        return "\(self.systemEnum.display) \(end)".display
     }
     
 }

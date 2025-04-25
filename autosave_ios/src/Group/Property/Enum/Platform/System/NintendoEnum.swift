@@ -13,8 +13,8 @@ public enum NintendoEnum {
 
 extension NintendoEnum: Enumerable {
     
-    public var value: String {
-        let name: String = self.systemEnum.value
+    public var display: String {
+        let name: String = self.systemEnum.display
         switch self {
         case .snes: return "Super \(name) Entertainment System"
         case .nsw: return "\(name) Switch"

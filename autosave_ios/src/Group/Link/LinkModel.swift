@@ -50,9 +50,9 @@ public struct LinkBuilder {
         self.type = .property
     }
     
-    public init(_ system: SystemBuilder) {
-        let key: PropertySnapshot = .ini
-    }
+//    public init(_ system: SystemBuilder) {
+//        let key: PropertySnapshot = .ini
+//    }
     
     private init(_ key: PropertySnapshot, _ value: PropertySnapshot, _ type: LinkEnum) {
         self.uuid = .init()

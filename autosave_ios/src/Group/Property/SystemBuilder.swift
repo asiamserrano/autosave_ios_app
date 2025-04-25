@@ -40,8 +40,8 @@ extension SystemBuilder: SystemProtocol {
         self.system.id
     }
     
-    public var value: String {
-        self.system.value
+    public var display: String {
+        self.system.display
     }
     
     public var systemEnum: SystemEnum {
@@ -55,7 +55,5 @@ extension SystemBuilder: SystemProtocol {
     public var digitalEnums: [DigitalEnum] {
         self.system.digitalEnums
     }
-    
-    public var snapshot
-    
+        
 }

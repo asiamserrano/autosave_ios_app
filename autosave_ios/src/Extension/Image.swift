@@ -19,7 +19,7 @@ extension Image {
     }
     
     public init(_ icon: IconEnum) {
-        self.init(systemName: icon.value)
+        self.init(systemName: icon.display)
     }
     
 }

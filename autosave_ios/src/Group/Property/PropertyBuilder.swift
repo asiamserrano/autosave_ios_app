@@ -9,6 +9,10 @@ import Foundation
 
 public enum PropertyBuilder {
         
+    case series(String)
+    case developer(String)
+    case publisher(String)
+    case genre(String)
     case format(FormatEnum)
     case physical(PhysicalEnum)
     case digital(DigitalEnum)
@@ -18,10 +22,24 @@ public enum PropertyBuilder {
     case os(OSEnum)
     case xbox(XboxEnum)
     case mode(ModeEnum)
-    case series(String)
-    case developer(String)
-    case publisher(String)
-    case genre(String)
+    
+//    public init(_ type: PropertyEnum, _ value: String) {
+//        switch self {
+//        case .format(let formatEnum): self = .format(.init(value))
+//        case .physical(let physicalEnum): return .init(physicalEnum)
+//        case .digital(let digitalEnum): return .init(digitalEnum)
+//        case .system(let systemEnum): return .init(systemEnum)
+//        case .nintendo(let nintendoEnum): return .init(nintendoEnum)
+//        case .playstation(let playStationEnum): return .init(playStationEnum)
+//        case .os(let oSEnum): return .init(oSEnum)
+//        case .xbox(let xboxEnum): return .init(xboxEnum)
+//        case .mode(let modeEnum): return .init(modeEnum)
+//        case .series(let string): return .init(string)
+//        case .developer(let string): return .init(string)
+//        case .publisher(let string): return .init(string)
+//        case .genre(let string): return .init(string)
+//        }
+//    }
     
 }
 
@@ -87,3 +105,10 @@ public extension PropertyBuilder {
     
 }
 
+//extension PropertyBuilder: Defaultable {
+//    
+//    public static var defaultValue: Self {
+//        .series(.defaultValue)
+//    }
+//    
+//}

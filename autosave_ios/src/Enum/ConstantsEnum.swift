@@ -28,7 +28,7 @@ public enum ConstantsEnum: Enumerable {
 
 extension ConstantsEnum {
     
-    public var value: String {
+    public var display: String {
         id.replacingOccurrences(of: "_", with: " ").capitalized
     }
     

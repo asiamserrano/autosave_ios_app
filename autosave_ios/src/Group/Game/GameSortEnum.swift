@@ -48,7 +48,7 @@ extension GameSortEnum: Iterable {
         }
     }
     
-    public var value: String { self.enum.value }
+    public var value: String { self.enum.display }
     
     public var icon: IconEnum { self.order.icon }
         
@@ -59,7 +59,7 @@ private extension GameSortEnum {
     enum Enum: Enumerable {
         case release, title
         
-        var value: String {
+        var display: String {
             switch self {
             case .release:
                 return "Release Date"

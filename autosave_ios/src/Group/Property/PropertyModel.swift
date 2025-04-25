@@ -18,8 +18,8 @@ import SwiftData
 @Model
 public class PropertyModel {
     
-    public static func build() -> PropertyModel {
-        .init()
+    public static func snapshot(_ snapshot: PropertySnapshot) -> PropertyModel {
+        .init().update(snapshot)
     }
     
     public private(set) var uuid: UUID
@@ -32,6 +32,18 @@ public class PropertyModel {
         self.type_id = .defaultValue
         self.value_canon = .defaultValue
         self.value_trim = .defaultValue
+    }
+    
+}
+
+extension PropertyModel {
+    
+    @discardableResult
+    public func update(_ snapshot: PropertySnapshot) -> PropertyModel {
+        self.type_id = snapshot.type_id
+        self.value_canon = snapshot.value_canon
+        self.value_trim = snapshot.value_trim
+        return self
     }
     
 }

@@ -13,7 +13,7 @@ public enum PlayStationEnum {
 
 extension PlayStationEnum: Enumerable {
     
-    public var value: String {
+    public var display: String {
         
         var end: String {
             if let ch: Character = self.id.last, let i: Int = Int(String(ch)) {
@@ -21,7 +21,7 @@ extension PlayStationEnum: Enumerable {
             } else { return "Portable" }
         }
         
-        return "\(self.systemEnum.value) \(end)".trim()
+        return "\(self.systemEnum.display) \(end)".trim()
     }
     
 }

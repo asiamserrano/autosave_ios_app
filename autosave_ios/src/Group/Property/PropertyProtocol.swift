@@ -7,13 +7,12 @@
 
 import Foundation
 
-//public protocol PropertyProtocol {
-//    var type: PropertyEnum { get }
-//    var value_trim: String { get }
-//}
-//
-//public extension PropertyProtocol {
-//    
+public protocol PropertyProtocol: Enumerable {
+    var propertyEnum: PropertyEnum { get }
+}
+
+public extension PropertyProtocol {
+    
 //    var snapshot: PropertySnapshot {
 //        switch self.type {
 //        case .format: return .format(.init(self.value_trim))
@@ -31,5 +30,5 @@ import Foundation
 //        case .genre: return .genre(.init(self.value_trim))
 //        }
 //    }
-//    
-//}
+    
+}

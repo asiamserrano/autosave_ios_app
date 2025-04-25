@@ -7,8 +7,16 @@
 
 import Foundation
 
-public protocol SystemProtocol: Enumerable {
+public protocol SystemProtocol: PropertyProtocol {
     var systemEnum: SystemEnum { get }
     var physicalEnum: PhysicalEnum { get }
     var digitalEnums: [DigitalEnum] { get }
+}
+
+public extension SystemProtocol {
+    
+    var propertyEnum: PropertyEnum {
+        .init(self.systemEnum)
+    }
+    
 }

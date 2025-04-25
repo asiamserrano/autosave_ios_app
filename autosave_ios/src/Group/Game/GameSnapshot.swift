@@ -67,6 +67,12 @@ public struct GameSnapshot {
     public var display: String {
         "\(self.title) (\(self.release.year))"
     }
+
+    
+//    @discardableResult
+//    public func move() -> Self {
+//        .init(self.uuid, self.title, self.release, self.status.next, self.boxart)
+//    }
     
 //    public init(_ status: GameStatusEnum) {
 //        self.uuid = .init()

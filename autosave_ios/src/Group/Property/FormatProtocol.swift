@@ -7,6 +7,14 @@
 
 import Foundation
 
-public protocol FormatProtocol: Enumerable {
+public protocol FormatProtocol: PropertyProtocol {
     var formatEnum: FormatEnum { get }
+}
+
+public extension FormatProtocol {
+    
+    var propertyEnum: PropertyEnum {
+        .init(self.formatEnum)
+    }
+    
 }

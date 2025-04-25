@@ -10,8 +10,8 @@ import Foundation
 public enum SystemEnum: Enumerable {
     case playstation, nintendo, xbox, os
     
-    public var value: String {
-        self.property.value
+    public var display: String {
+        self.property.display
     }
     
 }

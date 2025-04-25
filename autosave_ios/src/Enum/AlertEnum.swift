@@ -43,7 +43,7 @@ public enum AlertEnum: Hashable, Equatable {
             return "Are you sure you want to delete \(display)?"
         case .move_game(let game, let status):
             let display: String = game.snapshot.display
-            let value: String = status.value.lowercased()
+            let value: String = status.display.lowercased()
             return "Are you sure you want to move \(display) to your \(value)?"
 //        case .delete_tag(let tag):
 //            return "Are you sure you want to delete \(tag.builder.value)?"
