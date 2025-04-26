@@ -38,7 +38,7 @@ struct GamesListView: GamesListViewProtocol {
         @Query var models: [GameModel]
         
         init(_ status: GameStatusEnum, _ sort: GameSortEnum, _ search: String) {
-            let canon = search.canonicalize()
+            let canon = search.id
             let bool = status.bool
             self._models = .init(filter: .getForList(bool, canon), sort: .defaultValue(sort))
         }

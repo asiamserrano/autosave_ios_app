@@ -25,14 +25,14 @@ extension String: Defaultable {
     }
     
     public func pluralize() -> Self {
-        if let last: Character = self.canon.last, last != "s" {
+        if let last: Character = self.display.last, last != "s" {
             return "\(self)s"
         } else { return self }
     }
     
 }
 
-extension String: ValueProtocol {
+extension String: Displayable {
     
     public var id: Self {
         self.components(separatedBy: CharacterSet.alphanumerics.inverted)

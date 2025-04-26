@@ -8,36 +8,12 @@
 import Foundation
 
 public struct PropertySnapshot {
-    
-//    public static var defaultValue: Self {
-//        .init(.defaultValue, .defaultValue)
-//    }
-//    
-//    public static func random(_ status: GameStatusEnum) -> GameSnapshot {
-//        .init(.init(), .random, .random, status, nil)
-//    }
-//    
-//    public static func builder(_ builder: GameBuilder) -> Self {
-//        .init(builder.uuid, builder.title, builder.release, builder.status, builder.boxart)
-//    }
-//    
-//    public static func model(_ model: GameModel) -> Self {
-//        let release: Date = .init(model.release_date)
-//        let status: GameStatusEnum = .init(model.status_bool)
-//        return .init(model.uuid, model.title_trim, release, status, model.boxart_data)
-//    }
-    
+ 
     public let uuid: UUID
     public let type: PropertyEnum
     public let value: ValueBuilder
     
-//    public init(_ model: PropertyModel) {
-//        self.uuid = model.uuid
-//        self.type = .init(model.type_id)
-//        self.value = .ini
-//    }
-    
-    private init(_ type: PropertyEnum, _ value: ValueBuilder) {
+    public init(_ type: PropertyEnum, _ value: ValueBuilder) {
         self.uuid = .init()
         self.type = type
         self.value = value
@@ -48,11 +24,11 @@ public struct PropertySnapshot {
     }
     
     public var value_canon: String {
-        self.value.canon
+        self.value.id
     }
     
     public var value_trim: String {
-        self.value.trim
+        self.value.display
     }
     
 }

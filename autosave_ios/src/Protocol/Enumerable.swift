@@ -7,9 +7,7 @@
 
 import Foundation
 
-public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable, Randomizable, Defaultable, ValueProtocol {
-    var display: String { get }
-}
+public protocol Enumerable: Identifiable, Hashable, Comparable, Equatable, CaseIterable, Iterable, Randomizable, Defaultable, Displayable { }
 
 public extension Enumerable {
     

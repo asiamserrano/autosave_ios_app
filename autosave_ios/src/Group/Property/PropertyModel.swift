@@ -8,13 +8,6 @@
 import Foundation
 import SwiftData
 
-
-/*
- 
- Model class for a property
- 
- */
-
 @Model
 public class PropertyModel {
     

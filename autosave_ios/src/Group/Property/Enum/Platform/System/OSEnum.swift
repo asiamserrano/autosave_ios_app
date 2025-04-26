@@ -7,29 +7,29 @@
 
 import Foundation
 
-public enum OSEnum {
+public enum OSEnum: Enumerable {
     case win, mac
 }
 
-extension OSEnum: Enumerable {
-    
-    public var display: String {
-        switch self {
-        case .win: return "Microsoft Windows"
-        case .mac: return "Apple macOS"
-        }
-    }
-    
-}
-
-extension OSEnum: SystemProtocol {
-    
-    public var systemEnum: SystemEnum { .os }
-
-    public var physicalEnum: PhysicalEnum { .disc }
-
-    public var digitalEnums: [DigitalEnum] {
-        [ .steam, .origin, .free ]
-    }
-    
-}
+//extension OSEnum: Enumerable {
+//    
+//    public var display: String {
+//        switch self {
+//        case .win: return "Microsoft Windows"
+//        case .mac: return "Apple macOS"
+//        }
+//    }
+//    
+//}
+//
+//extension OSEnum: SystemProtocol {
+//    
+//    public var systemEnum: SystemEnum { .os }
+//
+//    public var physicalEnum: PhysicalEnum { .disc }
+//
+//    public var digitalEnums: [DigitalEnum] {
+//        [ .steam, .origin, .free ]
+//    }
+//    
+//}

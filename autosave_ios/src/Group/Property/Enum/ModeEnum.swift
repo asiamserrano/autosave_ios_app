@@ -32,11 +32,3 @@ public extension ModeEnum {
     }
     
 }
-
-extension ModeEnum: PropertyProtocol {
-    
-    public var propertyEnum: PropertyEnum {
-        .mode
-    }
-    
-}

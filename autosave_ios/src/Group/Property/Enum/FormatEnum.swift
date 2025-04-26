@@ -20,16 +20,4 @@ public extension FormatEnum {
         }
     }
     
-    func builder(_ id: String) -> FormatBuilder {
-        switch self {
-        case .digital: return .digital(.init(id))
-        case .physical: return .physical(.init(id))
-        }
-    }
-    
-//
-//    func equals(_ builder: FormatBuilder) -> Bool {
-//        self == builder.formatEnum
-//    }
-    
 }

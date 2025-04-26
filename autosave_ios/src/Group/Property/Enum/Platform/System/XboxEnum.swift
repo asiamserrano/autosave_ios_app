@@ -7,37 +7,49 @@
 
 import Foundation
 
-public enum XboxEnum {
+public enum XboxEnum: Enumerable {
     case xbox, x360, one
 }
 
-extension XboxEnum: Enumerable {
+public extension XboxEnum {
     
-    public var display: String {
-        var end: String {
-            switch self {
-            case .xbox: return .defaultValue
-            case .x360: return "360"
-            case .one: return "One"
-            }
-        }
-        
-        return "\(self.systemEnum.display) \(end)".display
-    }
-    
-}
-
-extension XboxEnum: SystemProtocol {
-    
-    public var systemEnum: SystemEnum { .xbox }
-
-    public var physicalEnum: PhysicalEnum { .disc }
-    
-    public var digitalEnums: [DigitalEnum] {
+    var end: String {
         switch self {
-        case .x360, .one: return [ .free, .xbox ]
-        default: return []
+        case .xbox: return .defaultValue
+        case .x360: return "360"
+        case .one:  return "One"
         }
     }
     
 }
+
+//extension XboxEnum: Enumerable {
+//    
+//    public var display: String {
+//        var end: String {
+//            switch self {
+//            case .xbox: return .defaultValue
+//            case .x360: return "360"
+//            case .one: return "One"
+//            }
+//        }
+//        
+//        return "\(self.systemEnum.display) \(end)".display
+//    }
+//    
+//}
+//
+//extension XboxEnum: SystemProtocol {
+//    
+//    public var systemEnum: SystemEnum { .xbox }
+//
+//    public var physicalEnum: PhysicalEnum { .disc }
+//    
+//    public var digitalEnums: [DigitalEnum] {
+//        switch self {
+//        case .x360, .one: return [ .free, .xbox ]
+//        default: return []
+//        }
+//    }
+//    
+//}

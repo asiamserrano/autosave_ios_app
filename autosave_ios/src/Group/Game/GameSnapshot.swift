@@ -49,11 +49,11 @@ public struct GameSnapshot {
     }
     
     public var title_canon: String {
-        title.canonicalize()
+        title.id
     }
     
     public var title_trim: String {
-        title.trim()
+        title.display
     }
     
     public var release_date: String {
@@ -68,81 +68,6 @@ public struct GameSnapshot {
         "\(self.title) (\(self.release.year))"
     }
 
-    
-//    @discardableResult
-//    public func move() -> Self {
-//        .init(self.uuid, self.title, self.release, self.status.next, self.boxart)
-//    }
-    
-//    public init(_ status: GameStatusEnum) {
-//        self.uuid = .init()
-//        self.
-//    }
-    
-//    public let attributes: AttributesSnapshot
-//    
-//    fileprivate init(uuid: UUID, title: String, release: Date, status: Bool, boxart: Data?) {
-//        self.uuid = uuid
-//        self.title = title
-//        self.release = release
-//        self.status = .init(status)
-//        self.boxart = boxart
-//    }
-//    
-//    public init(_ status: GameStatusEnum) {
-//        self.uuid = .init()
-//        self.title = .defaultValue
-//        self.release = .today
-//        self.status = status
-//        self.boxart = nil
-//    }
-//    
-//    public class Builder {
-//        fileprivate var uuid: UUID
-//        fileprivate var title: String
-//        fileprivate var release: Date
-//        fileprivate var status: Bool
-//        fileprivate var boxart: Data?
-//        
-//        public init(_ uuid: UUID, _ status: Bool) {
-//            self.uuid = uuid
-//            self.title = .defaultValue
-//            self.release = .today
-//            self.status = status
-//            self.boxart = nil
-//        }
-//        
-//        public func setTitle(_ title: String) -> Self {
-//            self.title = title
-//            return self
-//        }
-//        
-//        public func setRelease(_ release: Date) -> Self {
-//            self.release = release
-//            return self
-//        }
-//        
-//        public func setRelease(_ release: String) -> Self {
-//            self.release = .init(release)
-//            return self
-//        }
-//        
-//        public func setStatus(_ status: Bool) -> Self {
-//            self.status = status
-//            return self
-//        }
-//        
-//        public func setBoxart(_ boxart: Data?) -> Self {
-//            self.boxart = boxart
-//            return self
-//        }
-//        
-//        public func build() -> GameSnapshot {
-//            .init(uuid: self.uuid, title: self.title, release: self.release, status: self.status, boxart: self.boxart)
-//        }
-//        
-//    }
-    
 }
 
 

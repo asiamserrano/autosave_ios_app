@@ -1,20 +1,20 @@
+////
+////  FormatProtocol.swift
+////  autosave_ios
+////
+////  Created by Asia Serrano on 4/21/25.
+////
 //
-//  FormatProtocol.swift
-//  autosave_ios
+//import Foundation
 //
-//  Created by Asia Serrano on 4/21/25.
+//public protocol FormatProtocol: Enumerable {
+//    var formatEnum: FormatEnum { get }
+//}
 //
-
-import Foundation
-
-public protocol FormatProtocol: PropertyProtocol {
-    var formatEnum: FormatEnum { get }
-}
-
-public extension FormatProtocol {
-    
-    var propertyEnum: PropertyEnum {
-        .init(self.formatEnum)
-    }
-    
-}
+//public extension FormatProtocol {
+//    
+//    var key: ValueBuilder {
+//        .init(self.formatEnum)
+//    }
+//    
+//}

@@ -36,19 +36,8 @@ public enum PropertyEnum: Enumerable {
 }
 
 public enum InputEnum: Enumerable {
-    
     case series
     case developer
     case publisher
     case genre
-    
-    public var propertyEnum: PropertyEnum {
-        switch self {
-        case .series: return .series
-        case .developer: return .developer
-        case .publisher: return .publisher
-        case .genre: return .genre
-        }
-    }
-
 }

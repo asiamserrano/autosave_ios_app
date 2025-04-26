@@ -8,36 +8,54 @@
 import Foundation
 
 public enum FormatBuilder {
-    
     case digital(DigitalEnum)
     case physical(PhysicalEnum)
-    
 }
 
-extension FormatBuilder: FormatProtocol {
+extension FormatBuilder: Enumerable {
     
-    public static var allCases: [FormatBuilder] {
-        var array: [Self] = .init()
-        array.append(contentsOf: DigitalEnum.cases.map(Self.digital))
-        array.append(contentsOf: PhysicalEnum.cases.map(Self.physical))
-        return array
-    }
-    
-    private var format: any FormatProtocol {
-        switch self {
-        case .digital(let digitalEnum): return digitalEnum
-        case .physical(let physicalEnum): return physicalEnum
+    public static var allCases: [Self] {
+      FormatEnum.allCases.flatMap { category in
+        switch category {
+          case .digital:
+            return DigitalEnum.cases.map(Self.digital)
+          case .physical:
+            return PhysicalEnum.cases.map(Self.physical)
         }
+      }
     }
     
     public var id: String {
-        self.format.id
+        switch self {
+        case .digital(let e):  return e.id
+        case .physical(let e): return e.id
+        }
     }
     
-    public var formatEnum: FormatEnum {
-        self.format.formatEnum
+    public var display: String {
+        switch self {
+        case .physical(let e): return e.display
+        case .digital(let e):
+            switch e {
+            case .psn:      return "PlayStation Network"
+            case .xbox:     return "Xbox Live"
+            case .nintendo: return "Nintendo eShop"
+            case .free:     return "DRM-free"
+            case .origin:   return "Origin"
+            case .steam:    return "Steam"
+            }
+        }
     }
     
 }
 
-
+public extension FormatBuilder {
+    
+    var formatEnum: FormatEnum {
+        switch self {
+        case .digital:  return .digital
+        case .physical: return .physical
+        }
+    }
+    
+}

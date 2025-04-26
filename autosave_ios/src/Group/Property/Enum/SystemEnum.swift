@@ -27,13 +27,4 @@ public extension SystemEnum {
         }
     }
     
-//    func builder(_ id: String) -> SystemBuilder {
-//        switch self {
-//        case .playstation: return .playstation(.init(id))
-//        case .nintendo: return .nintendo(.init(id))
-//        case .xbox: return .xbox(.init(id))
-//        case .os: return .os(.init(id))
-//        }
-//    }
-    
 }

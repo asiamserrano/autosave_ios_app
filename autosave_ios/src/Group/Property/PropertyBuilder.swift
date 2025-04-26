@@ -8,107 +8,89 @@
 import Foundation
 
 public enum PropertyBuilder {
-        
     case series(String)
     case developer(String)
     case publisher(String)
     case genre(String)
-    case format(FormatEnum)
-    case physical(PhysicalEnum)
-    case digital(DigitalEnum)
-    case system(SystemEnum)
-    case nintendo(NintendoEnum)
-    case playstation(PlayStationEnum)
-    case os(OSEnum)
-    case xbox(XboxEnum)
+    case platform(PlatformSnapshot)
     case mode(ModeEnum)
+}
+
+extension Array where Element == PropertySnapshot {
     
-//    public init(_ type: PropertyEnum, _ value: String) {
-//        switch self {
-//        case .format(let formatEnum): self = .format(.init(value))
-//        case .physical(let physicalEnum): return .init(physicalEnum)
-//        case .digital(let digitalEnum): return .init(digitalEnum)
-//        case .system(let systemEnum): return .init(systemEnum)
-//        case .nintendo(let nintendoEnum): return .init(nintendoEnum)
-//        case .playstation(let playStationEnum): return .init(playStationEnum)
-//        case .os(let oSEnum): return .init(oSEnum)
-//        case .xbox(let xboxEnum): return .init(xboxEnum)
-//        case .mode(let modeEnum): return .init(modeEnum)
-//        case .series(let string): return .init(string)
-//        case .developer(let string): return .init(string)
-//        case .publisher(let string): return .init(string)
-//        case .genre(let string): return .init(string)
-//        }
-//    }
+    public init(_ type: PropertyEnum, _ value: ValueBuilder) {
+        let snapshot: PropertySnapshot = .init(type, value)
+        self.init(snapshot)
+    }
     
 }
 
-public extension PropertyBuilder {
+
+// TODO: move this
+
+extension Array where Element == PropertyBuilder {
     
-    static func random(_ property: PropertyEnum) -> Self {
-        switch property {
-        case .format: return .format(.random)
-        case .physical: return .physical(.random)
-        case .digital: return .digital(.random)
-        case .system: return .system(.random)
-        case .nintendo: return .nintendo(.random)
-        case .playstation: return .playstation(.random)
-        case .os: return .os(.random)
-        case .xbox: return .xbox(.random)
-        case .mode: return .mode(.random)
-        case .series: return .series(.random)
-        case .developer: return .developer(.random)
-        case .publisher: return .publisher(.random)
-        case .genre: return .genre(.random)
+    public var snapshots: [PropertySnapshot] {
+        self.flatMap { builder -> [PropertySnapshot] in
+            switch builder {
+            case .series(let string): return .init(.series, string.builder)
+            case .developer(let string): return .init(.developer, string.builder)
+            case .publisher(let string): return .init(.publisher, string.builder)
+            case .genre(let string): return .init(.genre, string.builder)
+            case .mode(let modeEnum): return .init(.mode, modeEnum.builder)
+            case .platform(let platformSnapshot):
+                return [
+                    platformSnapshot.system.key,
+                    platformSnapshot.system.value,
+                    platformSnapshot.format.key,
+                    platformSnapshot.format.value
+                ]
+            }
         }
     }
-    
-//    var key: ValueBuilder {
-//        .init(self.type)
-//    }
-    
-    var type: PropertyEnum {
-        switch self {
-        case .format: return .format
-        case .physical: return .physical
-        case .digital: return.digital
-        case .system: return .system
-        case .nintendo: return .nintendo
-        case .playstation: return.playstation
-        case .os: return .os
-        case .xbox: return .xbox
-        case .mode: return .mode
-        case .series: return .series
-        case .developer: return .developer
-        case .publisher: return .publisher
-        case .genre: return .genre
-        }
-    }
-    
-//    var value: ValueBuilder {
-//        switch self {
-//        case .format(let formatEnum): return .init(formatEnum)
-//        case .physical(let physicalEnum): return .init(physicalEnum)
-//        case .digital(let digitalEnum): return .init(digitalEnum)
-//        case .system(let systemEnum): return .init(systemEnum)
-//        case .nintendo(let nintendoEnum): return .init(nintendoEnum)
-//        case .playstation(let playStationEnum): return .init(playStationEnum)
-//        case .os(let oSEnum): return .init(oSEnum)
-//        case .xbox(let xboxEnum): return .init(xboxEnum)
-//        case .mode(let modeEnum): return .init(modeEnum)
-//        case .series(let string): return .init(string)
-//        case .developer(let string): return .init(string)
-//        case .publisher(let string): return .init(string)
-//        case .genre(let string): return .init(string)
-//        }
-//    }
     
 }
 
-//extension PropertyBuilder: Defaultable {
-//    
-//    public static var defaultValue: Self {
-//        .series(.defaultValue)
-//    }
-//    
-//}
+extension Array where Element == PropertySnapshot {
+  /// Reconstruct PropertyBuilder cases from a flat list of snapshots.
+  public func toBuilders() -> [PropertyBuilder] {
+    // 1) Group snapshots by their PropertyEnum
+    let byType = Dictionary(grouping: self, by: \.type)
+
+    var result: [PropertyBuilder] = []
+
+    // 2) Handle singleton‐value cases
+    for type in [ .series, .developer, .publisher, .genre ] as [PropertyEnum] {
+      guard let snap = byType[type]?.first else { continue }
+      let text = snap.value_trim
+      switch type {
+      case .series:    result.append(.series(text))
+      case .developer: result.append(.developer(text))
+      case .publisher: result.append(.publisher(text))
+      case .genre:     result.append(.genre(text))
+      default: break
+      }
+    }
+
+    // mode (enum) case
+    if let modeSnap = byType[.mode]?.first {
+      let enumValue = ModeEnum(modeSnap.value_canon)
+      result.append(.mode(enumValue))
+    }
+
+    // 3) Rebuild the single .platform from its four snapshots
+    if
+      let sysSnaps = byType[.system], sysSnaps.count == 2,
+      let fmtSnaps = byType[.format], fmtSnaps.count == 2
+    {
+      // the second snapshot in each pair holds the actual Enum value
+      let sysEnum  = SystemEnum(sysSnaps[1].value_canon)
+      let fmtEnum  = FormatEnum(fmtSnaps[1].value_canon)
+      let sb       = SystemBuilder(sysEnum)
+      let fb       = FormatBuilder(fmtEnum)
+      result.append(.platform(PlatformSnapshot(sb, fb)))
+    }
+
+    return result
+  }
+}

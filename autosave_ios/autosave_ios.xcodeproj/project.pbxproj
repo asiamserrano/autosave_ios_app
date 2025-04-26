@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E93B0C92DBC3A0D008AD001 /* Displayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93B0C82DBC3A0D008AD001 /* Displayable.swift */; };
+		1E93B0CB2DBC584A008AD001 /* PlatformBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93B0CA2DBC584A008AD001 /* PlatformBuilder.swift */; };
+		1E93B0CD2DBC6335008AD001 /* PlatformEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93B0CC2DBC6335008AD001 /* PlatformEnum.swift */; };
 		1EB3D57F2DB56A5A00FB4B16 /* FormatEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D57E2DB56A5A00FB4B16 /* FormatEnum.swift */; };
 		1EB3D5812DB56A5C00FB4B16 /* DigitalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5802DB56A5C00FB4B16 /* DigitalEnum.swift */; };
 		1EB3D5832DB56A8A00FB4B16 /* PhysicalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5822DB56A8A00FB4B16 /* PhysicalEnum.swift */; };
@@ -21,7 +24,6 @@
 		1EB3D59C2DB6BECA00FB4B16 /* FormatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D59B2DB6BECA00FB4B16 /* FormatProtocol.swift */; };
 		1EB3D59E2DB6C6C600FB4B16 /* FormatBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D59D2DB6C6C600FB4B16 /* FormatBuilder.swift */; };
 		1EB3D5A02DB6C7B800FB4B16 /* SystemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D59F2DB6C7B800FB4B16 /* SystemBuilder.swift */; };
-		1EB3D5A22DB6C89600FB4B16 /* PlatformBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5A12DB6C89600FB4B16 /* PlatformBuilder.swift */; };
 		1EB3D5A42DB6F46C00FB4B16 /* PlatformSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5A32DB6F46C00FB4B16 /* PlatformSnapshot.swift */; };
 		1EB3D5A62DB6F47400FB4B16 /* SystemSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5A52DB6F47400FB4B16 /* SystemSnapshot.swift */; };
 		1EB3D5A82DB6F47D00FB4B16 /* FormatSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5A72DB6F47D00FB4B16 /* FormatSnapshot.swift */; };
@@ -75,6 +77,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E93B0C82DBC3A0D008AD001 /* Displayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Displayable.swift; sourceTree = "<group>"; };
+		1E93B0CA2DBC584A008AD001 /* PlatformBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformBuilder.swift; sourceTree = "<group>"; };
+		1E93B0CC2DBC6335008AD001 /* PlatformEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEnum.swift; sourceTree = "<group>"; };
 		1EB3D57E2DB56A5A00FB4B16 /* FormatEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatEnum.swift; sourceTree = "<group>"; };
 		1EB3D5802DB56A5C00FB4B16 /* DigitalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalEnum.swift; sourceTree = "<group>"; };
 		1EB3D5822DB56A8A00FB4B16 /* PhysicalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalEnum.swift; sourceTree = "<group>"; };
@@ -89,7 +94,6 @@
 		1EB3D59B2DB6BECA00FB4B16 /* FormatProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatProtocol.swift; sourceTree = "<group>"; };
 		1EB3D59D2DB6C6C600FB4B16 /* FormatBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatBuilder.swift; sourceTree = "<group>"; };
 		1EB3D59F2DB6C7B800FB4B16 /* SystemBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemBuilder.swift; sourceTree = "<group>"; };
-		1EB3D5A12DB6C89600FB4B16 /* PlatformBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformBuilder.swift; sourceTree = "<group>"; };
 		1EB3D5A32DB6F46C00FB4B16 /* PlatformSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSnapshot.swift; sourceTree = "<group>"; };
 		1EB3D5A52DB6F47400FB4B16 /* SystemSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSnapshot.swift; sourceTree = "<group>"; };
 		1EB3D5A72DB6F47D00FB4B16 /* FormatSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatSnapshot.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				1EB3D57E2DB56A5A00FB4B16 /* FormatEnum.swift */,
 				1EB3D5842DB56B0D00FB4B16 /* SystemEnum.swift */,
 				1EB3D5862DB56B2700FB4B16 /* ModeEnum.swift */,
+				1E93B0CC2DBC6335008AD001 /* PlatformEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			children = (
 				1EE1AD8B2DB40AC200AD714E /* View */,
 				1EE1AD8C2DB40AC200AD714E /* Defaultable.swift */,
+				1E93B0C82DBC3A0D008AD001 /* Displayable.swift */,
 				1EE1AD8D2DB40AC200AD714E /* Enumerable.swift */,
 				1EE1AD8E2DB40AC200AD714E /* Iterable.swift */,
 				1EE1AD8F2DB40AC200AD714E /* Randomizable.swift */,
@@ -353,13 +359,13 @@
 				1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */,
 				1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */,
 				1EB3D5A32DB6F46C00FB4B16 /* PlatformSnapshot.swift */,
-				1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */,
-				1EB3D57D2DB56A4800FB4B16 /* Enum */,
+				1E93B0CA2DBC584A008AD001 /* PlatformBuilder.swift */,
 				1EB3D59F2DB6C7B800FB4B16 /* SystemBuilder.swift */,
 				1EB3D59D2DB6C6C600FB4B16 /* FormatBuilder.swift */,
-				1EB3D5A12DB6C89600FB4B16 /* PlatformBuilder.swift */,
+				1EB3D57D2DB56A4800FB4B16 /* Enum */,
 				1EB3D5962DB6BD3C00FB4B16 /* SystemProtocol.swift */,
 				1EB3D59B2DB6BECA00FB4B16 /* FormatProtocol.swift */,
+				1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */,
 				625CBB442DB9388B00C36027 /* Attributes.swift */,
 				1EB3D5A52DB6F47400FB4B16 /* SystemSnapshot.swift */,
 				1EB3D5A72DB6F47D00FB4B16 /* FormatSnapshot.swift */,
@@ -466,6 +472,7 @@
 				1EE1AD9E2DB40AC200AD714E /* GamesListView.swift in Sources */,
 				1EE1AD9F2DB40AC200AD714E /* GameImageView.swift in Sources */,
 				1EE1ADA02DB40AC200AD714E /* GameModel.swift in Sources */,
+				1E93B0C92DBC3A0D008AD001 /* Displayable.swift in Sources */,
 				1EB3D5A42DB6F46C00FB4B16 /* PlatformSnapshot.swift in Sources */,
 				1EE1ADA12DB40AC200AD714E /* GameView.swift in Sources */,
 				1EE1ADA22DB40AC200AD714E /* GamesListViewProtocol.swift in Sources */,
@@ -474,7 +481,6 @@
 				1EE1ADA42DB40AC200AD714E /* GameBuilder.swift in Sources */,
 				1EE1ADA52DB40AC200AD714E /* AlertEnum.swift in Sources */,
 				1EE1ADA62DB40AC200AD714E /* IconView.swift in Sources */,
-				1EB3D5A22DB6C89600FB4B16 /* PlatformBuilder.swift in Sources */,
 				1EE1ADA72DB40AC200AD714E /* SortOrder.swift in Sources */,
 				1EB3D59E2DB6C6C600FB4B16 /* FormatBuilder.swift in Sources */,
 				1EB3D5892DB56B6700FB4B16 /* NintendoEnum.swift in Sources */,
@@ -486,6 +492,8 @@
 				1EE1ADAB2DB40AC200AD714E /* ConfigurationViewProtocol.swift in Sources */,
 				1EE1ADAC2DB40AC200AD714E /* TextFieldView.swift in Sources */,
 				1EE1ADAD2DB40AC200AD714E /* SortDescriptor.swift in Sources */,
+				1E93B0CB2DBC584A008AD001 /* PlatformBuilder.swift in Sources */,
+				1E93B0CD2DBC6335008AD001 /* PlatformEnum.swift in Sources */,
 				1EE1ADC92DB426B000AD714E /* PropertyEnum.swift in Sources */,
 				1EB3D5A02DB6C7B800FB4B16 /* SystemBuilder.swift in Sources */,
 				1EE1ADAE2DB40AC200AD714E /* Defaultable.swift in Sources */,

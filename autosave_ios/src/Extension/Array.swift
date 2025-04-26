@@ -11,9 +11,8 @@ extension Array {
     
     public static var defaultValue: Self { .init() }
     
-    public init(_ element: Element) {
-        self.init()
-        self.append(element)
+    public init(_ elements: Element...) {
+        self.init(elements)
     }
     
     public var random: Element {

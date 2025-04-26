@@ -7,27 +7,21 @@
 
 import Foundation
 
-public enum DigitalEnum {
+public enum DigitalEnum: Enumerable {
     case steam, origin, psn, xbox, nintendo, free
 }
 
-extension DigitalEnum: Enumerable {
-    
-    public var display: String {
-        switch self {
-        case .psn: return "PlayStation Network"
-        case .xbox: return "Xbox Live"
-        case .nintendo: return "Nintendo eShop"
-        case .free: return "DRM-free"
-        case .origin: return "Origin"
-        case .steam: return "Steam"
-        }
-    }
-    
-}
-
-extension DigitalEnum: FormatProtocol {
-    
-    public var formatEnum: FormatEnum { .digital }
-    
-}
+//extension DigitalEnum {
+//    
+//    public var display: String {
+//        switch self {
+//        case .psn: return "PlayStation Network"
+//        case .xbox: return "Xbox Live"
+//        case .nintendo: return "Nintendo eShop"
+//        case .free: return "DRM-free"
+//        case .origin: return "Origin"
+//        case .steam: return "Steam"
+//        }
+//    }
+//    
+//}
