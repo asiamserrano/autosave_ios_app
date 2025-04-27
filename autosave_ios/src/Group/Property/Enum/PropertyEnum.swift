@@ -34,10 +34,3 @@ public enum PropertyEnum: Enumerable {
     }
     
 }
-
-public enum InputEnum: Enumerable {
-    case series
-    case developer
-    case publisher
-    case genre
-}

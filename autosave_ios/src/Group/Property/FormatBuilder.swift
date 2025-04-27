@@ -58,4 +58,25 @@ public extension FormatBuilder {
         }
     }
     
+//    var propertyEnum: PropertyEnum {
+//        .init(self.formatEnum)
+//    }
+//    
+//    var key: PropertySnapshot {
+//        let builder: ValueBuilder = .init(self.propertyEnum)
+//        return .init(.format, builder)
+//    }
+//    
+//    var value: PropertySnapshot {
+//        .init(self.propertyEnum, self.builder)
+//    }
+//    
+//    var linkBuilder: LinkBuilder {
+//        .property_pair(self.key, self.value)
+//    }
+//    
+//    var linkSnapshot: LinkSnapshot {
+//        .init(.format, self.linkBuilder)
+//    }
+    
 }

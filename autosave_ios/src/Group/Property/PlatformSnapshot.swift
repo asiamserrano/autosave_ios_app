@@ -17,6 +17,21 @@ public struct PlatformSnapshot {
         self.format = .format(format)
     }
     
+    public func getBuilder(_ type: PlatformEnum) -> PlatformBuilder {
+        switch type {
+        case .system: return self.system
+        case .format: return self.format
+        }
+    }
+    
+//    public var linkBuilder: LinkBuilder {
+//        .link_pair(self.system.linkSnapshot, self.format.linkSnapshot)
+//    }
+//    
+//    public var linkSnapshot: LinkSnapshot {
+//        .init(.link, self.linkBuilder)
+//    }
+    
 }
 
 extension PlatformSnapshot: Randomizable {

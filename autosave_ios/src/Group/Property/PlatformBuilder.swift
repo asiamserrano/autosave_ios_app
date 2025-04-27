@@ -29,26 +29,36 @@ extension PlatformBuilder: Enumerable {
 
 extension PlatformBuilder {
     
-    private var property: PropertyEnum {
+    public var platformEnum: PlatformEnum {
         switch self {
-        case .system(let systemBuilder): return .init(systemBuilder.systemEnum)
-        case .format(let formatBuilder): return .init(formatBuilder.formatEnum)
+        case .system: return .system
+        case .format: return .format
         }
     }
     
-    public var key: PropertySnapshot {
-        let value: ValueBuilder = .init(self.property)
-        switch self {
-        case .system: return .init(.system, value)
-        case .format: return .init(.format, value)
-        }
-    }
-    
-    public var value: PropertySnapshot {
-        switch self {
-        case .system(let systemBuilder): return .init(self.property, systemBuilder.builder)
-        case .format(let formatBuilder): return .init(self.property, formatBuilder.builder)
-        }
-    }
+//    public var linkEnum: LinkEnum {
+//        .init(self.platformEnum)
+//    }
+//    
+//    public var key: PropertySnapshot {
+//        switch self {
+//        case .system(let s): return s.key
+//        case .format(let f): return f.key
+//        }
+//    }
+//    
+//    public var value: PropertySnapshot {
+//        switch self {
+//        case .system(let s): return s.value
+//        case .format(let f): return f.value
+//        }
+//    }
+//    
+//    public var linkSnapshot: LinkSnapshot {
+//        switch self {
+//        case .system(let s): return s.linkSnapshot
+//        case .format(let f): return f.linkSnapshot
+//        }
+//    }
     
 }

@@ -15,6 +15,10 @@ public struct ValueBuilder: Identifiable {
         self.source = src
     }
     
+    public init(_ uuid: UUID) {
+        self.init(uuid.uuidString)
+    }
+    
 }
 
 extension ValueBuilder: Displayable {

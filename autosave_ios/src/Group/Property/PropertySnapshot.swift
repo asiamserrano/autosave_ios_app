@@ -18,7 +18,7 @@ public struct PropertySnapshot {
         self.type = type
         self.value = value
     }
-    
+
     public var type_id: String {
         self.type.id
     }

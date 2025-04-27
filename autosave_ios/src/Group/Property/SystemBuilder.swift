@@ -101,4 +101,25 @@ public extension SystemBuilder {
         }
     }
     
+//    var propertyEnum: PropertyEnum {
+//        .init(self.systemEnum)
+//    }
+//    
+//    var key: PropertySnapshot {
+//        let builder: ValueBuilder = .init(self.propertyEnum)
+//        return .init(.system, builder)
+//    }
+//    
+//    var value: PropertySnapshot {
+//        .init(self.propertyEnum, self.builder)
+//    }
+//    
+//    var linkBuilder: LinkBuilder {
+//        .property_pair(self.key, self.value)
+//    }
+//    
+//    var linkSnapshot: LinkSnapshot {
+//        .init(.system, self.linkBuilder)
+//    }
+    
 }
