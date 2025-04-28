@@ -15,14 +15,14 @@ public struct PlatformSnapshot {
         let value: PropertySnapshot
         
         init(_ system: SystemBuilder) {
-            let propertyEnum: PropertyEnum = .init(system.systemEnum)
+            let propertyEnum: PropertyEnum = system.propertyEnum
             self.type = .system
             self.key = .init(.system, .init(propertyEnum), "")
             self.value = .init(propertyEnum, system.builder, "")
         }
         
         init(_ format: FormatBuilder) {
-            let propertyEnum: PropertyEnum = .init(format.formatEnum)
+            let propertyEnum: PropertyEnum = format.propertyEnum
             self.type = .format
             self.key = .init(.format, .init(propertyEnum), "")
             self.value = .init(propertyEnum, format.builder, "")

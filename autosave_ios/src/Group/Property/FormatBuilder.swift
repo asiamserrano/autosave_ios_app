@@ -58,6 +58,10 @@ public extension FormatBuilder {
         }
     }
     
+    var propertyEnum: PropertyEnum {
+        self.formatEnum.propertyEnum
+    }
+    
 //    var propertyEnum: PropertyEnum {
 //        .init(self.formatEnum)
 //    }

@@ -101,6 +101,10 @@ public extension SystemBuilder {
         }
     }
     
+    var propertyEnum: PropertyEnum {
+        self.systemEnum.propertyEnum
+    }
+    
     var formatBuilders: [FormatBuilder] {
         let d: [FormatBuilder] = self.digitalEnums.map(FormatBuilder.digital)
         let p: FormatBuilder = .physical(self.physicalEnum)

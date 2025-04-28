@@ -11,14 +11,14 @@ public enum SystemEnum: Enumerable {
     case playstation, nintendo, xbox, os
     
     public var display: String {
-        self.property.display
+        self.propertyEnum.display
     }
     
 }
 
 public extension SystemEnum {
     
-    var property: PropertyEnum {
+    var propertyEnum: PropertyEnum {
         switch self {
         case .playstation: return .playstation
         case .nintendo: return .nintendo
