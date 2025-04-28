@@ -13,10 +13,17 @@ public struct PropertySnapshot {
     public let type: PropertyEnum
     public let value: ValueBuilder
     
-    public init(_ type: PropertyEnum, _ value: ValueBuilder) {
+    // TODO: fix this
+    public init(_ type: PropertyEnum, _ value: ValueBuilder, _ foo: String) {
         self.uuid = .init()
         self.type = type
         self.value = value
+    }
+    
+    public init(_ model: PropertyModel) {
+        self.uuid = model.uuid
+        self.type = .init(model.type_id)
+        self.value = .init(model)
     }
 
     public var type_id: String {

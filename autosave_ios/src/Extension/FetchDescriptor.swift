@@ -65,10 +65,38 @@ public extension PropertyFetchDescriptor {
     
 }
 
-//public typealias JunctionFetchDescriptor = FetchDescriptor<LinkModel>
-//
-//public extension JunctionFetchDescriptor {
+public typealias LinkFetchDescriptor = FetchDescriptor<LinkModel>
+
+public extension LinkFetchDescriptor {
+    
+    static func getByCompositeKey(_ snapshot: LinkSnapshot) -> Self {
+        let key: UUID = snapshot.key
+        let value: UUID = snapshot.value
+        return .init(predicate: .getByCompositeKey(key, value), sortBy: .defaultValue)
+    }
+    
+    static func getByCompositeKey(_ model: LinkModel) -> Self {
+        let key: UUID = model.key_uuid
+        let value: UUID = model.value_uuid
+        return .init(predicate: .getByCompositeKey(key, value), sortBy: .defaultValue)
+    }
+    
+//    public static func getByKey(_ key_uuid: UUID, _ type_id: String? = nil) -> Self {
+//        if let type_id: String = type_id {
+//            return #Predicate {
+//                $0.key_uuid == key_uuid && $0.type_id == type_id
+//            }
+//        } else {
+//            return #Predicate {
+//                $0.key_uuid == key_uuid
+//            }
+//        }
+//    }
 //    
+//    public static func getByValue(_ value_uuid: UUID, _ type_id: String? = nil) -> Self {
+//        
+//    }
+    
 //    static func getByCompositeKey(_ snapshot: JunctionSnapshot) -> Self {
 //        let uuid_1: UUID? = snapshot.game?.uuid
 //        let uuid_2: UUID? = snapshot.property?.uuid
@@ -82,10 +110,10 @@ public extension PropertyFetchDescriptor {
 //        return .init(predicate: predicate, sortBy: .defaultValue)
 //    }
 //    
-//    static func getByProperty(_ property: PropertyModel) -> Self {
+//    static func getByUUID(_ snapshot: LinkSnapshot) -> Self {
 //        let uuid: UUID? = property.uuid
 //        let predicate: JunctionPredicate = .getByProperty(uuid)
 //        return .init(predicate: predicate, sortBy: .defaultValue)
 //    }
-//    
-//}
+    
+}

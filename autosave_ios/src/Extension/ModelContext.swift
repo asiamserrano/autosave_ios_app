@@ -20,6 +20,16 @@ extension ModelContext {
         }
     }
     
+    public func add(_ link: LinkModel) -> Void {
+        self.insert(link)
+        self.store()
+    }
+    
+    public func remove(_ link: LinkModel) -> Void {
+        self.delete(link)
+        self.store()
+    }
+    
     public func add(_ game: GameModel) -> Void {
         self.insert(game)
         self.store()
@@ -79,7 +89,7 @@ extension ModelContext {
     }
     
     @discardableResult
-    func save(_ current: GameSnapshot) -> GameModel {
+    func save(_ current: GameSnapshot, _ properties: [PropertyBuilder] = []) -> GameModel {
         let composite: GameFetchDescriptor = .getByCompositeKey(current)
         let new: GameModel? = self.fetchModel(composite)
         if let new: GameModel = new {
@@ -89,6 +99,39 @@ extension ModelContext {
             self.add(game)
             return game
         }
+    }
+    
+    public func save(_ model: GameModel, _ properties: [PropertyBuilder]) -> Void {
+        
+        // TODO: set up needs to change
+        // the builders should first create PropertyModels
+        // then i should create link snapshots from these models 
+        // from here, I can either use the same builders to create the LinkModels
+        // or
+        // I can use instead the game model and the property models to create the links
+        
+        
+        
+        
+//        let game: GameSnapshot = model.snapshot
+//        let builders: [LinkBuilder] = properties.flatMap { $0.getLinkSnapshots(game) }.map { snapshot in
+//            let desc: LinkFetchDescriptor = .getByCompositeKey(snapshot)
+//            if let model: LinkModel = self.fetchModel(desc) {
+//                switch snapshot.type {
+//                case .system, .
+//                case .link:
+//                    <#code#>
+//                case .property:
+//                    <#code#>
+//                case .platform:
+//                    <#code#>
+//                }
+//            }
+//            if model == nil {
+//                let link: LinkModel = .init(snapshot)
+//                self.add(link)
+//            }
+//        }
     }
     
 //    @discardableResult
@@ -143,6 +186,19 @@ extension ModelContext {
 }
 
 private extension ModelContext {
+    
+    func fetchModel(_ desc: LinkFetchDescriptor) -> LinkModel? {
+        fetchModels(desc).first
+    }
+    
+    func fetchModels(_ desc: LinkFetchDescriptor) -> [LinkModel] {
+        do {
+            return try self.fetch(desc)
+        } catch {
+            print("error: \(error)")
+            return .init()
+        }
+    }
     
     func fetchModel(_ desc: GameFetchDescriptor) -> GameModel? {
         fetchModels(desc).first

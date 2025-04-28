@@ -18,8 +18,8 @@ public class LinkModel {
     
     public init(_ snapshot: LinkSnapshot) {
         self.uuid = .init()
-        self.key_uuid = snapshot.key_uuid
-        self.value_uuid = snapshot.value_uuid
+        self.key_uuid = snapshot.key
+        self.value_uuid = snapshot.value
         self.type_id = snapshot.type_id
     }
     
@@ -37,17 +37,34 @@ public enum LinkEnum: Enumerable {
 public enum LinkBuilder: Displayable {
     
 //    public static func platform(_ snapshot: PlatformSnapshot) -> Self {
-//        let system: LinkSnapshot = snapshot.system.snapshot
-//        let format: LinkSnapshot = snapshot.format.snapshot
+//        let system: Self = .platform(.system, snapshot)
+//        let format: Self = .platform(.format, snapshot)
 //        return .link_pair(system, format)
 //    }
     
-    case property_pair(PropertySnapshot, PropertySnapshot)
-    case link_pair(LinkSnapshot, LinkSnapshot)
-    case game_property(GameSnapshot, PropertySnapshot)
-    case game_platform(GameSnapshot, LinkSnapshot)
+//    public static func platform(_ platformEnum: PlatformEnum, _ snapshot: PlatformSnapshot) -> Self {
+//        let propertyEnum: PropertyEnum = .init(platformEnum)
+//        let builder: PlatformBuilder = snapshot.getBuilder(platformEnum)
+//        switch builder {
+//        case .system(let system):
+//            let value: ValueBuilder = .init(system.systemEnum)
+//            let a: PropertySnapshot = .init(.system, value)
+//            let b: PropertySnapshot = .init(propertyEnum, system.builder)
+//            return .property_pair(a, b)
+//        case .format(let format):
+//            let value: ValueBuilder = .init(format.formatEnum)
+//            let a: PropertySnapshot = .init(.format, value)
+//            let b: PropertySnapshot = .init(propertyEnum, format.builder)
+//            return .property_pair(a, b)
+//        }
+//    }
+    
+    case property_pair(PropertySnapshot, PropertySnapshot)  // systembuilder or formatbuilder
+    case link_pair(LinkSnapshot, LinkSnapshot)              // platformbuilder
+    case game_property(GameSnapshot, PropertySnapshot)      // propertybuilder except platformbuilder
+    case game_platform(GameSnapshot, LinkSnapshot)          // platformbuilder
 
-    private var key: UUID {
+    public var key: UUID {
         switch self {
         case .property_pair(let p, _): return p.uuid
         case .link_pair(let l, _): return l.uuid
@@ -56,7 +73,7 @@ public enum LinkBuilder: Displayable {
         }
     }
     
-    private var value: UUID {
+    public var value: UUID {
         switch self {
         case .property_pair(_, let p): return p.uuid
         case .link_pair(_, let l): return l.uuid
@@ -78,44 +95,45 @@ public enum LinkBuilder: Displayable {
 
 // TODO: finish this logic
 
-public enum LinkGrouping {
-    
-    public static func platform(_ snapshot: PlatformSnapshot) -> Self {
-        .none
-    }
-    
-//    public static func platform(_ platformEnum: PlatformEnum, _ snapshot: PlatformSnapshot) -> Self {
-//        let propertyEnum: PropertyEnum = .init(platformEnum)
-//        let builder: PlatformBuilder = snapshot.getBuilder(platformEnum)
-//        switch builder {
-//        case .system(let system):
-//            let value: ValueBuilder = .init(system.systemEnum)
-//            let a: PropertySnapshot = .init(.system, value)
-//            let b: PropertySnapshot = .init(propertyEnum, system.builder)
-//            let snap: LinkSnapshot = .init(.system,)
-//            return .single(<#T##LinkSnapshot#>)(a, b)
-//        case .format(let format):
-//            let value: ValueBuilder = .init(format.formatEnum)
-//            let a: PropertySnapshot = .init(.format, value)
-//            let b: PropertySnapshot = .init(propertyEnum, format.builder)
-//            return .double(a, b)
+//public enum LinkGrouping {
+//    
+////    public static func platform(_ snapshot: PlatformSnapshot) -> Self {
+////        .none
+////    }
+//    
+////    public static func platform(_ platformEnum: PlatformEnum, _ snapshot: PlatformSnapshot) -> Self {
+////        let propertyEnum: PropertyEnum = .init(platformEnum)
+////        let builder: PlatformBuilder = snapshot.getBuilder(platformEnum)
+////        switch builder {
+////        case .system(let system):
+////            let value: ValueBuilder = .init(system.systemEnum)
+////            let a: PropertySnapshot = .init(.system, value)
+////            let b: PropertySnapshot = .init(propertyEnum, system.builder)
+////            let snap: LinkSnapshot = .init(.system,)
+////            return .single(<#T##LinkSnapshot#>)(a, b)
+////        case .format(let format):
+////            let value: ValueBuilder = .init(format.formatEnum)
+////            let a: PropertySnapshot = .init(.format, value)
+////            let b: PropertySnapshot = .init(propertyEnum, format.builder)
+////            return .double(a, b)
+////        }
+////    }
+//    
+//    
+//    case none
+//    case single(LinkSnapshot)
+//    case double(LinkSnapshot, LinkSnapshot)
+//    
+//    /// Always returns a flat array of 1–4 elements
+//    public var snapshots: [LinkSnapshot] {
+//        switch self {
+//        case .none: return .init()
+//        case .single(let a): return .init(a)
+//        case .double(let a, let b): return .init(a, b)
 //        }
 //    }
-    
-    case none
-    case single(LinkSnapshot)
-    case double(LinkSnapshot, LinkSnapshot)
-    
-    /// Always returns a flat array of 1–4 elements
-    public var snapshots: [LinkSnapshot] {
-        switch self {
-        case .none: return .init()
-        case .single(let a): return .init(a)
-        case .double(let a, let b): return .init(a, b)
-        }
-    }
-    
-}
+//    
+//}
 
 // ── Pure data struct, no recursion ──────────────────────────────────────
 public struct LinkSnapshot {
@@ -132,24 +150,29 @@ public struct LinkSnapshot {
     
     public let uuid: UUID
     public let type: LinkEnum
-    public let value: ValueBuilder
+    public let key: UUID
+    public let value: UUID
     
     public init(_ type: LinkEnum, _ link: LinkBuilder) {
         self.uuid = .init()
         self.type = type
-        self.value = link.builder
+        self.key = link.key
+        self.value = link.value
     }
     
-    public var key_uuid: UUID {
-        .init(uuidString: value.id) ?? .init()
-    }
-    
-    public var value_uuid: UUID {
-        .init(uuidString: value.display) ?? .init()
-    }
+//    public var key_uuid: UUID {
+//        .init(uuidString: value.id) ?? .init()
+//    }
+//    
+//    public var value_uuid: UUID {
+//        .init(uuidString: value.display) ?? .init()
+//    }
     
     public var type_id: String {
         self.type.id
     }
     
 }
+
+
+

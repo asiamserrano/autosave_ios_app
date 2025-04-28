@@ -77,26 +77,44 @@ extension PropertyPredicate {
     
 }
 
-//public typealias JunctionPredicate = Predicate<LinkModel>
-//
-//extension JunctionPredicate {
-//    
-//    public static func getByCompositeKey(_ game_uuid: UUID?, _ property_uuid: UUID?) -> JunctionPredicate {
+public typealias LinkPredicate = Predicate<LinkModel>
+
+extension LinkPredicate {
+    
+    public static func getByCompositeKey(_ key_uuid: UUID, _ value_uuid: UUID) -> LinkPredicate {
+        #Predicate {
+            $0.key_uuid == key_uuid && $0.value_uuid == value_uuid
+        }
+    }
+    
+    public static func getByKey(_ key_uuid: UUID, _ type_id: String? = nil) -> LinkPredicate {
+        if let type_id: String = type_id {
+            return #Predicate {
+                $0.key_uuid == key_uuid && $0.type_id == type_id
+            }
+        } else {
+            return #Predicate {
+                $0.key_uuid == key_uuid
+            }
+        }
+    }
+    
+    public static func getByValue(_ value_uuid: UUID, _ type_id: String? = nil) -> LinkPredicate {
+        if let type_id: String = type_id {
+            return #Predicate {
+                $0.value_uuid == value_uuid && $0.type_id == type_id
+            }
+        } else {
+            return #Predicate {
+                $0.value_uuid == value_uuid
+            }
+        }
+    }
+    
+//    public static func getByEnum(_ game_uuid: UUID?, _ property_uuid: UUID?) -> JunctionPredicate {
 //        #Predicate {
 //            $0.game_uuid == game_uuid && $0.property_uuid == property_uuid
 //        }
 //    }
-//    
-//    public static func getByGame(_ uuid: UUID?) -> JunctionPredicate {
-//        #Predicate {
-//            $0.game_uuid == uuid
-//        }
-//    }
-//    
-//    public static func getByProperty(_ uuid: UUID?) -> JunctionPredicate {
-//        #Predicate {
-//            $0.property_uuid == uuid
-//        }
-//    }
-//    
-//}
+    
+}

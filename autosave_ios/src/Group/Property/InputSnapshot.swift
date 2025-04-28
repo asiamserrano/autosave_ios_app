@@ -20,7 +20,11 @@ public struct InputSnapshot {
     public var snapshot: PropertySnapshot {
         let type: PropertyEnum = .init(self.input)
         let builder: ValueBuilder = .init(self.string)
-        return .init(type, builder)
+        return .init(type, builder, .defaultValue)
+    }
+    
+    public var grouping: PropertyGrouping {
+        .single(self.snapshot)
     }
     
 }

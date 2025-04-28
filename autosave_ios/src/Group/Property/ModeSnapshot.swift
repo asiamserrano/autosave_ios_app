@@ -10,8 +10,17 @@ import Foundation
 public struct ModeSnapshot {
     let mode: ModeEnum
     
+    public init(_ mode: ModeEnum) {
+        self.mode = mode
+    }
+    
     public var snapshot: PropertySnapshot {
         let builder: ValueBuilder = .init(self.mode)
-        return .init(.mode, builder)
+        return .init(.mode, builder, .defaultValue)
     }
+    
+    public var grouping: PropertyGrouping {
+        .single(self.snapshot)
+    }
+    
 }

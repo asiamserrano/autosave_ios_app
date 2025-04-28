@@ -26,6 +26,7 @@
 		1E93B10B2DBD6303008AD001 /* ModelEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93B10A2DBD6303008AD001 /* ModelEnum.swift */; };
 		1E93B10D2DBD8806008AD001 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93B10C2DBD8806008AD001 /* UUID.swift */; };
 		1E93B10F2DBDA91F008AD001 /* PropertyGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93B10E2DBDA91F008AD001 /* PropertyGrouping.swift */; };
+		1E93B1112DBEDA66008AD001 /* ValueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93B1102DBEDA66008AD001 /* ValueBuilder.swift */; };
 		1EB3D5912DB5757900FB4B16 /* LinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5902DB5757900FB4B16 /* LinkModel.swift */; };
 		1EB3D5972DB6BD3C00FB4B16 /* SystemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D5962DB6BD3C00FB4B16 /* SystemProtocol.swift */; };
 		1EB3D59C2DB6BECA00FB4B16 /* FormatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB3D59B2DB6BECA00FB4B16 /* FormatProtocol.swift */; };
@@ -76,7 +77,6 @@
 		1EE1ADC32DB40AC200AD714E /* Randomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1AD8F2DB40AC200AD714E /* Randomizable.swift */; };
 		1EE1ADCB2DB42C5300AD714E /* PropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */; };
 		1EE1ADD52DB43B3600AD714E /* PropertyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */; };
-		1EE1ADD72DB4436A00AD714E /* ValueBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD62DB4436A00AD714E /* ValueBuilder.swift */; };
 		1EE1ADD92DB44FAF00AD714E /* PropertySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */; };
 		1EE1ADDC2DB452EE00AD714E /* PropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */; };
 		625CBB452DB9388B00C36027 /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625CBB442DB9388B00C36027 /* Attributes.swift */; };
@@ -102,6 +102,7 @@
 		1E93B10A2DBD6303008AD001 /* ModelEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelEnum.swift; sourceTree = "<group>"; };
 		1E93B10C2DBD8806008AD001 /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
 		1E93B10E2DBDA91F008AD001 /* PropertyGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyGrouping.swift; sourceTree = "<group>"; };
+		1E93B1102DBEDA66008AD001 /* ValueBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueBuilder.swift; sourceTree = "<group>"; };
 		1EB3D5902DB5757900FB4B16 /* LinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
 		1EB3D5962DB6BD3C00FB4B16 /* SystemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemProtocol.swift; sourceTree = "<group>"; };
 		1EB3D59B2DB6BECA00FB4B16 /* FormatProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatProtocol.swift; sourceTree = "<group>"; };
@@ -153,7 +154,6 @@
 		1EE1AD9B2DB40AC200AD714E /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyModel.swift; sourceTree = "<group>"; };
 		1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyBuilder.swift; sourceTree = "<group>"; };
-		1EE1ADD62DB4436A00AD714E /* ValueBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueBuilder.swift; sourceTree = "<group>"; };
 		1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnapshot.swift; sourceTree = "<group>"; };
 		1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyProtocol.swift; sourceTree = "<group>"; };
 		625CBB442DB9388B00C36027 /* Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attributes.swift; sourceTree = "<group>"; };
@@ -320,8 +320,8 @@
 		1EE1AD942DB40AC200AD714E /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				1E93B1102DBEDA66008AD001 /* ValueBuilder.swift */,
 				1EE1AD922DB40AC200AD714E /* Snapshot.swift */,
-				1EE1ADD62DB4436A00AD714E /* ValueBuilder.swift */,
 				1EE1AD932DB40AC200AD714E /* HideModifier.swift */,
 			);
 			path = Struct;
@@ -503,6 +503,7 @@
 				1EE1ADA72DB40AC200AD714E /* SortOrder.swift in Sources */,
 				1EB3D59E2DB6C6C600FB4B16 /* FormatBuilder.swift in Sources */,
 				1EE1ADA82DB40AC200AD714E /* ContentView.swift in Sources */,
+				1E93B1112DBEDA66008AD001 /* ValueBuilder.swift in Sources */,
 				1EE1ADA92DB40AC200AD714E /* View.swift in Sources */,
 				1EB3D59C2DB6BECA00FB4B16 /* FormatProtocol.swift in Sources */,
 				1EE1ADAA2DB40AC200AD714E /* Predicate.swift in Sources */,
@@ -534,7 +535,6 @@
 				1E93B1092DBD5FC8008AD001 /* ModeSnapshot.swift in Sources */,
 				1EE1ADB22DB40AC200AD714E /* HideModifier.swift in Sources */,
 				1EE1ADB32DB40AC200AD714E /* EditMode.swift in Sources */,
-				1EE1ADD72DB4436A00AD714E /* ValueBuilder.swift in Sources */,
 				1EE1ADB42DB40AC200AD714E /* ModelContainer.swift in Sources */,
 				625CBB452DB9388B00C36027 /* Attributes.swift in Sources */,
 				1EE1ADB52DB40AC200AD714E /* GameViewProtocol.swift in Sources */,

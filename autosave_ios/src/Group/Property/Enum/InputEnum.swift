@@ -14,3 +14,14 @@ public enum InputEnum: Enumerable {
     case genre
 }
 
+public enum SelectEnum {
+    case format(FormatEnum)
+    case physical(PhysicalEnum)
+    case digital(DigitalEnum)
+    case system(SystemEnum)
+    case nintendo(NintendoEnum)
+    case playstation(PlayStationEnum)
+    case os(OSEnum)
+    case xbox(XboxEnum)
+    case mode(ModeEnum)
+}
