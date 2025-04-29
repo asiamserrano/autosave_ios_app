@@ -12,10 +12,10 @@ public protocol Displayable {
     var display: String { get }
 }
 
-public extension Displayable {
-    
-    var builder: ValueBuilder {
-        .init(self)
-    }
-    
-}
+//public extension Displayable {
+//    
+//    var builder: ValueBuilder {
+//        .init(self)
+//    }
+//    
+//}

@@ -11,19 +11,21 @@ public struct PropertySnapshot {
  
     public let uuid: UUID
     public let type: PropertyEnum
-    public let value: ValueBuilder
+    public let display: Display
     
     // TODO: fix this
-    public init(_ type: PropertyEnum, _ value: ValueBuilder, _ foo: String) {
+    public init(_ type: PropertyEnum, _ display: Display, _ foo: String) {
         self.uuid = .init()
         self.type = type
-        self.value = value
+        self.display = display
     }
     
     public init(_ model: PropertyModel) {
+        let canon: String = model.value_canon
+        let trim: String = model.value_trim
         self.uuid = model.uuid
         self.type = .init(model.type_id)
-        self.value = .init(model)
+        self.display = .init(model)
     }
 
     public var type_id: String {
@@ -31,11 +33,11 @@ public struct PropertySnapshot {
     }
     
     public var value_canon: String {
-        self.value.id
+        self.display.id
     }
     
     public var value_trim: String {
-        self.value.display
+        self.display.display
     }
     
 }
@@ -48,7 +50,7 @@ extension PropertySnapshot: Hashable {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.type)
-        hasher.combine(self.value)
+        hasher.combine(self.display)
     }
     
 }
