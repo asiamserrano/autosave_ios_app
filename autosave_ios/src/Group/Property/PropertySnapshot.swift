@@ -14,15 +14,13 @@ public struct PropertySnapshot {
     public let display: Display
     
     // TODO: fix this
-    public init(_ type: PropertyEnum, _ display: Display, _ foo: String) {
+    public init(_ builder: PropertyBuilder) {
         self.uuid = .init()
-        self.type = type
-        self.display = display
+        self.type = builder.propertyEnum
+        self.display = builder.display
     }
     
     public init(_ model: PropertyModel) {
-        let canon: String = model.value_canon
-        let trim: String = model.value_trim
         self.uuid = model.uuid
         self.type = .init(model.type_id)
         self.display = .init(model)

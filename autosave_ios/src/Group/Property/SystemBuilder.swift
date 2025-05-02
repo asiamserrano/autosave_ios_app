@@ -14,48 +14,6 @@ public enum SystemBuilder {
     case os(OSEnum)
 }
 
-extension SystemBuilder: Enumerable {
-    
-    public static var allCases: [Self] {
-      SystemEnum.allCases.flatMap { category in
-        switch category {
-          case .playstation:
-            return PlayStationEnum.cases.map(Self.playstation)
-          case .nintendo:
-            return NintendoEnum.cases.map(Self.nintendo)
-          case .xbox:
-            return XboxEnum.cases.map(Self.xbox)
-          case .os:
-            return OSEnum.cases.map(Self.os)
-        }
-      }
-    }
-    
-    public var id: String {
-        switch self {
-        case .playstation(let e): return e.id
-        case .nintendo(let e): return e.id
-        case .xbox(let e): return e.id
-        case .os(let e): return e.id
-        }
-    }
-    
-    public var display: String {
-        let name: String = self.systemEnum.display
-        switch self {
-        case .playstation(let e): return "\(name) \(e.end)"
-        case .nintendo(let e): return e.display(name)
-        case .xbox(let e): return "\(name) \(e.end)"
-        case .os(let e):
-            switch e {
-            case .win: return "Microsoft Windows"
-            case .mac: return "Apple macOS"
-            }
-        }
-    }
-    
-}
-
 public extension SystemBuilder {
     
     var physicalEnum: PhysicalEnum {
@@ -92,44 +50,10 @@ public extension SystemBuilder {
         }
     }
     
-    var systemEnum: SystemEnum {
-        switch self {
-        case .playstation: return .playstation
-        case .nintendo: return .nintendo
-        case .xbox: return .xbox
-        case .os: return .os
-        }
-    }
-    
-    var propertyEnum: PropertyEnum {
-        self.systemEnum.propertyEnum
-    }
-    
     var formatBuilders: [FormatBuilder] {
         let d: [FormatBuilder] = self.digitalEnums.map(FormatBuilder.digital)
         let p: FormatBuilder = .physical(self.physicalEnum)
         return .init(p) + d
     }
-    
-//    var propertyEnum: PropertyEnum {
-//        .init(self.systemEnum)
-//    }
-//    
-//    var key: PropertySnapshot {
-//        let builder: ValueBuilder = .init(self.propertyEnum)
-//        return .init(.system, builder)
-//    }
-//    
-//    var value: PropertySnapshot {
-//        .init(self.propertyEnum, self.builder)
-//    }
-//    
-//    var linkBuilder: LinkBuilder {
-//        .property_pair(self.key, self.value)
-//    }
-//    
-//    var linkSnapshot: LinkSnapshot {
-//        .init(.system, self.linkBuilder)
-//    }
     
 }

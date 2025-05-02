@@ -13,13 +13,6 @@ public enum FormatEnum: Enumerable {
 
 public extension FormatEnum {
     
-    var propertyEnum: PropertyEnum {
-        switch self {
-        case .digital: return .digital
-        case .physical: return .physical
-        }
-    }
-    
     var icon: IconEnum {
         switch self {
         case .digital: return .arrow_down_circle_fill

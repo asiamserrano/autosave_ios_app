@@ -1,125 +1,81 @@
-//////
-//////  PropertyBuilder.swift
-//////  autosave_ios
-//////
-//////  Created by Asia Serrano on 4/19/25.
-////
 //
-//import Foundation
+//  PropertyBuilder.swift
+//  autosave_ios
 //
-//// TODO: Fix this too
-//public enum PropertyBuilder {
-//    
-//    private enum BuilderEnum: Enumerable {
-//        case input, platform, mode
-//    }
-//    
-//    public static var random: Self {
-//        let builderEnum: BuilderEnum = .random
-//        switch builderEnum {
-//        case .input: return .input(.init(.random, .random))
-//        case .mode: return .mode(.init(.random))
-//        case .platform:
-//            let system: SystemBuilder = .random
-//            let format: FormatBuilder = system.formatBuilders.random
-//            return .platform(.init(system, format))
-//        }
-//    }
-//    
-//    case input(InputSnapshot)
-//    case platform(PlatformSnapshot)
-//    case mode(ModeSnapshot)
-//    
-////    public var groupings: [PropertyGrouping] {
-////        switch self {
-////        case .input(let i): return .init(i.grouping)
-////        case .mode(let m): return .init(m.grouping)
-////        case .platform(let p):
-////            let a: PropertyGrouping = p.getPropertyGrouping(.system)
-////            let b: PropertyGrouping = p.getPropertyGrouping(.format)
-////            let c: PropertyGrouping = p.getPropertyGrouping()
-////            return .init(a, b, c)
-////        }
-////    }
-//    
-////    public var grouping: PropertyGrouping {
-////        switch self {
-////        case .input(let i): return i.grouping
-////        case .mode(let m): return m.grouping
-////        case .platform(let p): return p.getPropertyGrouping()
-//////            let a: PropertyGrouping = p.getPropertyGrouping(.system)
-//////            let b: PropertyGrouping = p.getPropertyGrouping(.format)
-//////            let c: PropertyGrouping = p.getPropertyGrouping()
-//////            return .init(a, b, c)
-////        }
-////    }
-//    
-////    public func getLinkSnapshots(_ game: GameSnapshot) -> [LinkSnapshot] {
-//////        let array: [LinkSnapshot] = self.grouping.snapshots.getLinkSnapshots(game)
-////        switch self {
-////        case .platform(let platform):
-////            let grouping: PropertyGrouping = platform.getPropertyGrouping()
-////            let array: [LinkSnapshot] = grouping.snapshots.getLinkSnapshots(game)
-////            
-////            let a: LinkSnapshot = platform.getLinkSnapshot(.system)  // for a systemBuilder
-////            let b: LinkSnapshot = platform.getLinkSnapshot(.format)  // for a formatBuilder
-////            let c: LinkSnapshot = platform.getLinkSnapshot()         // for a platform (systemBuilder + formatBuilder)
-////            let d: LinkSnapshot = platform.getLinkSnapshot(game)     // for a game + platform
-////        
-////            return [a, b, c, d] + array
-////        default:
-////            return self.groupings.flatMap(\.snapshots).getLinkSnapshots(game)
-////        }
-////    }
-//    
-////    public var grouping: PropertyGrouping {
-////        switch self {
-////        case .input(let i): return .single(i.snapshot)
-////        case .mode(let m): return .single(m.snapshot)
-////        case .platform(let p): return .platform(p)
-////        }
-////    }
-//    
-////    public func getLinkBuilder(_ game: GameSnapshot) -> LinkBuilder {
-////        switch self {
-////        case .input(let i):
-////            let property: PropertySnapshot = i.snapshot
-////            return .game_property(game, property)
-////        case .platform(let p):
-////            
-////        case .mode(let m):
-////            let property: PropertySnapshot = m.snapshot
-////            return .game_property(game, property)
-////        }
-////    }
-//    
-//}
-//
-///*
-// //    public static func system(_ builder: SystemBuilder) -> Self {
-// //        let builder: LinkBuilder = .property_pair(builder.key, builder.value)
-// //        return .init(.system, builder)
-// //    }
-// //
-// //    public static func format(_ builder: FormatBuilder) -> Self {
-// //        let builder: LinkBuilder = .property_pair(builder.key, builder.value)
-// //        return .init(.format, builder)
-// //    }
-// */
-//
-///*
-// case property_pair(PropertySnapshot, PropertySnapshot)  // systembuilder or formatbuilder
-// case link_pair(LinkSnapshot, LinkSnapshot)              // platformbuilder
-// case game_property(GameSnapshot, PropertySnapshot)      // propertybuilder except platformbuilder
-// case game_platform(GameSnapshot, LinkSnapshot)          // platformbuilder
-// 
-// You say I need to create 8 instances of link builder.
-// 1. G + SG          game_property
-// 2. G + SN          game_property
-// 3. G + FG          game_property
-// 4. G + FN          game_property
-// 5. SG + SN -> S    property_pair
-// 6. FG + FN -> G    property_pair
-// 7. S + F -> PL     link_pair
-// 8. G + PL          game_platform
-// */
+//  Created by Asia Serrano on 4/19/25.
+
+
+import Foundation
+
+public enum PropertyBuilder {
+    
+    case input(InputEnum, String)
+    case mode(ModeEnum)
+    case system(SystemEnum)
+    case format(FormatEnum)
+    case nintendo(NintendoEnum)
+    case playstation(PlayStationEnum)
+    case os(OSEnum)
+    case xbox(XboxEnum)
+    case physical(PhysicalEnum)
+    case digital(DigitalEnum)
+    
+}
+
+public extension PropertyBuilder {
+    
+    static var random: Self {
+        switch PropertyEnum.random {
+        case .series: return .input(.series, .random)
+        case .developer: return .input(.developer, .random)
+        case .publisher: return .input(.publisher, .random)
+        case .genre: return .input(.genre, .random)
+        case .mode: return .mode(.random)
+        case .system: return .system(.random)
+        case .format: return .format(.random)
+        case .physical: return .physical(.random)
+        case .digital: return .digital(.random)
+        case .nintendo: return .nintendo(.random)
+        case .playstation: return .playstation(.random)
+        case .os: return .os(.random)
+        case .xbox: return .xbox(.random)
+        }
+    }
+    
+    var propertyEnum: PropertyEnum {
+        switch self {
+        case .input(let inputEnum, _):
+            switch inputEnum {
+            case .series: return .series
+            case .developer: return .developer
+            case .publisher: return .publisher
+            case .genre: return .genre
+            }
+        case .mode: return .mode
+        case .system: return.system
+        case .format: return .format
+        case .playstation: return .playstation
+        case .nintendo: return .nintendo
+        case .xbox: return .xbox
+        case .os: return .os
+        case .digital: return .digital
+        case .physical: return .physical
+        }
+    }
+    
+    var display: Display {
+        switch self {
+        case .input(_, let string): return .init(string)
+        case .format(let formatEnum): return .init(formatEnum)
+        case .physical(let physicalEnum): return .init(physicalEnum)
+        case .digital(let digitalEnum): return .init(digitalEnum)
+        case .mode(let modeEnum): return .init(modeEnum)
+        case .playstation(let playStationEnum): return .init(playStationEnum)
+        case .nintendo(let nintendoEnum): return .init(nintendoEnum)
+        case .os(let oSEnum): return .init(oSEnum)
+        case .xbox(let xboxEnum): return .init(xboxEnum)
+        case .system(let systemEnum): return .init(systemEnum)
+        }
+    }
+
+}

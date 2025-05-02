@@ -7,21 +7,21 @@
 
 import Foundation
 
-public enum OSEnum: Enumerable {
+public enum OSEnum {
     case win, mac
 }
 
-//extension OSEnum: Enumerable {
-//    
-//    public var display: String {
-//        switch self {
-//        case .win: return "Microsoft Windows"
-//        case .mac: return "Apple macOS"
-//        }
-//    }
-//    
-//}
-//
+extension OSEnum: Enumerable {
+    
+    public var display: String {
+        switch self {
+        case .win: return "Microsoft Windows"
+        case .mac: return "Apple macOS"
+        }
+    }
+    
+}
+
 //extension OSEnum: SystemProtocol {
 //    
 //    public var systemEnum: SystemEnum { .os }

@@ -7,10 +7,14 @@
 
 import Foundation
 
-public enum ModeEnum: Enumerable {
+public enum ModeEnum {
     
     case single, two, multi
+    
+}
 
+extension ModeEnum: Enumerable {
+    
     public var display: String {
         switch self {
         case .single: return "Single-Player"
@@ -19,11 +23,7 @@ public enum ModeEnum: Enumerable {
         }
     }
     
-}
-
-public extension ModeEnum {
-    
-    var icon: IconEnum {
+    public var icon: IconEnum {
         switch self {
         case .single: return .person_fill
         case .two: return .person_2_fill

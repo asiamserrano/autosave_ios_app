@@ -7,13 +7,14 @@
 
 import Foundation
 
-public enum NintendoEnum: Enumerable {
+public enum NintendoEnum {
     case snes, nsw, wii, wiiu, gamecube, n3ds
 }
 
-extension NintendoEnum {
+extension NintendoEnum: Enumerable {
     
-    public func display(_ name: String) -> String {
+    public var display: String {
+        let name: String = SystemEnum.nintendo.display
         switch self {
         case .snes: return "Super \(name) Entertainment System"
         case .nsw: return "\(name) Switch"

@@ -12,3 +12,9 @@
 //    var physicalEnum: PhysicalEnum { get }
 //    var digitalEnums: [DigitalEnum] { get }
 //}
+//
+//public extension SystemProtocol {
+//    
+//    
+//    
+//}

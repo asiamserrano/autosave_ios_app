@@ -80,6 +80,8 @@
 		1EE1ADD92DB44FAF00AD714E /* PropertySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */; };
 		1EE1ADDC2DB452EE00AD714E /* PropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */; };
 		625CBB452DB9388B00C36027 /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625CBB442DB9388B00C36027 /* Attributes.swift */; };
+		62A2D0ED2DC51BC900DFE2AA /* PROPERTY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2D0EC2DC51BC900DFE2AA /* PROPERTY.swift */; };
+		62A2D0EF2DC5254300DFE2AA /* ENUMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2D0EE2DC5254300DFE2AA /* ENUMS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +159,8 @@
 		1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnapshot.swift; sourceTree = "<group>"; };
 		1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyProtocol.swift; sourceTree = "<group>"; };
 		625CBB442DB9388B00C36027 /* Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attributes.swift; sourceTree = "<group>"; };
+		62A2D0EC2DC51BC900DFE2AA /* PROPERTY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROPERTY.swift; sourceTree = "<group>"; };
+		62A2D0EE2DC5254300DFE2AA /* ENUMS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENUMS.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -182,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				1E93B0E92DBD524E008AD001 /* DigitalEnum.swift */,
-				1E93B0EA2DBD524E008AD001 /* FormatEnum.swift */,
 				1E93B0EB2DBD524E008AD001 /* PhysicalEnum.swift */,
 			);
 			path = Format;
@@ -194,7 +197,6 @@
 				1E93B0ED2DBD524E008AD001 /* NintendoEnum.swift */,
 				1E93B0EE2DBD524E008AD001 /* OSEnum.swift */,
 				1E93B0EF2DBD524E008AD001 /* PlayStationEnum.swift */,
-				1E93B0F02DBD524E008AD001 /* SystemEnum.swift */,
 				1E93B0F12DBD524E008AD001 /* XboxEnum.swift */,
 			);
 			path = System;
@@ -205,7 +207,6 @@
 			children = (
 				1E93B0EC2DBD524E008AD001 /* Format */,
 				1E93B0F22DBD524E008AD001 /* System */,
-				1E93B0F32DBD524E008AD001 /* PlatformEnum.swift */,
 			);
 			path = Platform;
 			sourceTree = "<group>";
@@ -213,9 +214,6 @@
 		1E93B0F72DBD524E008AD001 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				1E93B0F62DBD524E008AD001 /* PropertyEnum.swift */,
-				1E93B0F52DBD524E008AD001 /* ModeEnum.swift */,
-				1E93B1042DBD5266008AD001 /* InputEnum.swift */,
 				1E93B0F42DBD524E008AD001 /* Platform */,
 			);
 			path = Enum;
@@ -372,15 +370,23 @@
 			children = (
 				1EE1ADCA2DB42C5300AD714E /* PropertyModel.swift */,
 				1EE1ADD82DB44FAF00AD714E /* PropertySnapshot.swift */,
-				1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */,
-				1E93B10E2DBDA91F008AD001 /* PropertyGrouping.swift */,
-				1EB3D5A32DB6F46C00FB4B16 /* PlatformSnapshot.swift */,
-				1E93B0CA2DBC584A008AD001 /* PlatformBuilder.swift */,
+				62A2D0EC2DC51BC900DFE2AA /* PROPERTY.swift */,
+				62A2D0EE2DC5254300DFE2AA /* ENUMS.swift */,
+				1E93B0F52DBD524E008AD001 /* ModeEnum.swift */,
+				1E93B0EA2DBD524E008AD001 /* FormatEnum.swift */,
+				1E93B0F02DBD524E008AD001 /* SystemEnum.swift */,
 				1EB3D59F2DB6C7B800FB4B16 /* SystemBuilder.swift */,
 				1EB3D59D2DB6C6C600FB4B16 /* FormatBuilder.swift */,
+				1E93B1042DBD5266008AD001 /* InputEnum.swift */,
+				1E93B0F62DBD524E008AD001 /* PropertyEnum.swift */,
+				1E93B0CA2DBC584A008AD001 /* PlatformBuilder.swift */,
+				1E93B0F32DBD524E008AD001 /* PlatformEnum.swift */,
+				1EE1ADD42DB43B3600AD714E /* PropertyBuilder.swift */,
+				1E93B0F72DBD524E008AD001 /* Enum */,
+				1E93B10E2DBDA91F008AD001 /* PropertyGrouping.swift */,
+				1EB3D5A32DB6F46C00FB4B16 /* PlatformSnapshot.swift */,
 				1E93B1062DBD5721008AD001 /* InputSnapshot.swift */,
 				1E93B1082DBD5FC8008AD001 /* ModeSnapshot.swift */,
-				1E93B0F72DBD524E008AD001 /* Enum */,
 				1EB3D5962DB6BD3C00FB4B16 /* SystemProtocol.swift */,
 				1EB3D59B2DB6BECA00FB4B16 /* FormatProtocol.swift */,
 				1EE1ADDB2DB452EE00AD714E /* PropertyProtocol.swift */,
@@ -532,6 +538,7 @@
 				1E93B1072DBD5721008AD001 /* InputSnapshot.swift in Sources */,
 				1EE1ADB02DB40AC200AD714E /* MenuEnum.swift in Sources */,
 				1EE1ADB12DB40AC200AD714E /* GameSortEnum.swift in Sources */,
+				62A2D0ED2DC51BC900DFE2AA /* PROPERTY.swift in Sources */,
 				1E93B1092DBD5FC8008AD001 /* ModeSnapshot.swift in Sources */,
 				1EE1ADB22DB40AC200AD714E /* HideModifier.swift in Sources */,
 				1EE1ADB32DB40AC200AD714E /* EditMode.swift in Sources */,
@@ -549,6 +556,7 @@
 				1EE1ADDC2DB452EE00AD714E /* PropertyProtocol.swift in Sources */,
 				1EE1ADBC2DB40AC200AD714E /* Array.swift in Sources */,
 				1EE1ADBD2DB40AC200AD714E /* GameResult.swift in Sources */,
+				62A2D0EF2DC5254300DFE2AA /* ENUMS.swift in Sources */,
 				1EE1ADD52DB43B3600AD714E /* PropertyBuilder.swift in Sources */,
 				1E93B10B2DBD6303008AD001 /* ModelEnum.swift in Sources */,
 				1EE1ADBE2DB40AC200AD714E /* Set.swift in Sources */,
